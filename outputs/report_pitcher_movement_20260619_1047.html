@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8">
+<title>8ctane R&D Report — 2026-06-19 10:47</title>
+
+<style>
+  body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+         max-width: 1200px; margin: 24px auto; padding: 0 16px; color: #222; }
+  h1 { border-bottom: 2px solid #333; padding-bottom: 6px; }
+  h2 { margin-top: 36px; color: #1a4a82; }
+  table { border-collapse: collapse; margin: 16px 0; }
+  th, td { border: 1px solid #ccc; padding: 6px 10px; font-size: 13px; }
+  th { background: #f0f4f8; text-align: left; }
+  .meta { color: #666; font-size: 13px; }
+  .note { background: #fff8d6; padding: 8px 12px; border-left: 4px solid #f1c40f;
+          margin: 12px 0; font-size: 13px; }
+  pre { background: #f6f8fa; padding: 12px; border-radius: 4px; overflow-x: auto; }
+</style>
+
+</head><body>
+
+<h1>8ctane R&amp;D Correlation Report — role=pitcher · domain=movement</h1>
+<p class="meta">Generated: 2026-06-19 10:47<br>
+Slice: role=pitcher · domain=movement<br>
+Corpus: 82 athletes with a profile + non-empty program. Clustering used 63 of them
+(athletes missing &gt;50% of metrics were excluded). K = 5.</p>
+
+<div class="note"><b>How to read this:</b> Z-scores are deviations from the athlete's
+age-group population. Negative = below the group mean (a deficit), positive = above.
+The correlation column "r" is Pearson; a positive r between a Z-score and a program
+feature means coaches tended to <i>prescribe more</i> of that feature when the athlete
+was <i>above</i> the population mean on that metric.</p></div>
+
+<h2>1. Population</h2>
+<div style="height:320px; width:100%;">                        <script>window.PlotlyConfig = {MathJaxConfig: 'local'};</script>
+        <script charset="utf-8" src="https://cdn.plot.ly/plotly-3.6.0.min.js" integrity="sha256-QaOVwtVY0T02VaHrr6pnoHLCwayMJp4O5n4YyaE3rJk=" crossorigin="anonymous"></script>                <div id="3d39e5c3-8bc2-4b46-ac15-c45394f102d5" class="plotly-graph-div" style="height:100%; width:100%;"></div>            <script>                window.PLOTLYENV=window.PLOTLYENV || {};                                if (document.getElementById("3d39e5c3-8bc2-4b46-ac15-c45394f102d5")) {                    Plotly.newPlot(                        "3d39e5c3-8bc2-4b46-ac15-c45394f102d5",                        [{"hovertemplate":"profile_age_group=%{x}\u003cbr\u003eathletes=%{y}\u003cextra\u003e\u003c\u002fextra\u003e","legendgroup":"","marker":{"color":"#636efa","pattern":{"shape":""}},"name":"","orientation":"v","showlegend":false,"textposition":"auto","texttemplate":"%{y}","x":["COLLEGE","HIGH SCHOOL","PRO","YOUTH"],"xaxis":"x","y":{"dtype":"i1","bdata":"HxwSAQ=="},"yaxis":"y","type":"bar"}],                        {"template":{"data":{"histogram2dcontour":[{"type":"histogram2dcontour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"choropleth":[{"type":"choropleth","colorbar":{"outlinewidth":0,"ticks":""}}],"histogram2d":[{"type":"histogram2d","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"heatmap":[{"type":"heatmap","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"contourcarpet":[{"type":"contourcarpet","colorbar":{"outlinewidth":0,"ticks":""}}],"contour":[{"type":"contour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"surface":[{"type":"surface","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"mesh3d":[{"type":"mesh3d","colorbar":{"outlinewidth":0,"ticks":""}}],"scatter":[{"fillpattern":{"fillmode":"overlay","size":10,"solidity":0.2},"type":"scatter"}],"parcoords":[{"type":"parcoords","line":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolargl":[{"type":"scatterpolargl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"bar":[{"error_x":{"color":"#2a3f5f"},"error_y":{"color":"#2a3f5f"},"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"bar"}],"scattergeo":[{"type":"scattergeo","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolar":[{"type":"scatterpolar","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"histogram":[{"marker":{"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"histogram"}],"scattergl":[{"type":"scattergl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatter3d":[{"type":"scatter3d","line":{"colorbar":{"outlinewidth":0,"ticks":""}},"marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattermap":[{"type":"scattermap","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattermapbox":[{"type":"scattermapbox","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterternary":[{"type":"scatterternary","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattercarpet":[{"type":"scattercarpet","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"carpet":[{"aaxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"baxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"type":"carpet"}],"table":[{"cells":{"fill":{"color":"#EBF0F8"},"line":{"color":"white"}},"header":{"fill":{"color":"#C8D4E3"},"line":{"color":"white"}},"type":"table"}],"barpolar":[{"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"barpolar"}],"pie":[{"automargin":true,"type":"pie"}]},"layout":{"autotypenumbers":"strict","colorway":["#636efa","#EF553B","#00cc96","#ab63fa","#FFA15A","#19d3f3","#FF6692","#B6E880","#FF97FF","#FECB52"],"font":{"color":"#2a3f5f"},"hovermode":"closest","hoverlabel":{"align":"left"},"paper_bgcolor":"white","plot_bgcolor":"#E5ECF6","polar":{"bgcolor":"#E5ECF6","angularaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"radialaxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"ternary":{"bgcolor":"#E5ECF6","aaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"baxis":{"gridcolor":"white","linecolor":"white","ticks":""},"caxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"coloraxis":{"colorbar":{"outlinewidth":0,"ticks":""}},"colorscale":{"sequential":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"sequentialminus":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"diverging":[[0,"#8e0152"],[0.1,"#c51b7d"],[0.2,"#de77ae"],[0.3,"#f1b6da"],[0.4,"#fde0ef"],[0.5,"#f7f7f7"],[0.6,"#e6f5d0"],[0.7,"#b8e186"],[0.8,"#7fbc41"],[0.9,"#4d9221"],[1,"#276419"]]},"xaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"yaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"scene":{"xaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"yaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"zaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2}},"shapedefaults":{"line":{"color":"#2a3f5f"}},"annotationdefaults":{"arrowcolor":"#2a3f5f","arrowhead":0,"arrowwidth":1},"geo":{"bgcolor":"white","landcolor":"#E5ECF6","subunitcolor":"white","showland":true,"showlakes":true,"lakecolor":"white"},"title":{"x":0.05},"mapbox":{"style":"light"}}},"xaxis":{"anchor":"y","domain":[0.0,1.0],"title":{"text":"profile_age_group"}},"yaxis":{"anchor":"x","domain":[0.0,1.0],"title":{"text":"athletes"}},"legend":{"tracegroupgap":0},"title":{"text":"Athletes in corpus by age group"},"barmode":"relative","height":320},                        {"responsive": true}                    )                };            </script>        </div>
+
+<h2>2. Profile ↔ Program correlations</h2>
+<div style="height:450px; width:100%;">                            <div id="cf72e7da-7b72-43c7-90ae-a3b382450770" class="plotly-graph-div" style="height:100%; width:100%;"></div>            <script>                window.PLOTLYENV=window.PLOTLYENV || {};                                if (document.getElementById("cf72e7da-7b72-43c7-90ae-a3b382450770")) {                    Plotly.newPlot(                        "cf72e7da-7b72-43c7-90ae-a3b382450770",                        [{"coloraxis":"coloraxis","name":"0","x":["duration_days","n_program_days","n_lift_prescriptions","n_unique_lifts","n_plyo_prescriptions","n_prep_prescriptions","n_bp_prescriptions","n_hit_prescriptions","n_me_prescriptions"],"y":["z_pitch_lead_leg_grf_mag","z_pitch_arm_er_timing_at_fc","z_pitch_trunk_rotation_at_fc","z_pitch_max_external_rotation","z_pitch_pelvis_rotation_at_fc","z_pitch_max_horizontal_abduction","z_hit_trunk_at_contact","z_hit_pelvis_at_contact","z_hit_lead_leg_block_delta","z_hit_trunk_at_lead_foot_down","z_hit_pelvis_at_lead_foot_down","z_hit_hip_shoulder_sep_at_setup","z_hit_lead_knee_ang_vel_ext_max"],"z":{"dtype":"f8","bdata":"NYaLdX7Uu7+BlmGyB0vLv2Xg0unwosq\u002fCsw\u002fq8Brxb+kmi1qHKzMv7zEfHlVob+\u002f7shcogaTur8I+qLty4C4P3\u002fidKg5z8S\u002fTO8pEtrtsr8CUTQrKkPCP9hUDKI5z7E\u002fSlDpR2mbwT9qhYOvMKDJP+x8\u002fstxQ8A\u002fApEByqthxT9tIFTIfcO8Pxb33L4Cgbw\u002fvqeeu8vSvr9JAmRtnr\u002fFv1Sh2qVsz6c\u002fsjt7Avgmtj+uWsraiTbBv+nJhO0LmJy\u002fobjHZB0oo79kK7he2Ki4P8lgSqFHO7a\u002f6VZj4eTls78k5+d6zF+2Pw6WMyl\u002faI2\u002fQaFBVCs\u002frz+w2+dqCIzIP27MYbDJ+bo\u002f45UY\u002frXeuz8Keebl\u002f8WrP93\u002fDNcCHrs\u002faiRmmZezf781Ar6dijG9v9HaLlEHRKk\u002f723GxJ4btD9et5ovYs62v0rYIm7\u002fX6Q\u002ff0gTB6VKpb93mOIrKFqWv88PkOo5j7M\u002fdWONMGgAjz+VQ\u002fUWnl2nP0t6Qh8l0Kk\u002fzReNjCz\u002frz9yLFCD6daJv+3Jk1P56pa\u002fqQzkciEUwb\u002fGeCoPxDiwvz8XKceIY6I\u002fAAAAAAAA+H8AAAAAAAD4fwAAAAAAAPh\u002fAAAAAAAA+H8AAAAAAAD4fwAAAAAAAPh\u002fAAAAAAAA+H8AAAAAAAD4fwAAAAAAAPh\u002fAAAAAAAA+H8AAAAAAAD4fwAAAAAAAPh\u002fAAAAAAAA+H8AAAAAAAD4fwAAAAAAAPh\u002fAAAAAAAA+H8AAAAAAAD4fwAAAAAAAPh\u002fAAAAAAAA+H8AAAAAAAD4fwAAAAAAAPh\u002fAAAAAAAA+H8AAAAAAAD4fwAAAAAAAPh\u002fAAAAAAAA+H8AAAAAAAD4fwAAAAAAAPh\u002fAAAAAAAA+H8AAAAAAAD4fwAAAAAAAPh\u002fAAAAAAAA+H8AAAAAAAD4fwAAAAAAAPh\u002fAAAAAAAA+H8AAAAAAAD4fwAAAAAAAPh\u002fAAAAAAAA+H8AAAAAAAD4fwAAAAAAAPh\u002fAAAAAAAA+H8AAAAAAAD4fwAAAAAAAPh\u002fAAAAAAAA+H8AAAAAAAD4fwAAAAAAAPh\u002fAAAAAAAA+H8AAAAAAAD4fwAAAAAAAPh\u002fAAAAAAAA+H8AAAAAAAD4fwAAAAAAAPh\u002fAAAAAAAA+H8AAAAAAAD4fwAAAAAAAPh\u002fAAAAAAAA+H8AAAAAAAD4fwAAAAAAAPh\u002fAAAAAAAA+H8AAAAAAAD4fwAAAAAAAPh\u002fAAAAAAAA+H8AAAAAAAD4fwAAAAAAAPh\u002f","shape":"13, 9"},"type":"heatmap","xaxis":"x","yaxis":"y","hovertemplate":"x: %{x}\u003cbr\u003ey: %{y}\u003cbr\u003ecolor: %{z}\u003cextra\u003e\u003c\u002fextra\u003e"}],                        {"template":{"data":{"histogram2dcontour":[{"type":"histogram2dcontour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"choropleth":[{"type":"choropleth","colorbar":{"outlinewidth":0,"ticks":""}}],"histogram2d":[{"type":"histogram2d","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"heatmap":[{"type":"heatmap","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"contourcarpet":[{"type":"contourcarpet","colorbar":{"outlinewidth":0,"ticks":""}}],"contour":[{"type":"contour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"surface":[{"type":"surface","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"mesh3d":[{"type":"mesh3d","colorbar":{"outlinewidth":0,"ticks":""}}],"scatter":[{"fillpattern":{"fillmode":"overlay","size":10,"solidity":0.2},"type":"scatter"}],"parcoords":[{"type":"parcoords","line":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolargl":[{"type":"scatterpolargl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"bar":[{"error_x":{"color":"#2a3f5f"},"error_y":{"color":"#2a3f5f"},"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"bar"}],"scattergeo":[{"type":"scattergeo","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolar":[{"type":"scatterpolar","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"histogram":[{"marker":{"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"histogram"}],"scattergl":[{"type":"scattergl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatter3d":[{"type":"scatter3d","line":{"colorbar":{"outlinewidth":0,"ticks":""}},"marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattermap":[{"type":"scattermap","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattermapbox":[{"type":"scattermapbox","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterternary":[{"type":"scatterternary","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattercarpet":[{"type":"scattercarpet","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"carpet":[{"aaxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"baxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"type":"carpet"}],"table":[{"cells":{"fill":{"color":"#EBF0F8"},"line":{"color":"white"}},"header":{"fill":{"color":"#C8D4E3"},"line":{"color":"white"}},"type":"table"}],"barpolar":[{"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"barpolar"}],"pie":[{"automargin":true,"type":"pie"}]},"layout":{"autotypenumbers":"strict","colorway":["#636efa","#EF553B","#00cc96","#ab63fa","#FFA15A","#19d3f3","#FF6692","#B6E880","#FF97FF","#FECB52"],"font":{"color":"#2a3f5f"},"hovermode":"closest","hoverlabel":{"align":"left"},"paper_bgcolor":"white","plot_bgcolor":"#E5ECF6","polar":{"bgcolor":"#E5ECF6","angularaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"radialaxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"ternary":{"bgcolor":"#E5ECF6","aaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"baxis":{"gridcolor":"white","linecolor":"white","ticks":""},"caxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"coloraxis":{"colorbar":{"outlinewidth":0,"ticks":""}},"colorscale":{"sequential":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"sequentialminus":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"diverging":[[0,"#8e0152"],[0.1,"#c51b7d"],[0.2,"#de77ae"],[0.3,"#f1b6da"],[0.4,"#fde0ef"],[0.5,"#f7f7f7"],[0.6,"#e6f5d0"],[0.7,"#b8e186"],[0.8,"#7fbc41"],[0.9,"#4d9221"],[1,"#276419"]]},"xaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"yaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"scene":{"xaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"yaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"zaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2}},"shapedefaults":{"line":{"color":"#2a3f5f"}},"annotationdefaults":{"arrowcolor":"#2a3f5f","arrowhead":0,"arrowwidth":1},"geo":{"bgcolor":"white","landcolor":"#E5ECF6","subunitcolor":"white","showland":true,"showlakes":true,"lakecolor":"white"},"title":{"x":0.05},"mapbox":{"style":"light"}}},"xaxis":{"anchor":"y","domain":[0.0,1.0]},"yaxis":{"anchor":"x","domain":[0.0,1.0],"autorange":"reversed"},"coloraxis":{"colorscale":[[0.0,"rgb(5,48,97)"],[0.1,"rgb(33,102,172)"],[0.2,"rgb(67,147,195)"],[0.3,"rgb(146,197,222)"],[0.4,"rgb(209,229,240)"],[0.5,"rgb(247,247,247)"],[0.6,"rgb(253,219,199)"],[0.7,"rgb(244,165,130)"],[0.8,"rgb(214,96,77)"],[0.9,"rgb(178,24,43)"],[1.0,"rgb(103,0,31)"]],"cmin":-0.6,"cmax":0.6,"autocolorscale":false},"title":{"text":"Profile Z-score \u2194 Program feature correlations"},"margin":{"l":200,"r":40,"t":60,"b":80},"height":450},                        {"responsive": true}                    )                };            </script>        </div>
+
+<h2>3. Top 20 strongest correlations</h2>
+<p class="meta">Strongest associations between a profile Z-score and a program feature.
+Use these as candidate hypotheses for "this kind of athlete tends to get this kind of program."</p>
+<table class="dataframe">
+  <thead>
+    <tr style="text-align: left;">
+      <th>z_metric</th>
+      <th>program_feature</th>
+      <th>r</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>z_pitch_lead_leg_grf_mag</td>
+      <td>n_plyo_prescriptions</td>
+      <td>-0.224</td>
+    </tr>
+    <tr>
+      <td>z_pitch_lead_leg_grf_mag</td>
+      <td>n_program_days</td>
+      <td>-0.213</td>
+    </tr>
+    <tr>
+      <td>z_pitch_lead_leg_grf_mag</td>
+      <td>n_lift_prescriptions</td>
+      <td>-0.208</td>
+    </tr>
+    <tr>
+      <td>z_pitch_arm_er_timing_at_fc</td>
+      <td>n_plyo_prescriptions</td>
+      <td>0.200</td>
+    </tr>
+    <tr>
+      <td>z_pitch_max_external_rotation</td>
+      <td>n_plyo_prescriptions</td>
+      <td>0.192</td>
+    </tr>
+    <tr>
+      <td>z_pitch_trunk_rotation_at_fc</td>
+      <td>n_program_days</td>
+      <td>-0.170</td>
+    </tr>
+    <tr>
+      <td>z_pitch_lead_leg_grf_mag</td>
+      <td>n_unique_lifts</td>
+      <td>-0.167</td>
+    </tr>
+    <tr>
+      <td>z_pitch_arm_er_timing_at_fc</td>
+      <td>n_bp_prescriptions</td>
+      <td>0.167</td>
+    </tr>
+    <tr>
+      <td>z_pitch_lead_leg_grf_mag</td>
+      <td>n_me_prescriptions</td>
+      <td>-0.163</td>
+    </tr>
+    <tr>
+      <td>z_pitch_arm_er_timing_at_fc</td>
+      <td>n_program_days</td>
+      <td>0.143</td>
+    </tr>
+    <tr>
+      <td>z_pitch_arm_er_timing_at_fc</td>
+      <td>n_unique_lifts</td>
+      <td>0.138</td>
+    </tr>
+    <tr>
+      <td>z_pitch_trunk_rotation_at_fc</td>
+      <td>n_plyo_prescriptions</td>
+      <td>-0.134</td>
+    </tr>
+    <tr>
+      <td>z_pitch_max_horizontal_abduction</td>
+      <td>n_bp_prescriptions</td>
+      <td>-0.133</td>
+    </tr>
+    <tr>
+      <td>z_pitch_arm_er_timing_at_fc</td>
+      <td>n_prep_prescriptions</td>
+      <td>0.127</td>
+    </tr>
+    <tr>
+      <td>z_pitch_lead_leg_grf_mag</td>
+      <td>n_prep_prescriptions</td>
+      <td>-0.124</td>
+    </tr>
+    <tr>
+      <td>z_pitch_trunk_rotation_at_fc</td>
+      <td>duration_days</td>
+      <td>-0.120</td>
+    </tr>
+    <tr>
+      <td>z_pitch_pelvis_rotation_at_fc</td>
+      <td>n_program_days</td>
+      <td>-0.114</td>
+    </tr>
+    <tr>
+      <td>z_pitch_arm_er_timing_at_fc</td>
+      <td>n_hit_prescriptions</td>
+      <td>0.112</td>
+    </tr>
+    <tr>
+      <td>z_pitch_arm_er_timing_at_fc</td>
+      <td>n_me_prescriptions</td>
+      <td>0.111</td>
+    </tr>
+    <tr>
+      <td>z_pitch_max_external_rotation</td>
+      <td>n_bp_prescriptions</td>
+      <td>0.109</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2>4. Athlete archetypes (K = 5)</h2>
+<p class="meta">K-means clustered the athletes on their full Z-score vector. Each line below
+is one archetype's <i>average</i> profile. Where lines diverge is where archetypes meaningfully
+differ. Labels below are auto-generated from each cluster's most extreme metrics
+(Z &gt; +0.4 or Z &lt; -0.4).</p>
+<table><tr><th>Archetype</th><th>Distinguishing profile</th><th>N athletes</th></tr><tr><td><b>Archetype 0</b></td><td>↓ pitch max horiz abduction (-0.6) · ↓ pitch pelvis rot at fc (-0.5) · ↑ pitch lead leg grf mag (+0.9) · ↑ pitch arm er timing at fc (+0.5)</td><td>18</td></tr><tr><td><b>Archetype 1</b></td><td>↓ pitch arm er timing at fc (-2.3) · ↓ pitch max external rot (-2.0)</td><td>10</td></tr><tr><td><b>Archetype 2</b></td><td>↑ pitch max horiz abduction (+1.1) · ↑ pitch arm er timing at fc (+0.5)</td><td>17</td></tr><tr><td><b>Archetype 3</b></td><td>↓ pitch lead leg grf mag (-0.5) · ↑ pitch pelvis rot at fc (+1.4) · ↑ pitch trunk rot at fc (+1.2) · ↑ pitch max external rot (+0.4)</td><td>12</td></tr><tr><td><b>Archetype 4</b></td><td>↓ pitch pelvis rot at fc (-1.2) · ↓ pitch trunk rot at fc (-1.2) · ↓ pitch lead leg grf mag (-1.1) · ↑ pitch arm er timing at fc (+0.5)</td><td>6</td></tr></table>
+<div style="height:520px; width:100%;">                            <div id="a40de055-3b42-4888-9ab6-69eb0bc26aee" class="plotly-graph-div" style="height:100%; width:100%;"></div>            <script>                window.PLOTLYENV=window.PLOTLYENV || {};                                if (document.getElementById("a40de055-3b42-4888-9ab6-69eb0bc26aee")) {                    Plotly.newPlot(                        "a40de055-3b42-4888-9ab6-69eb0bc26aee",                        [{"hovertemplate":"archetype=0\u003cbr\u003emetric=%{x}\u003cbr\u003emean_z=%{y}\u003cextra\u003e\u003c\u002fextra\u003e","legendgroup":"0","line":{"color":"#636efa","dash":"solid"},"marker":{"symbol":"circle"},"mode":"lines+markers","name":"0","orientation":"v","showlegend":true,"x":["z_pitch_lead_leg_grf_mag","z_pitch_arm_er_timing_at_fc","z_pitch_trunk_rotation_at_fc","z_pitch_max_external_rotation","z_pitch_pelvis_rotation_at_fc","z_pitch_max_horizontal_abduction"],"xaxis":"x","y":{"dtype":"f8","bdata":"hetRuB6F6z\u002fNzMzMzMzcP7gehetRuL4\u002fj8L1KFyP0j\u002f2KFyPwvXgv4\u002fC9Shcj+K\u002f"},"yaxis":"y","type":"scatter"},{"hovertemplate":"archetype=1\u003cbr\u003emetric=%{x}\u003cbr\u003emean_z=%{y}\u003cextra\u003e\u003c\u002fextra\u003e","legendgroup":"1","line":{"color":"#EF553B","dash":"solid"},"marker":{"symbol":"circle"},"mode":"lines+markers","name":"1","orientation":"v","showlegend":true,"x":["z_pitch_lead_leg_grf_mag","z_pitch_arm_er_timing_at_fc","z_pitch_trunk_rotation_at_fc","z_pitch_max_external_rotation","z_pitch_pelvis_rotation_at_fc","z_pitch_max_horizontal_abduction"],"xaxis":"x","y":{"dtype":"f8","bdata":"exSuR+F6pL+4HoXrUbgCwHE9CtejcM2\u002fFK5H4XoUAMApXI\u002fC9SjMP+F6FK5H4co\u002f"},"yaxis":"y","type":"scatter"},{"hovertemplate":"archetype=2\u003cbr\u003emetric=%{x}\u003cbr\u003emean_z=%{y}\u003cextra\u003e\u003c\u002fextra\u003e","legendgroup":"2","line":{"color":"#00cc96","dash":"solid"},"marker":{"symbol":"circle"},"mode":"lines+markers","name":"2","orientation":"v","showlegend":true,"x":["z_pitch_lead_leg_grf_mag","z_pitch_arm_er_timing_at_fc","z_pitch_trunk_rotation_at_fc","z_pitch_max_external_rotation","z_pitch_pelvis_rotation_at_fc","z_pitch_max_horizontal_abduction"],"xaxis":"x","y":{"dtype":"f8","bdata":"uB6F61G4nr\u002fNzMzMzMzcP7gehetRuL6\u002fSOF6FK5H0T8pXI\u002fC9SjMP83MzMzMzPA\u002f"},"yaxis":"y","type":"scatter"},{"hovertemplate":"archetype=3\u003cbr\u003emetric=%{x}\u003cbr\u003emean_z=%{y}\u003cextra\u003e\u003c\u002fextra\u003e","legendgroup":"3","line":{"color":"#ab63fa","dash":"solid"},"marker":{"symbol":"circle"},"mode":"lines+markers","name":"3","orientation":"v","showlegend":true,"x":["z_pitch_lead_leg_grf_mag","z_pitch_arm_er_timing_at_fc","z_pitch_trunk_rotation_at_fc","z_pitch_max_external_rotation","z_pitch_pelvis_rotation_at_fc","z_pitch_max_horizontal_abduction"],"xaxis":"x","y":{"dtype":"f8","bdata":"pHA9Ctej4L+4HoXrUbieP4XrUbgehfM\u002fPQrXo3A92j89CtejcD32P3sUrkfherS\u002f"},"yaxis":"y","type":"scatter"},{"hovertemplate":"archetype=4\u003cbr\u003emetric=%{x}\u003cbr\u003emean_z=%{y}\u003cextra\u003e\u003c\u002fextra\u003e","legendgroup":"4","line":{"color":"#FFA15A","dash":"solid"},"marker":{"symbol":"circle"},"mode":"lines+markers","name":"4","orientation":"v","showlegend":true,"x":["z_pitch_lead_leg_grf_mag","z_pitch_arm_er_timing_at_fc","z_pitch_trunk_rotation_at_fc","z_pitch_max_external_rotation","z_pitch_pelvis_rotation_at_fc","z_pitch_max_horizontal_abduction"],"xaxis":"x","y":{"dtype":"f8","bdata":"H4XrUbge8b8UrkfhehTeP7gehetRuPK\u002fmpmZmZmZyT8zMzMzMzPzv5qZmZmZmbm\u002f"},"yaxis":"y","type":"scatter"}],                        {"template":{"data":{"histogram2dcontour":[{"type":"histogram2dcontour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"choropleth":[{"type":"choropleth","colorbar":{"outlinewidth":0,"ticks":""}}],"histogram2d":[{"type":"histogram2d","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"heatmap":[{"type":"heatmap","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"contourcarpet":[{"type":"contourcarpet","colorbar":{"outlinewidth":0,"ticks":""}}],"contour":[{"type":"contour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"surface":[{"type":"surface","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"mesh3d":[{"type":"mesh3d","colorbar":{"outlinewidth":0,"ticks":""}}],"scatter":[{"fillpattern":{"fillmode":"overlay","size":10,"solidity":0.2},"type":"scatter"}],"parcoords":[{"type":"parcoords","line":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolargl":[{"type":"scatterpolargl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"bar":[{"error_x":{"color":"#2a3f5f"},"error_y":{"color":"#2a3f5f"},"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"bar"}],"scattergeo":[{"type":"scattergeo","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolar":[{"type":"scatterpolar","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"histogram":[{"marker":{"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"histogram"}],"scattergl":[{"type":"scattergl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatter3d":[{"type":"scatter3d","line":{"colorbar":{"outlinewidth":0,"ticks":""}},"marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattermap":[{"type":"scattermap","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattermapbox":[{"type":"scattermapbox","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterternary":[{"type":"scatterternary","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattercarpet":[{"type":"scattercarpet","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"carpet":[{"aaxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"baxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"type":"carpet"}],"table":[{"cells":{"fill":{"color":"#EBF0F8"},"line":{"color":"white"}},"header":{"fill":{"color":"#C8D4E3"},"line":{"color":"white"}},"type":"table"}],"barpolar":[{"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"barpolar"}],"pie":[{"automargin":true,"type":"pie"}]},"layout":{"autotypenumbers":"strict","colorway":["#636efa","#EF553B","#00cc96","#ab63fa","#FFA15A","#19d3f3","#FF6692","#B6E880","#FF97FF","#FECB52"],"font":{"color":"#2a3f5f"},"hovermode":"closest","hoverlabel":{"align":"left"},"paper_bgcolor":"white","plot_bgcolor":"#E5ECF6","polar":{"bgcolor":"#E5ECF6","angularaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"radialaxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"ternary":{"bgcolor":"#E5ECF6","aaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"baxis":{"gridcolor":"white","linecolor":"white","ticks":""},"caxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"coloraxis":{"colorbar":{"outlinewidth":0,"ticks":""}},"colorscale":{"sequential":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"sequentialminus":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"diverging":[[0,"#8e0152"],[0.1,"#c51b7d"],[0.2,"#de77ae"],[0.3,"#f1b6da"],[0.4,"#fde0ef"],[0.5,"#f7f7f7"],[0.6,"#e6f5d0"],[0.7,"#b8e186"],[0.8,"#7fbc41"],[0.9,"#4d9221"],[1,"#276419"]]},"xaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"yaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"scene":{"xaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"yaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"zaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2}},"shapedefaults":{"line":{"color":"#2a3f5f"}},"annotationdefaults":{"arrowcolor":"#2a3f5f","arrowhead":0,"arrowwidth":1},"geo":{"bgcolor":"white","landcolor":"#E5ECF6","subunitcolor":"white","showland":true,"showlakes":true,"lakecolor":"white"},"title":{"x":0.05},"mapbox":{"style":"light"}}},"xaxis":{"anchor":"y","domain":[0.0,1.0],"title":{"text":""},"tickangle":-45},"yaxis":{"anchor":"x","domain":[0.0,1.0],"title":{"text":"Mean Z-score (population)"}},"legend":{"title":{"text":"archetype"},"tracegroupgap":0},"title":{"text":"Archetype mean Z-score profile (each line = one archetype)"},"shapes":[{"line":{"color":"grey","dash":"dot"},"type":"line","x0":0,"x1":1,"xref":"x domain","y0":0,"y1":0,"yref":"y"}],"margin":{"l":60,"r":40,"t":60,"b":140},"height":520},                        {"responsive": true}                    )                };            </script>        </div>
+<div style="height:520px; width:100%;">                            <div id="e9603d33-61e7-425b-ae88-bc0850d1d754" class="plotly-graph-div" style="height:100%; width:100%;"></div>            <script>                window.PLOTLYENV=window.PLOTLYENV || {};                                if (document.getElementById("e9603d33-61e7-425b-ae88-bc0850d1d754")) {                    Plotly.newPlot(                        "e9603d33-61e7-425b-ae88-bc0850d1d754",                        [{"customdata":[["03fbd3e1-1add-454f-8f0c-f3ceadd1aebe","COLLEGE"],["1c5e648b-0039-42df-9250-b7607445b8ee","PRO"],["504f0437-fd4a-4ecc-856f-7c8b52ba4038","HIGH SCHOOL"],["6014dbbe-d26a-467d-9194-9b3c2235987b","PRO"],["93575255-90ea-4f83-a9e9-d8b3e49deec7","HIGH SCHOOL"],["a6d3daae-9557-40e9-8f48-bad1101e5b15","COLLEGE"],["ba24bc43-20c7-4d05-a029-3ff44d413728","COLLEGE"],["bd251e1d-338e-40ad-a32b-644e95282ef1","HIGH SCHOOL"],["c3812791-025c-4ebc-9363-2f4bc9fa3622","PRO"],["ddaf72be-468b-4268-bc7c-9592cb00b52e","COLLEGE"],["e45da140-72c1-4f4e-b98a-077b6d811a8d","HIGH SCHOOL"],["f0f58f05-e8a4-4ec4-9de9-31eb04bb4aae","PRO"]],"hovertemplate":"archetype=3\u003cbr\u003ePC1=%{x}\u003cbr\u003ePC2=%{y}\u003cbr\u003eathlete_uuid=%{customdata[0]}\u003cbr\u003eage_group=%{customdata[1]}\u003cextra\u003e\u003c\u002fextra\u003e","legendgroup":"3","marker":{"color":"#636efa","symbol":"circle"},"mode":"markers","name":"3","orientation":"v","showlegend":true,"x":{"dtype":"f8","bdata":"HiLuPFld0b9wKbVDHiryv7CSmQ61pNQ\u002fgdrjbJEB7D+HLxhhnkH1PyCC84971Nk\u002fiM0gZ3Sg2z9xhPsNDMr\u002fP+vu1iMgqfA\u002fvelYeO504L9Jn54+RlLhPyEEV1f7P\u002fA\u002f"},"xaxis":"x","y":{"dtype":"f8","bdata":"C29ZRiqIEEBRY7mFH5j3PwCGvrOO3+w\u002fTASX9PrUAkDj9r0RfOn5P58M4QX73wlAEtmcdgV59z\u002fJLmThUpX7Pyb7e26\u002fYfM\u002f+Hlnta7dA0BUCKpeRRDkP+chJuy8a+A\u002f"},"yaxis":"y","type":"scatter"},{"customdata":[["051c9b95-906c-42f0-93b4-9b73414630dd","PRO"],["09664ff0-829d-4139-9bbd-b0653ab5d9a5","COLLEGE"],["0e912b71-8dc7-437e-bad7-719db487748e","COLLEGE"],["26c2e158-1cdd-4f0c-97ca-f866bcac53d7","COLLEGE"],["3c9f9750-c510-4a51-b486-2146f3d8026d","PRO"],["635909dc-1f3e-4c26-85fb-4c262868d419","COLLEGE"],["672f7285-bbed-4a6a-b107-9a5f912572e9","COLLEGE"],["6e481d22-1637-4356-b7b8-41c84fa0137c","PRO"],["8112395f-3662-46ac-a600-205cb7d9b298","COLLEGE"],["871d21e2-98b5-4397-add1-8dfd7b4f9afe","HIGH SCHOOL"],["940883ef-8c33-4a85-b277-b1c493e3577e","HIGH SCHOOL"],["9eea68f3-b426-4afa-a41a-ae545f674b3e","HIGH SCHOOL"],["b6583a9d-56b7-40d1-8c5a-7ff7ab4f611a","PRO"],["c6aa3360-f887-473d-bc28-07c3bbc18e4e","COLLEGE"],["d03f397e-3221-4236-aa0c-9014fed7a43c","COLLEGE"],["dbc63fcd-ed5b-4bf1-98e5-79f29c097126","HIGH SCHOOL"],["f5f936bf-a57b-425c-a65b-ee746835fa03","COLLEGE"]],"hovertemplate":"archetype=2\u003cbr\u003ePC1=%{x}\u003cbr\u003ePC2=%{y}\u003cbr\u003eathlete_uuid=%{customdata[0]}\u003cbr\u003eage_group=%{customdata[1]}\u003cextra\u003e\u003c\u002fextra\u003e","legendgroup":"2","marker":{"color":"#EF553B","symbol":"circle"},"mode":"markers","name":"2","orientation":"v","showlegend":true,"x":{"dtype":"f8","bdata":"ZdGgTcI26T81w4Gom+bCP66H3e7fMtc\u002fhXPp3z7O8j\u002f5deeK7QznP7tK7wFhjvA\u002fiHNStPOI8D\u002ff4sVFakvnv2urVtiAVbY\u002ffcmoSwoH9T+HWYJ4FlTsP15+3T0\u002fPc0\u002f5aI1c\u002f484L9dcWUzBkPAvwYgHQIdQ\u002fW\u002flCWxlpz\u002f47\u002fSL5MMorCPvw=="},"xaxis":"x","y":{"dtype":"f8","bdata":"bN+VpgSBzT+RKROZFv7JP\u002fX2ywszAsM\u002f8AzvhM4G6r8qILYw1dC8P\u002fcp1kA7veg\u002fW5Tjomaw4r9SzoUmljfRP2LfY8drqu6\u002fq5oLvFiY7T864AN4C1XmP\u002ffbQ\u002fEkLNw\u002fo1DpGln+xL\u002f6z3UnW0jjv7HQ2Taz7te\u002f1+6Rkbhu2D9fzu9hLCbgvw=="},"yaxis":"y","type":"scatter"},{"customdata":[["18f3c1aa-ce46-4ea6-98a4-809a488ab68a","COLLEGE"],["1b312adf-7aba-429c-b951-e84fdcc042cb","COLLEGE"],["21f4e919-9752-4eac-82e9-1be1a9b38b94","HIGH SCHOOL"],["23467c24-57b2-44a0-b080-e0f3d6d63585","PRO"],["2434ce45-ad1a-4e20-a0b8-b9301d0fc78e","PRO"],["3896b860-c6c9-4f8f-a58a-24b7573bd1c5","COLLEGE"],["42ef4cf5-863d-45f6-8096-9c9a9425bcc2","COLLEGE"],["46c50e50-2a4c-46a0-a874-7260dd8173fe","HIGH SCHOOL"],["616d67f2-ad90-4755-81ab-d90156b43a00","HIGH SCHOOL"],["6223329c-9a4d-4bf3-9dd7-3c1943433d90","COLLEGE"],["6518b26f-7e11-4912-b325-5285d8dba9bc","COLLEGE"],["6cb7fbf4-7dbb-45ce-b055-869874dd9e06","HIGH SCHOOL"],["8277479f-81f6-4ad3-bf1d-3548287c9e46","COLLEGE"],["94331b20-d2b9-48f6-a481-135534950a91","HIGH SCHOOL"],["b9fcec44-060d-4709-948c-ac682965bf03","HIGH SCHOOL"],["dd17a53b-7180-4296-9c19-42a7017be338","PRO"],["e9fc57b7-4c35-4fc2-ae31-49de20d481ea","COLLEGE"],["eb52f45e-c477-47a0-98ea-8a0a0146c383","PRO"]],"hovertemplate":"archetype=0\u003cbr\u003ePC1=%{x}\u003cbr\u003ePC2=%{y}\u003cbr\u003eathlete_uuid=%{customdata[0]}\u003cbr\u003eage_group=%{customdata[1]}\u003cextra\u003e\u003c\u002fextra\u003e","legendgroup":"0","marker":{"color":"#00cc96","symbol":"circle"},"mode":"markers","name":"0","orientation":"v","showlegend":true,"x":{"dtype":"f8","bdata":"KVw\u002fD8XU5j\u002fdIxMDwNy2P483ocv7lPo\u002flT1fP0w3AUBE1QUTHxHzP6J0EUZvnuU\u002fi5+PLUi1wD9pEvXt2srwPyZgsxMwWN4\u002fZFtlplwG5D8O8UbnB7LePyJT17Gdmt8\u002fUGo\u002f8lt93j\u002fEXLE58T\u002foP1r6SK6sbew\u002fy2ommWa35D\u002f+bfncaG3xP7QC+qqU5vU\u002f"},"xaxis":"x","y":{"dtype":"f8","bdata":"R2JpzeNp9L8FA98b5BL4v8gvFa4MzPe\u002fwhJbECAa4r\u002fflPVlAXbkv1B\u002f9WN1Osy\u002fauMmczue\u002f78GQdN1O\u002fL1v5S2RXfpFtG\u002fOsAz7avi379h3\u002fOyf9nMP8tmvr1sx9+\u002f\u002fJ9Nebs9yb8ZgN8n+07tv4V7QSQTl9c\u002fNj5uWD9nyr+L8GeMpLXZv4p4qa+GC+u\u002f"},"yaxis":"y","type":"scatter"},{"customdata":[["2d307533-812c-48a4-be56-738fc9e7b601","HIGH SCHOOL"],["353e7c86-45ee-454a-b1d4-5df55ae23cfb","COLLEGE"],["58eae84b-66fe-4b14-a0e3-52a8fc13959f","PRO"],["7c5cdc7c-a501-4e63-b1af-9e1283cb75ed","HIGH SCHOOL"],["835c19eb-d907-4548-86c6-4d0648b95289","PRO"],["a898e988-0d22-425d-a221-39a3474385a8","COLLEGE"],["b0418652-f6c6-49c6-86d4-a0a9dfd86253","PRO"],["b394b050-8ad4-4701-8817-a84f481451e3","HIGH SCHOOL"],["b956844c-8274-480f-8348-b3e301c2fbc1","HIGH SCHOOL"],["fcfd6b5f-793d-445b-b599-7247b714000c","COLLEGE"]],"hovertemplate":"archetype=1\u003cbr\u003ePC1=%{x}\u003cbr\u003ePC2=%{y}\u003cbr\u003eathlete_uuid=%{customdata[0]}\u003cbr\u003eage_group=%{customdata[1]}\u003cextra\u003e\u003c\u002fextra\u003e","legendgroup":"1","marker":{"color":"#ab63fa","symbol":"circle"},"mode":"markers","name":"1","orientation":"v","showlegend":true,"x":{"dtype":"f8","bdata":"PVH7zXXZ\u002fr8T1fy9NpoTwGNK4j\u002fu6gDAULua21yGCMDuOq11IrP\u002fv79dnhyEnATASILIYKZOAsDqtUhhFsIEwHjA4tCzsAzAGsLsUqQL\u002fb8="},"xaxis":"x","y":{"dtype":"f8","bdata":"FTXJbqukvb+gOL\u002ft8SH6v7gK6zTm0eS\u002fouKmsa777T9SRMniYUvxP6xY1KAnFrS\u002fnS23Zaj+1r9YmgMNE4j5P6OU3nfPmgDAY4OEE2sC9z8="},"yaxis":"y","type":"scatter"},{"customdata":[["453902f1-af99-4e08-9b06-3dd0d5b9e206","COLLEGE"],["895b23a2-88a2-4b96-825a-a54c88cc1a7f","COLLEGE"],["895d5b8b-d8ce-466f-a70f-a81f61eaf391","COLLEGE"],["ac5e8fb4-cdf7-4f60-812d-51899a5d83f5","PRO"],["b28cd1f1-0001-499d-a97b-bbb7ebc36c37","HIGH SCHOOL"],["bc848d8f-bbe4-4331-869f-883722e4fa25","HIGH SCHOOL"]],"hovertemplate":"archetype=4\u003cbr\u003ePC1=%{x}\u003cbr\u003ePC2=%{y}\u003cbr\u003eathlete_uuid=%{customdata[0]}\u003cbr\u003eage_group=%{customdata[1]}\u003cextra\u003e\u003c\u002fextra\u003e","legendgroup":"4","marker":{"color":"#FFA15A","symbol":"circle"},"mode":"markers","name":"4","orientation":"v","showlegend":true,"x":{"dtype":"f8","bdata":"G8n2tSb82L\u002f3zmypet5VP8qZF90Rqv4\u002fpJYASbWD7j8+EjKhxr3lv4EIfKxHtNi\u002f"},"xaxis":"x","y":{"dtype":"f8","bdata":"e8i83OcTuj\u002fMz2tUlmPxv6OmwbpX0QfAav2xCvhFAMAPuG28ffb3v0aF8mUWWQLA"},"yaxis":"y","type":"scatter"}],                        {"template":{"data":{"histogram2dcontour":[{"type":"histogram2dcontour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"choropleth":[{"type":"choropleth","colorbar":{"outlinewidth":0,"ticks":""}}],"histogram2d":[{"type":"histogram2d","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"heatmap":[{"type":"heatmap","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"contourcarpet":[{"type":"contourcarpet","colorbar":{"outlinewidth":0,"ticks":""}}],"contour":[{"type":"contour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"surface":[{"type":"surface","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"mesh3d":[{"type":"mesh3d","colorbar":{"outlinewidth":0,"ticks":""}}],"scatter":[{"fillpattern":{"fillmode":"overlay","size":10,"solidity":0.2},"type":"scatter"}],"parcoords":[{"type":"parcoords","line":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolargl":[{"type":"scatterpolargl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"bar":[{"error_x":{"color":"#2a3f5f"},"error_y":{"color":"#2a3f5f"},"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"bar"}],"scattergeo":[{"type":"scattergeo","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolar":[{"type":"scatterpolar","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"histogram":[{"marker":{"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"histogram"}],"scattergl":[{"type":"scattergl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatter3d":[{"type":"scatter3d","line":{"colorbar":{"outlinewidth":0,"ticks":""}},"marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattermap":[{"type":"scattermap","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattermapbox":[{"type":"scattermapbox","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterternary":[{"type":"scatterternary","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattercarpet":[{"type":"scattercarpet","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"carpet":[{"aaxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"baxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"type":"carpet"}],"table":[{"cells":{"fill":{"color":"#EBF0F8"},"line":{"color":"white"}},"header":{"fill":{"color":"#C8D4E3"},"line":{"color":"white"}},"type":"table"}],"barpolar":[{"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"barpolar"}],"pie":[{"automargin":true,"type":"pie"}]},"layout":{"autotypenumbers":"strict","colorway":["#636efa","#EF553B","#00cc96","#ab63fa","#FFA15A","#19d3f3","#FF6692","#B6E880","#FF97FF","#FECB52"],"font":{"color":"#2a3f5f"},"hovermode":"closest","hoverlabel":{"align":"left"},"paper_bgcolor":"white","plot_bgcolor":"#E5ECF6","polar":{"bgcolor":"#E5ECF6","angularaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"radialaxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"ternary":{"bgcolor":"#E5ECF6","aaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"baxis":{"gridcolor":"white","linecolor":"white","ticks":""},"caxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"coloraxis":{"colorbar":{"outlinewidth":0,"ticks":""}},"colorscale":{"sequential":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"sequentialminus":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"diverging":[[0,"#8e0152"],[0.1,"#c51b7d"],[0.2,"#de77ae"],[0.3,"#f1b6da"],[0.4,"#fde0ef"],[0.5,"#f7f7f7"],[0.6,"#e6f5d0"],[0.7,"#b8e186"],[0.8,"#7fbc41"],[0.9,"#4d9221"],[1,"#276419"]]},"xaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"yaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"scene":{"xaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"yaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"zaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2}},"shapedefaults":{"line":{"color":"#2a3f5f"}},"annotationdefaults":{"arrowcolor":"#2a3f5f","arrowhead":0,"arrowwidth":1},"geo":{"bgcolor":"white","landcolor":"#E5ECF6","subunitcolor":"white","showland":true,"showlakes":true,"lakecolor":"white"},"title":{"x":0.05},"mapbox":{"style":"light"}}},"xaxis":{"anchor":"y","domain":[0.0,1.0],"title":{"text":"PC1"}},"yaxis":{"anchor":"x","domain":[0.0,1.0],"title":{"text":"PC2"}},"legend":{"title":{"text":"archetype"},"tracegroupgap":0},"title":{"text":"Athletes projected to 2D (PCA), colored by archetype"},"height":520},                        {"responsive": true}                    )                };            </script>        </div>
+
+<h2>5. Typical programming per archetype</h2>
+<p class="meta">Average program characteristics for athletes in each cluster.
+This is the closest thing to "what coaches do for this kind of athlete" we can derive without
+yet modeling individual exercise choices.</p>
+<table class="dataframe">
+  <thead>
+    <tr style="text-align: left;">
+      <th></th>
+      <th>duration_days</th>
+      <th>n_program_days</th>
+      <th>n_lift_prescriptions</th>
+      <th>n_unique_lifts</th>
+      <th>n_plyo_prescriptions</th>
+      <th>n_prep_prescriptions</th>
+      <th>n_bp_prescriptions</th>
+      <th>n_hit_prescriptions</th>
+      <th>n_me_prescriptions</th>
+      <th>n_athletes</th>
+    </tr>
+    <tr>
+      <th>label</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Archetype 0 — ↓ pitch max horiz abduction (-0.6) · ↓ pitch pelvis rot at fc (-0.5) · ↑ pitch lead leg grf mag (+0.9) · ↑ pitch arm er timing at fc (+0.5)</th>
+      <td>255.1</td>
+      <td>157.9</td>
+      <td>39.4</td>
+      <td>22.2</td>
+      <td>14.7</td>
+      <td>32.8</td>
+      <td>12.9</td>
+      <td>2.3</td>
+      <td>13.9</td>
+      <td>18</td>
+    </tr>
+    <tr>
+      <th>Archetype 1 — ↓ pitch arm er timing at fc (-2.3) · ↓ pitch max external rot (-2.0)</th>
+      <td>329.3</td>
+      <td>149.7</td>
+      <td>40.4</td>
+      <td>17.2</td>
+      <td>12.8</td>
+      <td>30.4</td>
+      <td>8.0</td>
+      <td>0.0</td>
+      <td>11.8</td>
+      <td>10</td>
+    </tr>
+    <tr>
+      <th>Archetype 2 — ↑ pitch max horiz abduction (+1.1) · ↑ pitch arm er timing at fc (+0.5)</th>
+      <td>269.4</td>
+      <td>158.1</td>
+      <td>38.0</td>
+      <td>19.6</td>
+      <td>13.6</td>
+      <td>34.0</td>
+      <td>8.3</td>
+      <td>0.4</td>
+      <td>10.6</td>
+      <td>17</td>
+    </tr>
+    <tr>
+      <th>Archetype 3 — ↓ pitch lead leg grf mag (-0.5) · ↑ pitch pelvis rot at fc (+1.4) · ↑ pitch trunk rot at fc (+1.2) · ↑ pitch max external rot (+0.4)</th>
+      <td>257.2</td>
+      <td>140.5</td>
+      <td>38.0</td>
+      <td>21.1</td>
+      <td>13.3</td>
+      <td>44.1</td>
+      <td>12.5</td>
+      <td>1.7</td>
+      <td>14.0</td>
+      <td>12</td>
+    </tr>
+    <tr>
+      <th>Archetype 4 — ↓ pitch pelvis rot at fc (-1.2) · ↓ pitch trunk rot at fc (-1.2) · ↓ pitch lead leg grf mag (-1.1) · ↑ pitch arm er timing at fc (+0.5)</th>
+      <td>213.7</td>
+      <td>157.3</td>
+      <td>30.5</td>
+      <td>14.5</td>
+      <td>17.3</td>
+      <td>41.2</td>
+      <td>16.8</td>
+      <td>0.0</td>
+      <td>10.0</td>
+      <td>6</td>
+    </tr>
+  </tbody>
+</table>
+
+</body></html>

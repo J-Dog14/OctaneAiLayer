@@ -72,25 +72,27 @@ def _pull(athlete_uuid: str, session_date: str) -> dict:
         """, [athlete_uuid, session_date])
 
         # Program context. Best-effort: skip cleanly if snapshot tables aren't there yet.
+        # Join: Program.userId (uuid) = User.id (uuid). Athlete linked via email.
         recent_programs: list[dict] = []
         if athlete.get("email") and _table_exists(conn, "app_db_snapshot", "User") \
                                  and _table_exists(conn, "app_db_snapshot", "Program"):
-            # Programs are linked to User by FK; we join via email which is the
-            # only field guaranteed consistent across both DBs.
             try:
                 recent_programs = query(conn, """
-                    SELECT p.*
+                    SELECT p."id", p."name", p."description", p."programType",
+                           p."throwerType", p."skillLevel", p."enablePitching",
+                           p."enableHitting", p."createdAt", p."endDate",
+                           p."athleteGoalsCoordination", p."athleteGoalsDurability",
+                           p."athleteGoalsMobility",     p."athleteGoalsPower",
+                           p."athleteGoalsSize",         p."athleteGoalsSpeed",
+                           p."athleteGoalsStrength"
                     FROM app_db_snapshot."Program" p
-                    JOIN app_db_snapshot."User" u
-                      ON u."id" = p."userId" OR u."uuid" = p."userId"
+                    JOIN app_db_snapshot."User" u ON u."id" = p."userId"
                     WHERE lower(u."email") = lower(%s)
+                      AND p."isArchived" = false
                     ORDER BY p."createdAt" DESC NULLS LAST
                     LIMIT 3
                 """, [athlete["email"]])
             except Exception:
-                # If the Program FK column isn't named "userId" we just skip.
-                # Refine this query once the snapshot lands and you can SELECT *
-                # from app_db_snapshot."Program" to confirm the column name.
                 recent_programs = []
 
     return {

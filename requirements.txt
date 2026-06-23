@@ -1,8 +1,8 @@
 # Postgres driver (binary build = no compiler needed)
 psycopg2-binary>=2.9.9
 
-# Google AI Studio / Gemini SDK
-google-generativeai>=0.8.0
+# Google AI Studio / Gemini SDK (the new, supported one)
+google-genai>=0.3.0
 
 # .env loader
 python-dotenv>=1.0.1
@@ -12,3 +12,9 @@ click>=8.1.0
 
 # Pretty terminal output (optional but nice for debugging)
 rich>=13.7.0
+
+# Data analysis stack for correlation_report.py and downstream pattern work
+pandas>=2.2.0
+numpy>=1.26.0
+scikit-learn>=1.4.0
+plotly>=5.20.0

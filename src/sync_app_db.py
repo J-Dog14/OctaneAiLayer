@@ -1,15 +1,19 @@
 """
 Snapshot a curated set of App DB tables into the backend's app_db_snapshot schema.
 
-Design:
-- For each table, infer columns from information_schema in the App DB.
-- Build a CREATE TABLE in app_db_snapshot._staging_<table> with permissive types
-  (enums and varchars become TEXT to avoid recreating enum types in the backend).
-- Stream rows in batches via a named (server-side) cursor.
-- After load, atomically DROP the live table and RENAME the staging table.
+Transfer mechanism: native Postgres COPY (CSV format). This is dramatically
+faster than INSERT batches because the data streams as a single statement on
+each side instead of one round-trip per row.
 
-This means: while the sync is running, the previous "live" snapshot is still
-queryable. There is never a moment where the live table has half the rows.
+Flow per table:
+  1. Read App DB column definitions from information_schema.
+  2. CREATE TABLE app_db_snapshot._staging_<table> with permissive types
+     (enums and varchars become TEXT so we don't have to re-create enum types).
+  3. On the App DB:   COPY (SELECT ... FROM table) TO STDOUT WITH CSV
+     On the backend:  COPY ..._staging_<table> FROM STDIN WITH CSV
+     Bytes are piped through a SpooledTemporaryFile (in-RAM up to 100MB,
+     auto-spills to disk for huge tables).
+  4. Atomically swap the live table for the staging one.
 
 Run:
     python -m src.sync_app_db                # full sync
@@ -18,6 +22,7 @@ Run:
 from __future__ import annotations
 
 import sys
+import tempfile
 import time
 
 from src.db import app_db_conn, backend_conn, exec_sql, query, returning_id
@@ -35,6 +40,13 @@ TABLES: list[str] = [
     "HittingToProgram", "HittingToProgramDay", "ExerciseToHitting",
     "MovementEnhancementToProgram", "ExerciseToMovementEnhancement",
     "ThrowingActivity",
+    # Weekly templates — the "coach intent" layer behind programs.
+    "WeeklyTemplate", "WeeklyTemplateDay", "WeeklyTemplateApplication",
+    "WeeklyTemplateMetadata",
+    "ActivityTemplate",
+    "ExerciseToPrepTemplate", "ExerciseToBulletProofingTemplate",
+    "ExerciseToHittingTemplate", "ExerciseToMovementEnhancementTemplate",
+    "PlyoToTemplate", "ThrowingExerciseToPlyoTemplate",
 ]
 
 # Map information_schema data_type -> a permissive Postgres type for the snapshot.
@@ -88,10 +100,9 @@ def _build_create_table(schema_dest: str, table: str, cols: list[tuple[str, str,
     )
 
 
-def snapshot_one_table(table: str, batch_size: int = 1000) -> dict:
-    """Atomically refresh app_db_snapshot.<table> from the App DB."""
+def snapshot_one_table(table: str, mem_cap_bytes: int = 100 * 1024 * 1024) -> dict:
+    """Atomically refresh app_db_snapshot.<table> from the App DB via COPY."""
     started = time.time()
-    rows_synced = 0
 
     with app_db_conn() as src, backend_conn() as dst:
         cols = _columns_of(src, "public", table)
@@ -105,23 +116,29 @@ def snapshot_one_table(table: str, batch_size: int = 1000) -> dict:
         exec_sql(dst, f'DROP TABLE IF EXISTS "app_db_snapshot"."{staging}"')
         exec_sql(dst, _build_create_table("app_db_snapshot", staging, cols))
 
-        placeholders = ", ".join(["%s"] * len(col_names))
-        insert_sql = (
-            f'INSERT INTO "app_db_snapshot"."{staging}" '
-            f"({col_list_quoted}) VALUES ({placeholders})"
-        )
+        # Buffer that lives in RAM until it exceeds mem_cap_bytes, then spills to disk.
+        # This bounds memory use even for very large tables.
+        with tempfile.SpooledTemporaryFile(max_size=mem_cap_bytes, mode="w+b") as buf:
+            # ---- Source: COPY out of App DB as CSV ----
+            src_copy_sql = (
+                f'COPY (SELECT {col_list_quoted} FROM public."{table}") '
+                f'TO STDOUT WITH (FORMAT CSV, NULL \'\\N\', FORCE_QUOTE *)'
+            )
+            with src.cursor() as scur:
+                scur.copy_expert(src_copy_sql, buf)
 
-        # Server-side cursor in source DB streams without loading whole table to memory.
-        with src.cursor(name=f"sync_{table}") as scur:
-            scur.itersize = batch_size
-            scur.execute(f'SELECT {col_list_quoted} FROM public."{table}"')
+            # ---- Destination: COPY into staging as CSV ----
+            buf.seek(0)
+            dst_copy_sql = (
+                f'COPY "app_db_snapshot"."{staging}" ({col_list_quoted}) '
+                f'FROM STDIN WITH (FORMAT CSV, NULL \'\\N\')'
+            )
             with dst.cursor() as dcur:
-                while True:
-                    batch = scur.fetchmany(batch_size)
-                    if not batch:
-                        break
-                    dcur.executemany(insert_sql, batch)
-                    rows_synced += len(batch)
+                dcur.copy_expert(dst_copy_sql, buf)
+
+        # Count what landed (cheap, and useful for the log)
+        rows = query(dst, f'SELECT count(*)::int AS n FROM "app_db_snapshot"."{staging}"')
+        rows_synced = rows[0]["n"]
 
         # Atomic swap
         exec_sql(dst, f'DROP TABLE IF EXISTS "app_db_snapshot"."{table}"')
