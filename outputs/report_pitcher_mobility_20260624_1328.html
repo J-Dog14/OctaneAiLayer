@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8">
+<title>8ctane R&D Report — 2026-06-24 13:28</title>
+
+<style>
+  body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+         max-width: 1200px; margin: 24px auto; padding: 0 16px; color: #222; }
+  h1 { border-bottom: 2px solid #333; padding-bottom: 6px; }
+  h2 { margin-top: 36px; color: #1a4a82; }
+  table { border-collapse: collapse; margin: 16px 0; }
+  th, td { border: 1px solid #ccc; padding: 6px 10px; font-size: 13px; }
+  th { background: #f0f4f8; text-align: left; }
+  .meta { color: #666; font-size: 13px; }
+  .note { background: #fff8d6; padding: 8px 12px; border-left: 4px solid #f1c40f;
+          margin: 12px 0; font-size: 13px; }
+  pre { background: #f6f8fa; padding: 12px; border-radius: 4px; overflow-x: auto; }
+</style>
+
+</head><body>
+
+<h1>8ctane R&amp;D Correlation Report — role=pitcher · domain=mobility</h1>
+<p class="meta">Generated: 2026-06-24 13:28<br>
+Slice: role=pitcher · domain=mobility<br>
+Corpus: 84 athletes with a profile + non-empty program. Clustering used 38 of them
+(athletes missing &gt;50% of metrics were excluded). K = 5.</p>
+
+<div class="note"><b>How to read this:</b> Z-scores are deviations from the athlete's
+age-group population. Negative = below the group mean (a deficit), positive = above.
+The correlation column "r" is Pearson; a positive r between a Z-score and a program
+feature means coaches tended to <i>prescribe more</i> of that feature when the athlete
+was <i>above</i> the population mean on that metric.</p></div>
+
+<h2>1. Population</h2>
+<div style="height:320px; width:100%;">                        <script>window.PlotlyConfig = {MathJaxConfig: 'local'};</script>
+        <script charset="utf-8" src="https://cdn.plot.ly/plotly-3.6.0.min.js" integrity="sha256-QaOVwtVY0T02VaHrr6pnoHLCwayMJp4O5n4YyaE3rJk=" crossorigin="anonymous"></script>                <div id="0340c2d9-1837-4c96-a35f-942e970867b9" class="plotly-graph-div" style="height:100%; width:100%;"></div>            <script>                window.PLOTLYENV=window.PLOTLYENV || {};                                if (document.getElementById("0340c2d9-1837-4c96-a35f-942e970867b9")) {                    Plotly.newPlot(                        "0340c2d9-1837-4c96-a35f-942e970867b9",                        [{"hovertemplate":"profile_age_group=%{x}\u003cbr\u003eathletes=%{y}\u003cextra\u003e\u003c\u002fextra\u003e","legendgroup":"","marker":{"color":"#636efa","pattern":{"shape":""}},"name":"","orientation":"v","showlegend":false,"textposition":"auto","texttemplate":"%{y}","x":["COLLEGE","HIGH SCHOOL","PRO","YOUTH"],"xaxis":"x","y":{"dtype":"i1","bdata":"Ih0UAQ=="},"yaxis":"y","type":"bar"}],                        {"template":{"data":{"histogram2dcontour":[{"type":"histogram2dcontour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"choropleth":[{"type":"choropleth","colorbar":{"outlinewidth":0,"ticks":""}}],"histogram2d":[{"type":"histogram2d","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"heatmap":[{"type":"heatmap","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"contourcarpet":[{"type":"contourcarpet","colorbar":{"outlinewidth":0,"ticks":""}}],"contour":[{"type":"contour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"surface":[{"type":"surface","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"mesh3d":[{"type":"mesh3d","colorbar":{"outlinewidth":0,"ticks":""}}],"scatter":[{"fillpattern":{"fillmode":"overlay","size":10,"solidity":0.2},"type":"scatter"}],"parcoords":[{"type":"parcoords","line":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolargl":[{"type":"scatterpolargl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"bar":[{"error_x":{"color":"#2a3f5f"},"error_y":{"color":"#2a3f5f"},"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"bar"}],"scattergeo":[{"type":"scattergeo","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolar":[{"type":"scatterpolar","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"histogram":[{"marker":{"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"histogram"}],"scattergl":[{"type":"scattergl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatter3d":[{"type":"scatter3d","line":{"colorbar":{"outlinewidth":0,"ticks":""}},"marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattermap":[{"type":"scattermap","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattermapbox":[{"type":"scattermapbox","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterternary":[{"type":"scatterternary","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattercarpet":[{"type":"scattercarpet","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"carpet":[{"aaxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"baxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"type":"carpet"}],"table":[{"cells":{"fill":{"color":"#EBF0F8"},"line":{"color":"white"}},"header":{"fill":{"color":"#C8D4E3"},"line":{"color":"white"}},"type":"table"}],"barpolar":[{"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"barpolar"}],"pie":[{"automargin":true,"type":"pie"}]},"layout":{"autotypenumbers":"strict","colorway":["#636efa","#EF553B","#00cc96","#ab63fa","#FFA15A","#19d3f3","#FF6692","#B6E880","#FF97FF","#FECB52"],"font":{"color":"#2a3f5f"},"hovermode":"closest","hoverlabel":{"align":"left"},"paper_bgcolor":"white","plot_bgcolor":"#E5ECF6","polar":{"bgcolor":"#E5ECF6","angularaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"radialaxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"ternary":{"bgcolor":"#E5ECF6","aaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"baxis":{"gridcolor":"white","linecolor":"white","ticks":""},"caxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"coloraxis":{"colorbar":{"outlinewidth":0,"ticks":""}},"colorscale":{"sequential":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"sequentialminus":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"diverging":[[0,"#8e0152"],[0.1,"#c51b7d"],[0.2,"#de77ae"],[0.3,"#f1b6da"],[0.4,"#fde0ef"],[0.5,"#f7f7f7"],[0.6,"#e6f5d0"],[0.7,"#b8e186"],[0.8,"#7fbc41"],[0.9,"#4d9221"],[1,"#276419"]]},"xaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"yaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"scene":{"xaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"yaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"zaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2}},"shapedefaults":{"line":{"color":"#2a3f5f"}},"annotationdefaults":{"arrowcolor":"#2a3f5f","arrowhead":0,"arrowwidth":1},"geo":{"bgcolor":"white","landcolor":"#E5ECF6","subunitcolor":"white","showland":true,"showlakes":true,"lakecolor":"white"},"title":{"x":0.05},"mapbox":{"style":"light"}}},"xaxis":{"anchor":"y","domain":[0.0,1.0],"title":{"text":"profile_age_group"}},"yaxis":{"anchor":"x","domain":[0.0,1.0],"title":{"text":"athletes"}},"legend":{"tracegroupgap":0},"title":{"text":"Athletes in corpus by age group"},"barmode":"relative","height":320},                        {"responsive": true}                    )                };            </script>        </div>
+
+<h2>2. Profile ↔ Program correlations</h2>
+<div style="height:946px; width:100%;">                            <div id="c193bc79-dad2-4c40-95f8-9beec830a39a" class="plotly-graph-div" style="height:100%; width:100%;"></div>            <script>                window.PLOTLYENV=window.PLOTLYENV || {};                                if (document.getElementById("c193bc79-dad2-4c40-95f8-9beec830a39a")) {                    Plotly.newPlot(                        "c193bc79-dad2-4c40-95f8-9beec830a39a",                        [{"coloraxis":"coloraxis","name":"0","x":["duration_days","n_program_days","n_lift_prescriptions","n_unique_lifts","n_plyo_prescriptions","n_prep_prescriptions","n_bp_prescriptions","n_hit_prescriptions","n_me_prescriptions","lift_core","lift_lowerbodylift","lift_plyometric","lift_shouldercare","lift_sprint","lift_unknown","lift_upperbodylift","lift_warmup","plyo_plyo_0","plyo_plyo_1","plyo_plyo_2","plyo_plyo_3","prep_core","prep_shouldercare","prep_warmup","bp_core","bp_lowerbodylift","bp_shouldercare","bp_upperbodylift","bp_warmup","hit_hittingdrill","me_medball","me_warmup"],"y":["z_mob_isa","z_mob_gs_l","z_mob_backbend","z_mob_low_trap","z_mob_mid_trap","z_mob_hip_pinch","z_mob_gs_l_at_90","z_mob_slump_test","z_mob_shoulder_er","z_mob_shoulder_ir","z_mob_elbow_flexion","z_mob_l_prone_hip_er","z_mob_l_prone_hip_ir","z_mob_r_prone_hip_er","z_mob_r_prone_hip_ir","z_mob_elbow_extension","z_mob_elbow_pronation","z_mob_grip_strength_r","z_mob_cervical_flexion","z_mob_elbow_supination","z_mob_ankle_manual_test","z_mob_cervical_rotation","z_mob_hamstring_stretch","z_mob_ulnar_nerve_glide","z_mob_cervical_extension","z_mob_radial_nerve_glide","z_mob_horizontal_abduction","z_mob_grip_strength_r_at_90","z_mob_prone_hamstring_raise","z_mob_young_stretch_passive","z_mob_sittiing_t_spine_pvc_l","z_mob_sittiing_t_spine_pvc_r","z_mob_cervical_lateral_flexion","z_mob_pelvic_tilt_against_wall","z_mob_thomas_test_hip_flexor_l","z_mob_thomas_test_hip_flexor_r","z_mob_shoulder_stability_flexion","z_mob_ankle_dorsiflextion_to_wall","z_mob_shoulder_stability_abduction","z_mob_back_to_wall_shoulder_flexion","z_mob_glute_strength_test_prone_hammy_push","z_mob_shoulder_stability_ir_at_0_deg_horiz_abduction","z_mob_shoulder_stability_er_at_0_deg_horiz_abuduction"],"z":{"dtype":"f8","bdata":"AAAAAAAA+H8AAAAAAAD4fwAAAAAAAPh\u002fAAAAAAAA+H8AAAAAAAD4fwAAAAAAAPh\u002fAAAAAAAA+H8AAAAAAAD4fwAAAAAAAPh\u002fAAAAAAAA+H8AAAAAAAD4fwAAAAAAAPh\u002fAAAAAAAA+H8AAAAAAAD4fwAAAAAAAPh\u002fAAAAAAAA+H8AAAAAAAD4fwAAAAAAAPh\u002fAAAAAAAA+H8AAAAAAAD4fwAAAAAAAPh\u002fAAAAAAAA+H8AAAAAAAD4fwAAAAAAAPh\u002fAAAAAAAA+H8AAAAAAAD4fwAAAAAAAPh\u002fAAAAAAAA+H8AAAAAAAD4fwAAAAAAAPh\u002fAAAAAAAA+H8AAAAAAAD4f\u002fTmjt5oFsG\u002fhXxKiuYn1r9oIfxhyqqUPytjdqma06E\u002fvoxSNmEOur9VgYIUno6xP420kKYVvKm\u002fb92mkJJes79o+SodmJ3Bv7\u002fabIUZM8E\u002fMe280wHgyj8R7vllaazIv8SSZC434cg\u002f4gPCI1XJ27\u002fIkBow\u002fgjCv7XQAwE6zoa\u002fgmmo0H9UuD+5RmYE47W1v7lGZgTjtbW\u002fuUZmBOO1tb+5RmYE47W1v\u002fHua7m0qLe\u002fwErphaGCyb9Gn60qjQi4P7VqiFtPh6U\u002fGM3JuPuNnT999XkL7nuzv3zT+GZUXMm\u002fPp4QDQeQhL8AAAAAAAD4f5krlWVfcrc\u002fc8MHAgkny78b3ShFP\u002fKev2hzd122c8u\u002fQm0PVIwLx79J4VGF6AGnv6cgYuMtldq\u002fGfr0764+tr+KZ9aDbFmsv4iWEj9fybw\u002fu4R9NGP2sj8bRqusqNKkP3Ko\u002fHszILg\u002fpH+InqmVvr\u002flcuEdoZ2qv4mJNjm+Po4\u002fM2H\u002fmH8v4L8INhLpXgLGv6yM8Htg34U\u002fWKEJZ7R52r9YoQlntHnav1ihCWe0edq\u002fWKEJZ7R52r\u002fQ2ocByOe8Px1KJmC+P8+\u002fZuYlD3wwtL8HZo9jJH27PzFWKbYrh7U\u002fgcib0y8vw78ygEqYwaezvzop60Z500u\u002fAAAAAAAA+H867WrNP3\u002fNPyqgk2kGIbc\u002f9BWW8Hk2jj836P+VuUSpv9DT4taud8s\u002f3Z0U\u002fhMPzD+1mNg2WoObv56SVYT10rk\u002ffdc0AE81qj8DiKAhAUu2P4Fcxcws+NO\u002fpZ86ouzN3D8LzjNDuPTOP0C7q2SC8re\u002f0gwC2GoWyL+QbAKAezOSPxECU1otuMA\u002frQHJbWczpT\u002fZmubPmcPMP0ifmUIZe6e\u002fSJ+ZQhl7p79In5lCGXunv0ifmUIZe6e\u002f6uNlxFdovT\u002fZSqv6Vv3Iv6VcHyf9+bk\u002fttrHtphzvT\u002fs\u002fWbfDx16PxMdmilpopC\u002fi80fJLDJxD8XolvGVKipPwAAAAAAAPh\u002fJzrWt+7TyL8n41cp2oDVvzM4clSM2bq\u002f7hZcupTQoz\u002f176m2Dwu5P4rN3hUf+qo\u002fP3Vqkba5cL8rLpkzhiKoP62VXxheTay\u002f9w625JUxnb\u002f+m1BDIHfAvzIvZX8Gt9I\u002ft\u002fhsG5UZuD85LJBJAOnAv0U65g9a+7y\u002fanwOBCrbwL8OWY25FWTBP+J1q5lgFsc\u002fY9pBEyGIsD8vfxNrkkqlvy9\u002fE2uSSqW\u002fL38Ta5JKpb8vfxNrkkqlv4aS9AWYIcc\u002fgveDZEQ9vb\u002fqCuKpjQ+mP\u002fGb82pn8qW\u002fJSRfZiTHtL+jeCo\u002f3\u002fW0vyyLGv0vypQ\u002f+57iRA04qb8AAAAAAAD4f00Edup1b86\u002fjnh4TzPPxr8iSiqRrNa0P5oYZxteULc\u002fis6Vqg5d1j\u002fdu1iyK+LYP6huG91vAtI\u002fDSiVCC5M0T8tc0PBkebUPxs4\u002fjBiZLQ\u002fhc9SeNkfwj\u002fjhqLv\u002fEO6PwczeT44DNI\u002fcuUMuCAavT8oB62G\u002fsvaPybiVq06Ibo\u002fdyzk6qOAyD+wg7hJ+avQP2V5oAXjatQ\u002f5GpTt19G1j\u002fkalO3X0bWP+RqU7dfRtY\u002f5GpTt19G1j+ZZmVk\u002fMzBv69iSQzzJcQ\u002fLnIBztjv0j8ZcDvwAZPAPwHq5VCeLkA\u002fsk\u002fzD3jA0z8tRp76M3zJP6zjsp4r+tA\u002fAAAAAAAA+H8pRaBjPKq4P\u002fXKSeREpsA\u002foEAMJEVokz8NosMvIEjRv3silp\u002fub5M\u002fVeay+WmErD\u002fXeu1XEXikv8RneMuDhbk\u002f3w\u002fLelHQhr9xOM0mpxm9vw2EhashZri\u002fFNA0yVZpxD+VYS9PEp3QP9B5n\u002ffzh72\u002fWBDj7oTEwz8\u002fVnd3\u002fhzTv4FRc1XAT8e\u002fJQun2bIZlL9uVYE0AgS7P0zqhdI34Km\u002fTOqF0jfgqb9M6oXSN+Cpv0zqhdI34Km\u002foXodbtrkpr8opM33lqvDv7GFSTIW07w\u002fy3MeQmgUUT8EizJlJ+Wxvymv7d88Dog\u002fPCkJuFkTx7\u002fUE5WKy++IPwAAAAAAAPh\u002fobeAco\u002fPuj9mWOsiVo7Fv9\u002fWUAMLLZ6\u002f2iIg4\u002f3aw79tlj9WqDbDvxKCZSZaFMC\u002fyplIJzSam7+0hwxe1t\u002fNv41sL9I+XIu\u002f6bVvxhTEq79K73NTvx+vP2FbdgHQ58O\u002fxLGytxORxr8S+hvZ0YjCv45kG+6MxLc\u002fqKfoDrWnxL\u002ff3KjE2Yuzv7R3KtprQbI\u002fRjVI8NWOxL\u002foVqgS13SBP+hWqBLXdIE\u002f6FaoEtd0gT\u002foVqgS13SBP8Lw9wgdGcI\u002fg+Kp\u002fSDcwD\u002fD\u002fjsZwmDNv79Qe7U1IJ+\u002f1u36TF3Xuj9F3aywx37Av4dDvchEkMU\u002fYWGFHOMarD8AAAAAAAD4fwLz+aXz65o\u002fquUys\u002fN9wD+6M9cz9Sy0v7Da4AA9Z8E\u002frzzbBZqRmz8xGCK5UjSZv80WPFnATtA\u002fShmHXn1hwD8KzBynf87CP\u002fhQPu7jZrK\u002fiYL2gtYgwj\u002f+4D2WRoK8v1pqy\u002fFDr7S\u002fbgBwX7joyz9MeTULquO5P51MTb2c+8Y\u002fKeSf54VRoT\u002fX6\u002f1TFp6bP96nbcyAunE\u002f2pDT4fts0T\u002fakNPh+2zRP9qQ0+H7bNE\u002f2pDT4fts0T\u002f9LpGn0NaSP5cut4tsBq2\u002fkj+x+Oh0wD99zBFNhHOnP8yCwONqjrg\u002flJCvTQ81vT+HodmY43tVv1VGsU7T3sU\u002fAAAAAAAA+H\u002f+YWJcN6mnP5AwPkAwM8s\u002fDN9jCLucvj8Zp1uUIfG\u002fv4Wf4tSY174\u002fVDPK4CNrwz\u002fkhDcsawXTvwm8NWPn0Ku\u002fB3MZUrItur\u002fMjVEbfUKeP70EZp\u002fIusG\u002fhaG0vHm20T8IqmhillnTP5K5b4YCYcS\u002f\u002fYceI46Tn7\u002fgRgE3og\u002fIv0tnxQ5Ec7O\u002fOGPTzpVRuT+yOfhG\u002fkDIP\u002fu7gODjBtK\u002f+7uA4OMG0r\u002f7u4Dg4wbSv\u002fu7gODjBtK\u002fu2trWCu6vb9D+uAI\u002fQ6zv8WRmv4Z5aq\u002f0qzXyA6zwL\u002fyKPbn7pPCv1+BDKGHBMW\u002fosIYSGMvvr9lfs017DyxvwAAAAAAAPh\u002fEhb1mMSmw79oXGZ+83LEvwAAAAAAAPh\u002fAAAAAAAA+H8AAAAAAAD4fwAAAAAAAPh\u002fAAAAAAAA+H8AAAAAAAD4fwAAAAAAAPh\u002fAAAAAAAA+H8AAAAAAAD4fwAAAAAAAPh\u002fAAAAAAAA+H8AAAAAAAD4fwAAAAAAAPh\u002fAAAAAAAA+H8AAAAAAAD4fwAAAAAAAPh\u002fAAAAAAAA+H8AAAAAAAD4fwAAAAAAAPh\u002fAAAAAAAA+H8AAAAAAAD4fwAAAAAAAPh\u002fAAAAAAAA+H8AAAAAAAD4fwAAAAAAAPh\u002fAAAAAAAA+H8AAAAAAAD4fwAAAAAAAPh\u002fAAAAAAAA+H8AAAAAAAD4fwAAAAAAAPh\u002fAAAAAAAA+H9tJD2\u002fmTCjv7kCFFwy45i\u002f7OIW0+lnz79D0aFPahTSv020\u002foPuise\u002fsWzV5Uudx78otONK0gzBv132jKfuQ7+\u002fm7m8dzcQvr\u002f0AkcB1TvOv6XFXRnAq62\u002fNC\u002fymtI5uD+UGbB3q4m\u002fv4sjmVIaJ6c\u002fphDZWe8qwL\u002fNYL5O3u7Rv2usIW0grtC\u002fRS6l\u002fCtUpz9FLqX8K1SnP0UupfwrVKc\u002fRS6l\u002fCtUpz+LjLYpTaC0P7W4saJ4iNe\u002fNh3W1Ppes796m2dTvYtoP43dGVwY8Kk\u002fp3FIlGvVsL8EEMNGISPKvwYrO4WPNbI\u002fAAAAAAAA+H\u002fyZUfZFLLWP1X44vAA8EI\u002fo6KkZ5oQub+AVEM+ngKaPx8zuf6WT6I\u002f8Mo+V9IGvj8iYNIy2MO2P\u002fWbjvvAktS\u002f2pRAHRaBwL\u002fj9ORhx7i\u002fP1cMeZKH67m\u002fiFIgiLCqnT+C445mFmOgv5ECpJ5qx8A\u002fMgMsLgGv0D8ds9qMnzCeP6lm+2qACse\u002fAquCZtJL0z\u002f1m1JCwiW5P+6GV6JsrZU\u002f7oZXomytlT\u002fuhleibK2VP+6GV6JsrZU\u002f12\u002f+3q030r+k5lGYCka+v2HDh\u002fCxKNe\u002f7enzVzS8uj+cbt70GRhkP+gdFPEgjbi\u002fHdOKPY+hlD+Fi5z25vPGvwAAAAAAAPh\u002faaXbEnd7l7\u002fem2YyXnW9v6CO\u002fn0is6s\u002ffUFZcKcJrj9f7N4yl9vXv2nAf0CSr9q\u002fJHAF\u002fyT3zL8SfM+7+wfevwKg3tbILMu\u002f5GmZCzb1vL9VMWLsIQWgvxUmlau9Hda\u002fgJpzUW79xr+6UymjKpXSP\u002fA8zsb9wr6\u002fAl82\u002fS\u002f0yz+B2kA23EzDv8CN9kfrYsi\u002fPq1PJ8r23L9bVny+UePEv1tWfL5R48S\u002fW1Z8vlHjxL9bVny+UePEv0btK9jyRbs\u002fpETDEtYDqb9XXHiFRLncv39PBIEK9ac\u002f8mx2lLN7uD+HEbjJ6LV9P4z2va4QYbC\u002fZYNhUvgR078AAAAAAAD4fx6aPtNDUcU\u002fpRyz4KnHlz8Cw9GvpSDJvz4y7U9uYLU\u002fnvocO1u0sz\u002fIFeq7gdmpPyMzWcTc7r8\u002fwE6fiuRTx78P4KjUHnapv6JKLnmSirg\u002fsXaJjVGJr7+l98wIgcAFv2Ivgmigzp6\u002fxU+mQR0zsD+Isxg3x9jOPx4sH60pS2M\u002f4PbCfIEmiz8OTcb+ea7VP5hj6LIw868\u002f2Dmkhc5LqT\u002fYOaSFzkupP9g5pIXOS6k\u002f2Dmkhc5LqT9B+0jejgXQvwvgdeTxDtK\u002fhE3BEpvly78sqZ8vYjmoPyIn6pFRAKu\u002f+XCsS5ybmr+x3KIV0JvEP12tjIx5mrS\u002fAAAAAAAA+H8dNrh0asSJv7MXFIEay7a\u002fAAAAAAAA+H8AAAAAAAD4fwAAAAAAAPh\u002fAAAAAAAA+H8AAAAAAAD4fwAAAAAAAPh\u002fAAAAAAAA+H8AAAAAAAD4fwAAAAAAAPh\u002fAAAAAAAA+H8AAAAAAAD4fwAAAAAAAPh\u002fAAAAAAAA+H8AAAAAAAD4fwAAAAAAAPh\u002fAAAAAAAA+H8AAAAAAAD4fwAAAAAAAPh\u002fAAAAAAAA+H8AAAAAAAD4fwAAAAAAAPh\u002fAAAAAAAA+H8AAAAAAAD4fwAAAAAAAPh\u002fAAAAAAAA+H8AAAAAAAD4fwAAAAAAAPh\u002fAAAAAAAA+H8AAAAAAAD4fwAAAAAAAPh\u002fAAAAAAAA+H8AAAAAAAD4fwAAAAAAAPh\u002fAAAAAAAA+H8AAAAAAAD4fwAAAAAAAPh\u002fAAAAAAAA+H8AAAAAAAD4fwAAAAAAAPh\u002fAAAAAAAA+H8AAAAAAAD4fwAAAAAAAPh\u002fAAAAAAAA+H8AAAAAAAD4fwAAAAAAAPh\u002fAAAAAAAA+H8AAAAAAAD4fwAAAAAAAPh\u002fAAAAAAAA+H8AAAAAAAD4fwAAAAAAAPh\u002fAAAAAAAA+H8AAAAAAAD4fwAAAAAAAPh\u002fAAAAAAAA+H8AAAAAAAD4fwAAAAAAAPh\u002fAAAAAAAA+H8AAAAAAAD4fwAAAAAAAPh\u002fAAAAAAAA+H8AAAAAAAD4fwAAAAAAAPh\u002fAAAAAAAA+H\u002fKR\u002fN0KaC6v++1PPe9M9e\u002f\u002fsszUvrPXT8sCP+cqHe0P3zLBX65M8W\u002ffxDbmw8KmD89JGP0v8O8v6CZPuV\u002fHbE\u002fFBzip1r0zr9VEdGbKcvDP1llbbJ6sdE\u002f54xrNq7qvb+0t+wOm8HFPyemCrLry9C\u002fPKHHK6sE1b85ZBC\u002fDceRvw0\u002fSMUUf8Q\u002fAH173qOMx78AfXveo4zHvwB9e96jjMe\u002fAH173qOMx78qjQ4OX8DLv3jS2WaGCsm\u002fxUCVHEWUlz8T+le1QGDEvzOn4+m++8e\u002fHfHzLYcKsr\u002fTLSJn8GjHv4+jrnHQc7i\u002fAAAAAAAA+H\u002fHt7DLQHicPxnyC1opbNO\u002fAAAAAAAA+H8AAAAAAAD4fwAAAAAAAPh\u002fAAAAAAAA+H8AAAAAAAD4fwAAAAAAAPh\u002fAAAAAAAA+H8AAAAAAAD4fwAAAAAAAPh\u002fAAAAAAAA+H8AAAAAAAD4fwAAAAAAAPh\u002fAAAAAAAA+H8AAAAAAAD4fwAAAAAAAPh\u002fAAAAAAAA+H8AAAAAAAD4fwAAAAAAAPh\u002fAAAAAAAA+H8AAAAAAAD4fwAAAAAAAPh\u002fAAAAAAAA+H8AAAAAAAD4fwAAAAAAAPh\u002fAAAAAAAA+H8AAAAAAAD4fwAAAAAAAPh\u002fAAAAAAAA+H8AAAAAAAD4fwAAAAAAAPh\u002fAAAAAAAA+H8AAAAAAAD4fwAAAAAAAPh\u002fAAAAAAAA+H8AAAAAAAD4fwAAAAAAAPh\u002fAAAAAAAA+H8AAAAAAAD4fwAAAAAAAPh\u002fAAAAAAAA+H8AAAAAAAD4fwAAAAAAAPh\u002fAAAAAAAA+H8AAAAAAAD4fwAAAAAAAPh\u002fAAAAAAAA+H8AAAAAAAD4fwAAAAAAAPh\u002fAAAAAAAA+H8AAAAAAAD4fwAAAAAAAPh\u002fAAAAAAAA+H8AAAAAAAD4fwAAAAAAAPh\u002fAAAAAAAA+H8AAAAAAAD4fwAAAAAAAPh\u002fAAAAAAAA+H8AAAAAAAD4fwAAAAAAAPh\u002fAAAAAAAA+H8AAAAAAAD4fwAAAAAAAPh\u002fAAAAAAAA+H\u002fkB5U092+8v5DRHZrUItG\u002fuDLc1zdrlT8lq5su9Y+0P1YqJEgdzLS\u002f\u002f9G0WFWCuL9c5\u002fXfzKzNv38gvSXNILg\u002fAKcrW15S1r9Lq\u002fHQav6yP7xECfRJf8E\u002frliUF7sd1b\u002fWxA54dUOzP9q5uJTEVdG\u002fwiUdM99Mx7+xzKQqm+atPyLR4nvHZcE\u002f0Cg8E5VUsr\u002fQKDwTlVSyv9AoPBOVVLK\u002f0Cg8E5VUsr\u002fall2EtcC5Px1TPPHDyNG\u002f\u002fEqBT+pyuL8ANnpPxq21P876cQkkh+C\u002fP2QKXB542b9pouecMdO9P2cVoRUOjpI\u002fAAAAAAAA+H8yY3sY\u002fGjKvyrWtrSn8NS\u002fAAAAAAAA+H8AAAAAAAD4fwAAAAAAAPh\u002fAAAAAAAA+H8AAAAAAAD4fwAAAAAAAPh\u002fAAAAAAAA+H8AAAAAAAD4fwAAAAAAAPh\u002fAAAAAAAA+H8AAAAAAAD4fwAAAAAAAPh\u002fAAAAAAAA+H8AAAAAAAD4fwAAAAAAAPh\u002fAAAAAAAA+H8AAAAAAAD4fwAAAAAAAPh\u002fAAAAAAAA+H8AAAAAAAD4fwAAAAAAAPh\u002fAAAAAAAA+H8AAAAAAAD4fwAAAAAAAPh\u002fAAAAAAAA+H8AAAAAAAD4fwAAAAAAAPh\u002fAAAAAAAA+H8AAAAAAAD4fwAAAAAAAPh\u002fAAAAAAAA+H8AAAAAAAD4f1O72eIkFqg\u002fYRW63q2LhD+qVAD6+Gmcv4n0\u002f9rhc3+\u002fkDn7jYFjnz+0WoWmXReyP9prE9gLYcM\u002ffAf4n1ovmL9IzbN90U54v5lZqYUm4cS\u002fexlO7oRgtj8azrXKlMTFP6So2W9hnb8\u002frhXEr2eDxz9imtIIWT6wv65OS5cFnbO\u002fenNQb4fXnb9dc85GBZmxP11zzkYFmbE\u002fXXPORgWZsT9dc85GBZmxPw4cMj2WB88\u002fb1hrQB5jsL\u002f7vNF5M\u002fGwP6hjwwSb1rw\u002fHv\u002fZgprEnL8IgfkQgl2Uv\u002fnSxYDYwcm\u002fB9Kpi54lzj8AAAAAAAD4f9uEwMr17dI\u002fXzZgiAgulj+e4WMHvLexv0Dj38uGIKk\u002flAJ3TQAzgT8JVVQx4Jijv1T2brwabaw\u002fyFkv\u002fVSXkj9yXALdV3C5PxF\u002f1ilGLb8\u002faRaLs1afmD\u002fd3Qc2O1G4vwRQPSF7VLe\u002f39TAHmaovL9P20+g6bKQvzC6mTDT+7E\u002fvUfcA3v8xj8S\u002fHVxbHxMP5a3NyGYlbG\u002fdBZco1EMpT90FlyjUQylP3QWXKNRDKU\u002fdBZco1EMpT99Dqn0u6\u002fRP9GPG3mcTaQ\u002fwToMut40lL\u002fr1jLZd3\u002fEP4jFaBMBgsw\u002fFV3qtJ4MtD8BRLHh7QrKP0qDcpwgPak\u002fAAAAAAAA+H\u002fqfZR+tCKjvzFMMt99crU\u002fAAAAAAAA+H8AAAAAAAD4fwAAAAAAAPh\u002fAAAAAAAA+H8AAAAAAAD4fwAAAAAAAPh\u002fAAAAAAAA+H8AAAAAAAD4fwAAAAAAAPh\u002fAAAAAAAA+H8AAAAAAAD4fwAAAAAAAPh\u002fAAAAAAAA+H8AAAAAAAD4fwAAAAAAAPh\u002fAAAAAAAA+H8AAAAAAAD4fwAAAAAAAPh\u002fAAAAAAAA+H8AAAAAAAD4fwAAAAAAAPh\u002fAAAAAAAA+H8AAAAAAAD4fwAAAAAAAPh\u002fAAAAAAAA+H8AAAAAAAD4fwAAAAAAAPh\u002fAAAAAAAA+H8AAAAAAAD4fwAAAAAAAPh\u002fAAAAAAAA+H8AAAAAAAD4f80Pj+kTSdG\u002fxncW6GGJ0b9G0Z0tSc6xPzCX\u002fzEeLrI\u002fo98n4+l\u002fWj9ZkHrEgozCv3b1BjnWka2\u002fHEonFFeXxr\u002fXTgVEBXSpPxLuvMjqUsc\u002fgeRhWj9Fwj+PHbWQtefcv6tbLuTBH8I\u002f4iiV5bFRzb9ltiKKMLW1v2OkRgssOMg\u002feDwr0SdlwD9DYzSb1Pajv0NjNJvU9qO\u002fQ2M0m9T2o79DYzSb1Pajv+ym8His2Mk\u002fYmeOA8\u002fvpb8QvW6Zy13Jv9PpgcXIC7E\u002fAEtH2ZKsxD9KysDrIbnBv6zncSUVCrk\u002fsEnJKX5Wtb8AAAAAAAD4f2rr9z1PFsS\u002feozz\u002fMhfgr\u002fo\u002f4hSU3DUP+BcTS7Pe90\u002f\u002fpgCGKR2yj\u002fsWjaZj4SyP8Gwm0twpso\u002fhM1ddf3Xrr8\u002fhFIj0dKbP1pqsdior7S\u002fdmVqQsDflb\u002fY4apGRGygP2PuuibI68E\u002fO8OJESaSxT8stZp64fDQP+Z9GdpzuKy\u002fVEA3kxUn2z+UBYlkwgrVPwRXA+TB1JI\u002fZfA24Oo30D9l8Dbg6jfQP2XwNuDqN9A\u002fZfA24Oo30D9gLuuvyHLJv6x7V\u002fKWSMs\u002f9kwxXThorb+wT5H6Sn++PzM4STi2jsU\u002f5wxdou\u002f4gz89yPZkQaDCv7yd2QcFdKQ\u002fAAAAAAAA+H9D7mjkx8LCv8Tcbbwb3rg\u002f9cFwg8aksb9DhXKD7UvLvyExjBAExMQ\u002f3guWoZJSxD9nmWz5pRqsv8BGap5nUco\u002f+65zt2\u002fSsT+eqn8mcByqv4DZECxVYMe\u002f3zufZjuT0T8Gb1hAAT7YP5yKjJ3\u002fI7m\u002fYx01pWiexD\u002f6stBKYErNv9uY5lTCA6G\u002f8zCHS38IrD848veepnzKP2SImV3WILW\u002fZIiZXdYgtb9kiJld1iC1v2SImV3WILW\u002fTZwB5WqWxb\u002fX+1CFevXFv+bY3iEz6ss\u002fwEuuSA7vcr+D1A8uImaxv8ZHm3KfSrQ\u002fq7lrRUB9n7+HbIvvS9GzPwAAAAAAAPh\u002fZ3hApthCoT8\u002fXTjk3R3Pvx1VWGHaYsU\u002f6MSt8lUCxD831s2WjTeQv9mDq61s3JA\u002f3EPgWjOnRz928lkKXqnQv3QxhrAHCZi\u002fNmhwNZOTtT+m9KerqVy7P3a54KcArqi\u002fcFlhR6FUr79QQ4ed2Oi5P0G3d8FYNbo\u002fv20pPs6awD\u002fJ19+8JD2ovydzn5KQ+8c\u002fRGWG3qx\u002fmL+BQ6uYfSyQP4FDq5h9LJA\u002fgUOrmH0skD+BQ6uYfSyQP71MYy73r+K\u002fyq4SXVwxsj\u002ffqn18w1zPv0CDxPs4N7A\u002fEjA56I\u002f\u002fqj+UeI3v6nW3P9Gip\u002fDksbU\u002fqyK14wOLsr8AAAAAAAD4fzXTYZGUV7S\u002f2iaXKtWsxT9BD0paIN7RPx\u002fVqh\u002fP6rs\u002fbResmAFWt7\u002fPyT1Uq4e4v5im5s7aAta\u002fSVYQ8UCC2b90v56bhoLYv6Kih1\u002fRV9I\u002fcYEMnvVp0b+Bh5dfJDG5P01gUWUgRLU\u002fMxXi3ViU0z+OJew0wg3Vv5S9vZqv9Mc\u002fWZLj4KAPuL8O9e+vtc7Cv69MNJRss7K\u002fe7QAOzXp2b97tAA7NenZv3u0ADs16dm\u002fe7QAOzXp2b8nt9WU\u002fnO4v5Ev+DFhp68\u002fBjQr+C5N2L+hwih+QrLCvxgNu9nDFLi\u002fhuNYeJehx7+dMN82Y93Jvw9jz9bAxtm\u002fAAAAAAAA+H8pSKJ7u9XTv7wVPdiUjM6\u002fEN1BvFvI0j8Fc75jSW7TP\u002fVAnOGK5NM\u002fzYzFToLJ0j+uB1inTL3QP07Jn2M2n9I\u002fwRY8xXmc2D+cqZwHKUe+v4iZNzeBpcQ\u002fmbAlhMZ\u002fzT+sAmUc70zAP\u002fWp\u002fD5sMK8\u002fazRhOo1fyT9I1aThQU3DPwzvcg\u002f+DtU\u002f2THhuK7Myz94+GNaZ1LLP3sBSanG08I\u002fewFJqcbTwj97AUmpxtPCP3sBSanG08I\u002fnzzLffcgwL+89W8YujK5vxUhL8T1gtA\u002fhnVFnSWE0T8sAEWNIvrHP+01f\u002f3+rtE\u002fBg2suPATsD+Jp++4QdfWPwAAAAAAAPh\u002fZL4CmHQ70L9vSEQ9Co3EP0Oe238DBdw\u002fhk33v4a41T9B8tt42TXJP0rDRAsiYsc\u002f\u002fY0bVX2Pxj\u002fDhtWhSh7RP\u002fobukG9EMs\u002fV3umfxKTvj98jZLfEmjCP9RmX4q2TsQ\u002fpuQGvFqdoj+z2ucS3CXKP12t9SLoyF0\u002feYLNgymOvT8IQu3lycvKP4qNgjG2r5o\u002fR+Ge\u002fsFfwz+SGK5huZ\u002fAP5IYrmG5n8A\u002fkhiuYbmfwD+SGK5huZ\u002fAPwkoEF89mdq\u002frgZNHsRZrz\u002feaHFqrInPP03bB+SFL6q\u002fbYWIw7Taqr97qAD06LK1Pz4XcSQpAcC\u002ff61LWNLi0T8AAAAAAAD4f4Gsf7Sboti\u002f0AUZydki0z8DqIlrr6XEPzXrCvKnu8U\u002fq+MnEG0cSr+AZsUMtkW5v92W\u002fVyLbp8\u002f4C+8ajzLwz9K\u002fa40PtHEP3zTvos1cMS\u002fONH94XDYhb8gqntmGtGwv44xDjr5w4O\u002fhTI7NZCguz+O8ffM8zDSvzhJHgQp58A\u002fVIYhafmf1z8tkT9JAYemP5MXz9aeosW\u002fYGSw3t81pz9gZLDe3zWnP2BksN7fNac\u002fYGSw3t81pz9yZD\u002fc1Pm3P35mkFEMibY\u002fhs1y7Wd2wz8IpmvDnqqyP+vLqkQjDbI\u002fCE+l4nliwD8YC5bqJ368PwBRN4GuUsQ\u002fAAAAAAAA+H8BwKUfIXvGv\u002f1ZtAprdKo\u002fTfs5EsAOmD8XIsrLQuGov6M48RchqMa\u002fqPEbxaq0zL+kXySn1CO5vxCwqtXNsYy\u002f6chHSBch2b+dDctrngvJP+TRDdkPBdi\u002fwQazaiQKub\u002fCAfgp6dd\u002fP375eNDru62\u002fH5eb02tCxL92pX1Bz3rVvxldjwIqPay\u002fa1ZCxa91u78sk9xnLN7Gvx4EZDqAvLu\u002fHgRkOoC8u78eBGQ6gLy7vx4EZDqAvLu\u002fmdD2y1V90L8U8g0QxN2pv3BvcI9zT4M\u002f7m0vUqDvwr8pKga8B5jav\u002fcT1S4MrdC\u002f33d0S1Nhxr+3oEf9LnjQvwAAAAAAAPh\u002fpu\u002feGwBcy78X0CSXxpbWv+j8sPR1C7E\u002fKPEd9V0frr9lciuza1O8v8a3jquVrK2\u002f61UsNbdLpz8wT92vH+TAv8w6ulzqXri\u002frhTHS3p6Zb87ppvNTkGHv08r6DSkDba\u002fNpiimcUYu786ngoW65uIP1C6QXyXqbC\u002fpIwG3c5zqD+W8wIdIq2sv\u002fBOv6cUTbC\u002fdXQGTh3dvb9jGCiXLdLEP2MYKJct0sQ\u002fYxgoly3SxD9jGCiXLdLEP293IzQSjsK\u002faHyt2cIEuT\u002faLvSJ9fG0vwJiBNfQzr0\u002f6e423ojxuj+xaNMqXnzFv0X2NQ5L5dC\u002f4F5G0C6oub8AAAAAAAD4f1a+UmNbItI\u002f0a7SvpSsk7\u002fv7ZDJOqutv7XsdnBUlLe\u002f68aWQ1w4mT9RuIfUtPq5P6wdKoWVpp6\u002fbkGa17OfuD9yWnMkw8u5P6zgfPJBFoO\u002fUaTvu1rFpz9aH8C0J2afv8WMdyZxrZw\u002feGZPJ7O8sr\u002fC8YLiK1GsP3e1SJApK7E\u002fij0\u002fuW\u002fypb8eVYPpFtyWv53JRn4LM6w\u002fgEX\u002fPYGasj+ARf89gZqyP4BF\u002fz2BmrI\u002fgEX\u002fPYGasj8dWXgk7MGzPwZ9yOAu3rK\u002fc3eSyn9Bwz\u002ff93bA7pG4Pw1KQsFa6bg\u002fTx8jdDY\u002fqr\u002f7i+aLpZmkvzeRcu5418Q\u002fAAAAAAAA+H\u002fYRhiQFsjOP917ziW7MbE\u002f9pWKU2DQwb9N0N5zQaCWvxo5IAf+jak\u002fAiKF2sPlqL9OlVD\u002fzK3Bv79cklT2d8i\u002fRLOEZyObyL+MXEN+x+u5P0gjCoBmq8i\u002fAFeDjicQnb9b5wY0qre4vxsAyPyF1dC\u002fYeNlFHQNX788sufIVZnUv1LJOH3Cn8I\u002fyctB4v7b0D9WT4gLbX+gP9HXlfwC5sa\u002f0deV\u002fALmxr\u002fR15X8AubGv9HXlfwC5sa\u002fY0E0qXQYqL80ev0L0xOaP4wjqufVPci\u002fOAs1jMHDwb8GLOxupvPBv\u002fuwgFVJFpq\u002fD214jEghpz9QybK79T\u002fOvwAAAAAAAPh\u002fWvKHQ\u002fRyxr9kDet9ELDQv39ZAwRq0a8\u002fIqX4oS6Fkz\u002fa+E2gfeR2PwA3se7Ej56\u002f2vNOWET9wr9Ec1MR3yelv8lfxDcX6b6\u002fPQ0pnGg2k78uO2cJnBWIvzLstxGWQbA\u002flhOs6RVGtT+7v1HIbevEP57D5PRvucE\u002fa3hDzHHfzr8esy7AiTKzvyqSPii4lKM\u002fpnfQ3X+cmD9gPp8m2rDAv2A+nybasMC\u002fYD6fJtqwwL9gPp8m2rDAv8yoL6DELL2\u002fgyS6l0VAwT\u002fgkO6KmZ2lv1EuNPsm6o2\u002fi0uFHUm4uT+dbrdxlX\u002fWv\u002fHBZVvfNOK\u002fNZVxAYGpgz8AAAAAAAD4fx\u002fEFC4677S\u002fhboNQCx8rz881YSN7r\u002fCPyYfpGiEUsA\u002fx1u5N5Kwxz\u002favocxUOzNP1BXqzmvaqE\u002fLw3k72Uztb9Cz62nbE2eP4\u002f4FLNUeZc\u002fab1JKnpmtT8\u002ff8\u002f86F\u002fMPxp3EUo+A8U\u002ffVRzMKyXqD+Gq\u002fPE1hnBP7g\u002fNzauF64\u002fvd2i6uy0kb90hK2lnbe9PxPLJuIE28w\u002flkXGtxhopD+WRca3GGikP5ZFxrcYaKQ\u002flkXGtxhopD+ltxjafyTqv9vv2BpALbM\u002fh2Hu8KO6sL\u002fH5WtmbjCxPzdHZpFQ+6M\u002f2RW\u002f0Q47bT8+G7E28YS7PxdYb13hcJw\u002fAAAAAAAA+H+edTrr\u002fPqkv0A\u002fdy6Pi74\u002fNOuT1NQ6zT9lHJWZ7RC+P68FETGd2KM\u002frHZylPfjPr+0TUHfBsjGP2FgGEtMoMc\u002f58gVivJRqT8+cve9HAO7PyMYpszZrMs\u002fcGnEGWVikT\u002fvbEJQmnDBP47niQy9kbY\u002fVL4IGfHRtr+pMcxxP9GhP77njg5JSKw\u002fRVxEQTei1r\u002fpSMP6gpukP4mLwRns4cY\u002fiYvBGezhxj+Ji8EZ7OHGP4mLwRns4cY\u002f10mJSoM5Wj8fC6oaEgyiP\u002f943XV038o\u002foz6U81zqrD9HXgOxVjy7P98lqxsDZ7y\u002fmz4LKNX9yr+8lh36QbfGPwAAAAAAAPh\u002fRKnVJOpVzD8cFI36LTzQP75eVnZBYsM\u002fjQrLSJa6wD8ESTB3cu3QP+2X29y0ndM\u002fJrCuKxILrj+B1FegvlesP6sBKpS88ME\u002fZoz7hsObtj+PJhqctAWjP6+yDu5i\u002fss\u002fsp9P0JQOxT+Hn3tzV2+wP+1TbmSYJs0\u002fPodUA3TKtD\u002fnjTeO27e2P+dDVQ7oB80\u002f7\u002fs5H1r10D+S9FfjxLqxP5L0V+PEurE\u002fkvRX48S6sT+S9FfjxLqxP1NSjHGxDOK\u002f3LtfnN4Bsz9Z2YCSzxOyP847I73CgKw\u002faXSN2E+TrT+ulyUVrazQP1fBIvPE0rg\u002f9+I1g+retD8AAAAAAAD4f37aPkWX5su\u002fLkm07b3wuz\u002fcmP\u002fX6IO5v5IazAuUBs2\u002fUEFQgdzh0b8BiHLilZy9v3qpWlhpXt2\u002fjJxv6DhVzL\u002feY3Gl1A7OvwUik7dqt8I\u002f92BifWR20L8N8i20w5CkvzFdqdBmtJg\u002fPTciOCR6zz\u002fIGirlhb3Uv7lTjfMRrdU\u002fyitP72e03b8ZPZtr+WjWv85u\u002fYtAcMG\u002fU7pJ2Bk9279TuknYGT3bv1O6SdgZPdu\u002fU7pJ2Bk9279wcTQUytLBv5m5974Y0pS\u002ft3UBLloFzL+WbslKI3DHv5QQellXqcy\u002fHwazX5ujw79bD01KkSXHvw7cyL9mTM+\u002fAAAAAAAA+H+4sfybWCPKv6kyaR\u002frGMi\u002ff3fJsj3PuT8EMSKrQl7WP6+FP6WAl9o\u002f0Epewrv52D8J1K4qninUPwPegDn+MtM\u002f4u3Fy1+wyD\u002fWed55y2LMP2xgcdDoSnw\u002f+\u002fMs8TE10T+lMM8hHZHOPzCwYtcVbL+\u002fbjjAHSyd1T\u002faQNeGbf2wP1+0pwIhAtM\u002fnd1UuENS3D\u002fT1GM\u002f64PWPxXIf9XM5dY\u002fFch\u002f1czl1j8VyH\u002fVzOXWPxXIf9XM5dY\u002fB9LzJibjxT9mrXOriRG0vxGO9dmkBtM\u002fFUoX0n6+vj\u002fQRpr\u002fci2QP65\u002f8CKbpsE\u002f3T1o+7MPyz+RUI3QMuTIPwAAAAAAAPh\u002f2iLNU0Havz8BSi\u002fA8E+pPw==","shape":"43, 32"},"type":"heatmap","xaxis":"x","yaxis":"y","hovertemplate":"x: %{x}\u003cbr\u003ey: %{y}\u003cbr\u003ecolor: %{z}\u003cextra\u003e\u003c\u002fextra\u003e"}],                        {"template":{"data":{"histogram2dcontour":[{"type":"histogram2dcontour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"choropleth":[{"type":"choropleth","colorbar":{"outlinewidth":0,"ticks":""}}],"histogram2d":[{"type":"histogram2d","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"heatmap":[{"type":"heatmap","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"contourcarpet":[{"type":"contourcarpet","colorbar":{"outlinewidth":0,"ticks":""}}],"contour":[{"type":"contour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"surface":[{"type":"surface","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"mesh3d":[{"type":"mesh3d","colorbar":{"outlinewidth":0,"ticks":""}}],"scatter":[{"fillpattern":{"fillmode":"overlay","size":10,"solidity":0.2},"type":"scatter"}],"parcoords":[{"type":"parcoords","line":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolargl":[{"type":"scatterpolargl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"bar":[{"error_x":{"color":"#2a3f5f"},"error_y":{"color":"#2a3f5f"},"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"bar"}],"scattergeo":[{"type":"scattergeo","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolar":[{"type":"scatterpolar","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"histogram":[{"marker":{"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"histogram"}],"scattergl":[{"type":"scattergl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatter3d":[{"type":"scatter3d","line":{"colorbar":{"outlinewidth":0,"ticks":""}},"marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattermap":[{"type":"scattermap","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattermapbox":[{"type":"scattermapbox","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterternary":[{"type":"scatterternary","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattercarpet":[{"type":"scattercarpet","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"carpet":[{"aaxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"baxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"type":"carpet"}],"table":[{"cells":{"fill":{"color":"#EBF0F8"},"line":{"color":"white"}},"header":{"fill":{"color":"#C8D4E3"},"line":{"color":"white"}},"type":"table"}],"barpolar":[{"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"barpolar"}],"pie":[{"automargin":true,"type":"pie"}]},"layout":{"autotypenumbers":"strict","colorway":["#636efa","#EF553B","#00cc96","#ab63fa","#FFA15A","#19d3f3","#FF6692","#B6E880","#FF97FF","#FECB52"],"font":{"color":"#2a3f5f"},"hovermode":"closest","hoverlabel":{"align":"left"},"paper_bgcolor":"white","plot_bgcolor":"#E5ECF6","polar":{"bgcolor":"#E5ECF6","angularaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"radialaxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"ternary":{"bgcolor":"#E5ECF6","aaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"baxis":{"gridcolor":"white","linecolor":"white","ticks":""},"caxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"coloraxis":{"colorbar":{"outlinewidth":0,"ticks":""}},"colorscale":{"sequential":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"sequentialminus":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"diverging":[[0,"#8e0152"],[0.1,"#c51b7d"],[0.2,"#de77ae"],[0.3,"#f1b6da"],[0.4,"#fde0ef"],[0.5,"#f7f7f7"],[0.6,"#e6f5d0"],[0.7,"#b8e186"],[0.8,"#7fbc41"],[0.9,"#4d9221"],[1,"#276419"]]},"xaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"yaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"scene":{"xaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"yaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"zaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2}},"shapedefaults":{"line":{"color":"#2a3f5f"}},"annotationdefaults":{"arrowcolor":"#2a3f5f","arrowhead":0,"arrowwidth":1},"geo":{"bgcolor":"white","landcolor":"#E5ECF6","subunitcolor":"white","showland":true,"showlakes":true,"lakecolor":"white"},"title":{"x":0.05},"mapbox":{"style":"light"}}},"xaxis":{"anchor":"y","domain":[0.0,1.0]},"yaxis":{"anchor":"x","domain":[0.0,1.0],"autorange":"reversed"},"coloraxis":{"colorscale":[[0.0,"rgb(5,48,97)"],[0.1,"rgb(33,102,172)"],[0.2,"rgb(67,147,195)"],[0.3,"rgb(146,197,222)"],[0.4,"rgb(209,229,240)"],[0.5,"rgb(247,247,247)"],[0.6,"rgb(253,219,199)"],[0.7,"rgb(244,165,130)"],[0.8,"rgb(214,96,77)"],[0.9,"rgb(178,24,43)"],[1.0,"rgb(103,0,31)"]],"cmin":-0.6,"cmax":0.6,"autocolorscale":false},"title":{"text":"Profile Z-score \u2194 Program feature correlations"},"margin":{"l":200,"r":40,"t":60,"b":80},"height":946},                        {"responsive": true}                    )                };            </script>        </div>
+
+<h2>3. Top 20 strongest correlations</h2>
+<p class="meta">Strongest associations between a profile Z-score and a program feature.
+Use these as candidate hypotheses for "this kind of athlete tends to get this kind of program."</p>
+<table class="dataframe">
+  <thead>
+    <tr style="text-align: left;">
+      <th>z_metric</th>
+      <th>program_feature</th>
+      <th>r</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>z_mob_shoulder_stability_abduction</td>
+      <td>prep_core</td>
+      <td>-0.817</td>
+    </tr>
+    <tr>
+      <td>z_mob_prone_hamstring_raise</td>
+      <td>prep_core</td>
+      <td>-0.584</td>
+    </tr>
+    <tr>
+      <td>z_mob_ankle_dorsiflextion_to_wall</td>
+      <td>bp_upperbodylift</td>
+      <td>-0.569</td>
+    </tr>
+    <tr>
+      <td>z_mob_glute_strength_test_prone_hammy_push</td>
+      <td>prep_core</td>
+      <td>-0.564</td>
+    </tr>
+    <tr>
+      <td>z_mob_ankle_manual_test</td>
+      <td>bp_lowerbodylift</td>
+      <td>-0.516</td>
+    </tr>
+    <tr>
+      <td>z_mob_backbend</td>
+      <td>lift_unknown</td>
+      <td>-0.506</td>
+    </tr>
+    <tr>
+      <td>z_mob_r_prone_hip_er</td>
+      <td>n_prep_prescriptions</td>
+      <td>-0.469</td>
+    </tr>
+    <tr>
+      <td>z_mob_shoulder_stability_ir_at_0_deg_horiz_abduction</td>
+      <td>lift_unknown</td>
+      <td>-0.464</td>
+    </tr>
+    <tr>
+      <td>z_mob_horizontal_abduction</td>
+      <td>n_program_days</td>
+      <td>0.461</td>
+    </tr>
+    <tr>
+      <td>z_mob_shoulder_stability_ir_at_0_deg_horiz_abduction</td>
+      <td>n_plyo_prescriptions</td>
+      <td>-0.459</td>
+    </tr>
+    <tr>
+      <td>z_mob_r_prone_hip_er</td>
+      <td>lift_warmup</td>
+      <td>-0.453</td>
+    </tr>
+    <tr>
+      <td>z_mob_radial_nerve_glide</td>
+      <td>lift_plyometric</td>
+      <td>-0.452</td>
+    </tr>
+    <tr>
+      <td>z_mob_low_trap</td>
+      <td>lift_core</td>
+      <td>0.450</td>
+    </tr>
+    <tr>
+      <td>z_mob_r_prone_hip_er</td>
+      <td>prep_warmup</td>
+      <td>-0.449</td>
+    </tr>
+    <tr>
+      <td>z_mob_shoulder_stability_er_at_0_deg_horiz_abuduction</td>
+      <td>lift_upperbodylift</td>
+      <td>0.443</td>
+    </tr>
+    <tr>
+      <td>z_mob_sittiing_t_spine_pvc_r</td>
+      <td>duration_days</td>
+      <td>0.438</td>
+    </tr>
+    <tr>
+      <td>z_mob_gs_l</td>
+      <td>lift_sprint</td>
+      <td>-0.434</td>
+    </tr>
+    <tr>
+      <td>z_mob_shoulder_stability_ir_at_0_deg_horiz_abduction</td>
+      <td>plyo_plyo_3</td>
+      <td>-0.426</td>
+    </tr>
+    <tr>
+      <td>z_mob_shoulder_stability_ir_at_0_deg_horiz_abduction</td>
+      <td>plyo_plyo_1</td>
+      <td>-0.426</td>
+    </tr>
+    <tr>
+      <td>z_mob_shoulder_stability_ir_at_0_deg_horiz_abduction</td>
+      <td>plyo_plyo_0</td>
+      <td>-0.426</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2>4. Athlete archetypes (K = 5)</h2>
+<p class="meta">K-means clustered the athletes on their full Z-score vector. Each line below
+is one archetype's <i>average</i> profile. Where lines diverge is where archetypes meaningfully
+differ. Labels below are auto-generated from each cluster's most extreme metrics
+(Z &gt; +0.4 or Z &lt; -0.4).</p>
+<table><tr><th>Archetype</th><th>Distinguishing profile</th><th>N athletes</th></tr><tr><td><b>Archetype 0</b></td><td>↓ mob horiz abduction (-0.9) · ↓ mob thomas test hip flexor l (-0.8) · ↓ mob thomas test hip flexor r (-0.8) · ↓ mob shoulder er (-0.8) · ↑ mob shoulder ir (+1.3) · ↑ mob grip strength r (+0.9) · ↑ mob young stretch passive (+0.8) · ↑ mob pelvic tilt against wall (+0.8)</td><td>9</td></tr><tr><td><b>Archetype 1</b></td><td>↓ mob mid trap (-0.6) · ↓ mob low trap (-0.5) · ↑ mob pelvic tilt against wall (+0.6) · ↑ mob grip strength r (+0.5) · ↑ mob grip strength r at 90 (+0.5) · ↑ mob gs l (+0.5)</td><td>18</td></tr><tr><td><b>Archetype 2</b></td><td>↓ mob hip pinch (-1.3) · ↓ mob grip strength r at 90 (-0.5) · ↓ mob grip strength r (-0.4) · ↑ mob mid trap (+0.8) · ↑ mob sittiing t spine pvc l (+0.7) · ↑ mob sittiing t spine pvc r (+0.6) · ↑ mob shoulder er (+0.5)</td><td>7</td></tr><tr><td><b>Archetype 3</b></td><td>↓ mob prone hamstring raise (-4.2) · ↓ mob shoulder stability abduction (-3.5) · ↓ mob glute strength test prone hammy push (-3.3) · ↓ mob hip pinch (-2.6) · ↑ mob mid trap (+1.4) · ↑ mob ulnar nerve glide (+0.8) · ↑ mob gs l at 90 (+0.7) · ↑ mob back to wall shoulder flexion (+0.7)</td><td>1</td></tr><tr><td><b>Archetype 4</b></td><td>↓ mob ankle dorsiflextion to wall (-2.0) · ↓ mob pelvic tilt against wall (-1.0) · ↓ mob gs l at 90 (-1.0) · ↓ mob l prone hip ir (-0.9) · ↑ mob low trap (+1.3) · ↑ mob thomas test hip flexor r (+0.8) · ↑ mob shoulder stability er at 0 deg horiz abuduction (+0.8) · ↑ mob hamstring stretch (+0.7)</td><td>3</td></tr></table>
+<div style="height:520px; width:100%;">                            <div id="dbbdda6a-61df-4e23-860d-74ed48c54fa3" class="plotly-graph-div" style="height:100%; width:100%;"></div>            <script>                window.PLOTLYENV=window.PLOTLYENV || {};                                if (document.getElementById("dbbdda6a-61df-4e23-860d-74ed48c54fa3")) {                    Plotly.newPlot(                        "dbbdda6a-61df-4e23-860d-74ed48c54fa3",                        [{"hovertemplate":"archetype=0\u003cbr\u003emetric=%{x}\u003cbr\u003emean_z=%{y}\u003cextra\u003e\u003c\u002fextra\u003e","legendgroup":"0","line":{"color":"#636efa","dash":"solid"},"marker":{"symbol":"circle"},"mode":"lines+markers","name":"0","orientation":"v","showlegend":true,"x":["z_mob_gs_l","z_mob_backbend","z_mob_low_trap","z_mob_mid_trap","z_mob_hip_pinch","z_mob_gs_l_at_90","z_mob_slump_test","z_mob_shoulder_er","z_mob_shoulder_ir","z_mob_l_prone_hip_er","z_mob_l_prone_hip_ir","z_mob_r_prone_hip_er","z_mob_r_prone_hip_ir","z_mob_grip_strength_r","z_mob_ankle_manual_test","z_mob_hamstring_stretch","z_mob_ulnar_nerve_glide","z_mob_radial_nerve_glide","z_mob_horizontal_abduction","z_mob_grip_strength_r_at_90","z_mob_prone_hamstring_raise","z_mob_young_stretch_passive","z_mob_sittiing_t_spine_pvc_l","z_mob_sittiing_t_spine_pvc_r","z_mob_cervical_lateral_flexion","z_mob_pelvic_tilt_against_wall","z_mob_thomas_test_hip_flexor_l","z_mob_thomas_test_hip_flexor_r","z_mob_shoulder_stability_flexion","z_mob_ankle_dorsiflextion_to_wall","z_mob_shoulder_stability_abduction","z_mob_back_to_wall_shoulder_flexion","z_mob_glute_strength_test_prone_hammy_push","z_mob_shoulder_stability_ir_at_0_deg_horiz_abduction","z_mob_shoulder_stability_er_at_0_deg_horiz_abuduction"],"xaxis":"x","y":{"dtype":"f8","bdata":"AAAAAAAA4D+amZmZmZnZP7gehetRuJ4\u002fH4XrUbge1b97FK5H4XrEP5qZmZmZmdk\u002fpHA9CtejwD+amZmZmZnpv3E9CtejcPU\u002fKVyPwvUovD97FK5H4Xqkv3sUrkfhepQ\u002f7FG4HoXrwb\u002fNzMzMzMzsPwAAAAAAANA\u002fPQrXo3A92r9xPQrXo3Dlv1K4HoXrUci\u002fKVyPwvUo7L97FK5H4XrkP6RwPQrXo9A\u002fMzMzMzMz6z9SuB6F61HYv1K4HoXrUdi\u002fexSuR+F6tL\u002fsUbgehevpP4\u002fC9Shcj+q\u002f7FG4HoXr6b9xPQrXo3DNP7gehetRuK4\u002fAAAAAAAA0D9SuB6F61Hgv8P1KFyPwtU\u002fUrgehetRyD\u002fsUbgeheuxvw=="},"yaxis":"y","type":"scatter"},{"hovertemplate":"archetype=1\u003cbr\u003emetric=%{x}\u003cbr\u003emean_z=%{y}\u003cextra\u003e\u003c\u002fextra\u003e","legendgroup":"1","line":{"color":"#EF553B","dash":"solid"},"marker":{"symbol":"circle"},"mode":"lines+markers","name":"1","orientation":"v","showlegend":true,"x":["z_mob_gs_l","z_mob_backbend","z_mob_low_trap","z_mob_mid_trap","z_mob_hip_pinch","z_mob_gs_l_at_90","z_mob_slump_test","z_mob_shoulder_er","z_mob_shoulder_ir","z_mob_l_prone_hip_er","z_mob_l_prone_hip_ir","z_mob_r_prone_hip_er","z_mob_r_prone_hip_ir","z_mob_grip_strength_r","z_mob_ankle_manual_test","z_mob_hamstring_stretch","z_mob_ulnar_nerve_glide","z_mob_radial_nerve_glide","z_mob_horizontal_abduction","z_mob_grip_strength_r_at_90","z_mob_prone_hamstring_raise","z_mob_young_stretch_passive","z_mob_sittiing_t_spine_pvc_l","z_mob_sittiing_t_spine_pvc_r","z_mob_cervical_lateral_flexion","z_mob_pelvic_tilt_against_wall","z_mob_thomas_test_hip_flexor_l","z_mob_thomas_test_hip_flexor_r","z_mob_shoulder_stability_flexion","z_mob_ankle_dorsiflextion_to_wall","z_mob_shoulder_stability_abduction","z_mob_back_to_wall_shoulder_flexion","z_mob_glute_strength_test_prone_hammy_push","z_mob_shoulder_stability_ir_at_0_deg_horiz_abduction","z_mob_shoulder_stability_er_at_0_deg_horiz_abuduction"],"xaxis":"x","y":{"dtype":"f8","bdata":"uB6F61G43j+amZmZmZmpv7gehetRuN6\u002fMzMzMzMz47\u002fsUbgeheuxP7gehetRuN4\u002fexSuR+F61D\u002fsUbgehevRP7gehetRuM6\u002fj8L1KFyP0j97FK5H4XrUv+xRuB6F67G\u002fAAAAAAAA0L9I4XoUrkfhP7gehetRuM6\u002fexSuR+F6xD8pXI\u002fC9Si8P9ejcD0K19O\u002fMzMzMzMz0z\u002f2KFyPwvXgP7gehetRuK4\u002fw\u002fUoXI\u002fCxb+4HoXrUbjOP3E9CtejcM0\u002fexSuR+F6pD\u002fXo3A9CtfjP+xRuB6F67G\u002fpHA9CtejwL9SuB6F61HIP2ZmZmZmZtY\u002fpHA9Ctej0D+uR+F6FK7XP9ejcD0K19M\u002fexSuR+F6xD\u002fD9Shcj8LVPw=="},"yaxis":"y","type":"scatter"},{"hovertemplate":"archetype=2\u003cbr\u003emetric=%{x}\u003cbr\u003emean_z=%{y}\u003cextra\u003e\u003c\u002fextra\u003e","legendgroup":"2","line":{"color":"#00cc96","dash":"solid"},"marker":{"symbol":"circle"},"mode":"lines+markers","name":"2","orientation":"v","showlegend":true,"x":["z_mob_gs_l","z_mob_backbend","z_mob_low_trap","z_mob_mid_trap","z_mob_hip_pinch","z_mob_gs_l_at_90","z_mob_slump_test","z_mob_shoulder_er","z_mob_shoulder_ir","z_mob_l_prone_hip_er","z_mob_l_prone_hip_ir","z_mob_r_prone_hip_er","z_mob_r_prone_hip_ir","z_mob_grip_strength_r","z_mob_ankle_manual_test","z_mob_hamstring_stretch","z_mob_ulnar_nerve_glide","z_mob_radial_nerve_glide","z_mob_horizontal_abduction","z_mob_grip_strength_r_at_90","z_mob_prone_hamstring_raise","z_mob_young_stretch_passive","z_mob_sittiing_t_spine_pvc_l","z_mob_sittiing_t_spine_pvc_r","z_mob_cervical_lateral_flexion","z_mob_pelvic_tilt_against_wall","z_mob_thomas_test_hip_flexor_l","z_mob_thomas_test_hip_flexor_r","z_mob_shoulder_stability_flexion","z_mob_ankle_dorsiflextion_to_wall","z_mob_shoulder_stability_abduction","z_mob_back_to_wall_shoulder_flexion","z_mob_glute_strength_test_prone_hammy_push","z_mob_shoulder_stability_ir_at_0_deg_horiz_abduction","z_mob_shoulder_stability_er_at_0_deg_horiz_abuduction"],"xaxis":"x","y":{"dtype":"f8","bdata":"H4XrUbge1b9SuB6F61HYPwrXo3A9Cse\u002fAAAAAAAA6D8pXI\u002fC9Sj0v6RwPQrXo9C\u002fexSuR+F6hD9SuB6F61HgP+F6FK5H4cq\u002f7FG4HoXrwT97FK5H4Xqkv6RwPQrXo8C\u002f7FG4HoXrwT8pXI\u002fC9Sjcv6RwPQrXo9A\u002fKVyPwvUozL+4HoXrUbjeP3sUrkfheqQ\u002fpHA9Ctej0D9I4XoUrkfhv+F6FK5H4co\u002f4XoUrkfhyj9mZmZmZmbmPz0K16NwPeI\u002fMzMzMzMz0z+amZmZmZnJP3E9CtejcM0\u002f7FG4HoXrsT9I4XoUrkfRP1yPwvUoXN8\u002fKVyPwvUovL\u002f2KFyPwvXYv3sUrkfheqS\u002fexSuR+F6xD+4HoXrUbjePw=="},"yaxis":"y","type":"scatter"},{"hovertemplate":"archetype=3\u003cbr\u003emetric=%{x}\u003cbr\u003emean_z=%{y}\u003cextra\u003e\u003c\u002fextra\u003e","legendgroup":"3","line":{"color":"#ab63fa","dash":"solid"},"marker":{"symbol":"circle"},"mode":"lines+markers","name":"3","orientation":"v","showlegend":true,"x":["z_mob_gs_l","z_mob_backbend","z_mob_low_trap","z_mob_mid_trap","z_mob_hip_pinch","z_mob_gs_l_at_90","z_mob_slump_test","z_mob_shoulder_er","z_mob_shoulder_ir","z_mob_l_prone_hip_er","z_mob_l_prone_hip_ir","z_mob_r_prone_hip_er","z_mob_r_prone_hip_ir","z_mob_grip_strength_r","z_mob_ankle_manual_test","z_mob_hamstring_stretch","z_mob_ulnar_nerve_glide","z_mob_radial_nerve_glide","z_mob_horizontal_abduction","z_mob_grip_strength_r_at_90","z_mob_prone_hamstring_raise","z_mob_young_stretch_passive","z_mob_sittiing_t_spine_pvc_l","z_mob_sittiing_t_spine_pvc_r","z_mob_cervical_lateral_flexion","z_mob_pelvic_tilt_against_wall","z_mob_thomas_test_hip_flexor_l","z_mob_thomas_test_hip_flexor_r","z_mob_shoulder_stability_flexion","z_mob_ankle_dorsiflextion_to_wall","z_mob_shoulder_stability_abduction","z_mob_back_to_wall_shoulder_flexion","z_mob_glute_strength_test_prone_hammy_push","z_mob_shoulder_stability_ir_at_0_deg_horiz_abduction","z_mob_shoulder_stability_er_at_0_deg_horiz_abuduction"],"xaxis":"x","y":{"dtype":"f8","bdata":"SOF6FK5H4T+amZmZmZnZP5qZmZmZmbm\u002fmpmZmZmZ9T+kcD0K16MEwBSuR+F6FOY\u002fpHA9Ctej4D8zMzMzMzPTv+xRuB6F67E\u002fAAAAAAAA0D89CtejcD0AwClcj8L1KLw\u002fexSuR+F6\u002fL8AAAAAAAAAADMzMzMzM9M\u002fPQrXo3A94j+PwvUoXI\u002fqP0jhehSuR+E\u002fexSuR+F6\u002fL+amZmZmZnJP7gehetRuBDA7FG4HoXr0b8UrkfhehT6v9ejcD0K1\u002fe\u002fSOF6FK5H0T\u002fNzMzMzMzkv1K4HoXrUfy\u002fexSuR+F6pL8K16NwPQrHP3E9CtejcN0\u002fmpmZmZmZC8BxPQrXo3DlPz0K16NwPQrApHA9CtejwD\u002fNzMzMzMzkPw=="},"yaxis":"y","type":"scatter"},{"hovertemplate":"archetype=4\u003cbr\u003emetric=%{x}\u003cbr\u003emean_z=%{y}\u003cextra\u003e\u003c\u002fextra\u003e","legendgroup":"4","line":{"color":"#FFA15A","dash":"solid"},"marker":{"symbol":"circle"},"mode":"lines+markers","name":"4","orientation":"v","showlegend":true,"x":["z_mob_gs_l","z_mob_backbend","z_mob_low_trap","z_mob_mid_trap","z_mob_hip_pinch","z_mob_gs_l_at_90","z_mob_slump_test","z_mob_shoulder_er","z_mob_shoulder_ir","z_mob_l_prone_hip_er","z_mob_l_prone_hip_ir","z_mob_r_prone_hip_er","z_mob_r_prone_hip_ir","z_mob_grip_strength_r","z_mob_ankle_manual_test","z_mob_hamstring_stretch","z_mob_ulnar_nerve_glide","z_mob_radial_nerve_glide","z_mob_horizontal_abduction","z_mob_grip_strength_r_at_90","z_mob_prone_hamstring_raise","z_mob_young_stretch_passive","z_mob_sittiing_t_spine_pvc_l","z_mob_sittiing_t_spine_pvc_r","z_mob_cervical_lateral_flexion","z_mob_pelvic_tilt_against_wall","z_mob_thomas_test_hip_flexor_l","z_mob_thomas_test_hip_flexor_r","z_mob_shoulder_stability_flexion","z_mob_ankle_dorsiflextion_to_wall","z_mob_shoulder_stability_abduction","z_mob_back_to_wall_shoulder_flexion","z_mob_glute_strength_test_prone_hammy_push","z_mob_shoulder_stability_ir_at_0_deg_horiz_abduction","z_mob_shoulder_stability_er_at_0_deg_horiz_abuduction"],"xaxis":"x","y":{"dtype":"f8","bdata":"pHA9Ctej6L+amZmZmZnhv1K4HoXrUfQ\u002fUrgehetR4D89CtejcD3aP1yPwvUoXO+\u002f9ihcj8L14D+amZmZmZnpv1K4HoXrUci\u002fexSuR+F6hL8pXI\u002fC9Sjsv5qZmZmZmbm\u002fj8L1KFyP4r8pXI\u002fC9Si8v0jhehSuR9E\u002fFK5H4XoU5j8AAAAAAADov9ejcD0K19O\u002f9ihcj8L16L+PwvUoXI\u002fSvzMzMzMzM9M\u002fcT0K16Nw3b8K16NwPQrXv6RwPQrXo+i\u002fKVyPwvUo7L97FK5H4Xrwv1K4HoXrUcg\u002fAAAAAAAA6D97FK5H4XrEP2ZmZmZmZgDAmpmZmZmZyT9cj8L1KFzfv4\u002fC9Shcj9I\u002fmpmZmZmZyT8AAAAAAADoPw=="},"yaxis":"y","type":"scatter"}],                        {"template":{"data":{"histogram2dcontour":[{"type":"histogram2dcontour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"choropleth":[{"type":"choropleth","colorbar":{"outlinewidth":0,"ticks":""}}],"histogram2d":[{"type":"histogram2d","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"heatmap":[{"type":"heatmap","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"contourcarpet":[{"type":"contourcarpet","colorbar":{"outlinewidth":0,"ticks":""}}],"contour":[{"type":"contour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"surface":[{"type":"surface","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"mesh3d":[{"type":"mesh3d","colorbar":{"outlinewidth":0,"ticks":""}}],"scatter":[{"fillpattern":{"fillmode":"overlay","size":10,"solidity":0.2},"type":"scatter"}],"parcoords":[{"type":"parcoords","line":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolargl":[{"type":"scatterpolargl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"bar":[{"error_x":{"color":"#2a3f5f"},"error_y":{"color":"#2a3f5f"},"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"bar"}],"scattergeo":[{"type":"scattergeo","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolar":[{"type":"scatterpolar","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"histogram":[{"marker":{"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"histogram"}],"scattergl":[{"type":"scattergl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatter3d":[{"type":"scatter3d","line":{"colorbar":{"outlinewidth":0,"ticks":""}},"marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattermap":[{"type":"scattermap","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattermapbox":[{"type":"scattermapbox","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterternary":[{"type":"scatterternary","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattercarpet":[{"type":"scattercarpet","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"carpet":[{"aaxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"baxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"type":"carpet"}],"table":[{"cells":{"fill":{"color":"#EBF0F8"},"line":{"color":"white"}},"header":{"fill":{"color":"#C8D4E3"},"line":{"color":"white"}},"type":"table"}],"barpolar":[{"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"barpolar"}],"pie":[{"automargin":true,"type":"pie"}]},"layout":{"autotypenumbers":"strict","colorway":["#636efa","#EF553B","#00cc96","#ab63fa","#FFA15A","#19d3f3","#FF6692","#B6E880","#FF97FF","#FECB52"],"font":{"color":"#2a3f5f"},"hovermode":"closest","hoverlabel":{"align":"left"},"paper_bgcolor":"white","plot_bgcolor":"#E5ECF6","polar":{"bgcolor":"#E5ECF6","angularaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"radialaxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"ternary":{"bgcolor":"#E5ECF6","aaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"baxis":{"gridcolor":"white","linecolor":"white","ticks":""},"caxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"coloraxis":{"colorbar":{"outlinewidth":0,"ticks":""}},"colorscale":{"sequential":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"sequentialminus":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"diverging":[[0,"#8e0152"],[0.1,"#c51b7d"],[0.2,"#de77ae"],[0.3,"#f1b6da"],[0.4,"#fde0ef"],[0.5,"#f7f7f7"],[0.6,"#e6f5d0"],[0.7,"#b8e186"],[0.8,"#7fbc41"],[0.9,"#4d9221"],[1,"#276419"]]},"xaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"yaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"scene":{"xaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"yaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"zaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2}},"shapedefaults":{"line":{"color":"#2a3f5f"}},"annotationdefaults":{"arrowcolor":"#2a3f5f","arrowhead":0,"arrowwidth":1},"geo":{"bgcolor":"white","landcolor":"#E5ECF6","subunitcolor":"white","showland":true,"showlakes":true,"lakecolor":"white"},"title":{"x":0.05},"mapbox":{"style":"light"}}},"xaxis":{"anchor":"y","domain":[0.0,1.0],"title":{"text":""},"tickangle":-45},"yaxis":{"anchor":"x","domain":[0.0,1.0],"title":{"text":"Mean Z-score (population)"}},"legend":{"title":{"text":"archetype"},"tracegroupgap":0},"title":{"text":"Archetype mean Z-score profile (each line = one archetype)"},"shapes":[{"line":{"color":"grey","dash":"dot"},"type":"line","x0":0,"x1":1,"xref":"x domain","y0":0,"y1":0,"yref":"y"}],"margin":{"l":60,"r":40,"t":60,"b":140},"height":520},                        {"responsive": true}                    )                };            </script>        </div>
+<div style="height:520px; width:100%;">                            <div id="aca8f664-78d7-4cf8-a6e3-22fbe1e18bf0" class="plotly-graph-div" style="height:100%; width:100%;"></div>            <script>                window.PLOTLYENV=window.PLOTLYENV || {};                                if (document.getElementById("aca8f664-78d7-4cf8-a6e3-22fbe1e18bf0")) {                    Plotly.newPlot(                        "aca8f664-78d7-4cf8-a6e3-22fbe1e18bf0",                        [{"customdata":[["03fbd3e1-1add-454f-8f0c-f3ceadd1aebe","COLLEGE"],["051c9b95-906c-42f0-93b4-9b73414630dd","PRO"],["0e912b71-8dc7-437e-bad7-719db487748e","COLLEGE"],["2d307533-812c-48a4-be56-738fc9e7b601","HIGH SCHOOL"],["353e7c86-45ee-454a-b1d4-5df55ae23cfb","COLLEGE"],["58eae84b-66fe-4b14-a0e3-52a8fc13959f","PRO"],["6014dbbe-d26a-467d-9194-9b3c2235987b","PRO"],["87203783-3475-40d2-a597-53beac0aaa29","PRO"],["93575255-90ea-4f83-a9e9-d8b3e49deec7","HIGH SCHOOL"],["b0418652-f6c6-49c6-86d4-a0a9dfd86253","PRO"],["b6583a9d-56b7-40d1-8c5a-7ff7ab4f611a","PRO"],["c3812791-025c-4ebc-9363-2f4bc9fa3622","PRO"],["c8df3248-f36d-4165-a97e-8708cfa8d27c","COLLEGE"],["dd17a53b-7180-4296-9c19-42a7017be338","PRO"],["e45da140-72c1-4f4e-b98a-077b6d811a8d","HIGH SCHOOL"],["eb52f45e-c477-47a0-98ea-8a0a0146c383","PRO"],["ee8cb085-dc8d-4ccc-a132-8e5e02ba597f","PRO"],["f5f936bf-a57b-425c-a65b-ee746835fa03","COLLEGE"]],"hovertemplate":"archetype=1\u003cbr\u003ePC1=%{x}\u003cbr\u003ePC2=%{y}\u003cbr\u003eathlete_uuid=%{customdata[0]}\u003cbr\u003eage_group=%{customdata[1]}\u003cextra\u003e\u003c\u002fextra\u003e","legendgroup":"1","marker":{"color":"#636efa","symbol":"circle"},"mode":"markers","name":"1","orientation":"v","showlegend":true,"x":{"dtype":"f8","bdata":"sgeptvW+9b9oFcxVoNrPP7y7weHuBcm\u002f5joxx6\u002fTCMC1SjzOo97ov90u\u002fRIeufG\u002fh5nmpHMfB0CUvUlpreL+Py8e6g\u002fN1QFA8Eiv+ICcyT+dfkAXncEHQAMpuNrBjK8\u002fdwFtFgpQ879noeMGbsitP6k3WTVP1xFAECp1hBigBkAz50VRtJDwP53+RuYr+fC\u002f"},"xaxis":"x","y":{"dtype":"f8","bdata":"KgF3NAbn9D\u002fv\u002fiNqWi4AQLKvHKswv\u002f8\u002fLWKFsTmw1b8YGWXUARa\u002fvw+D5V8cjABAUgr8EnlQ9L8xCxS+GC\u002fsv0JJzcnEHf6\u002fBSDdAX5o5D+ssZvJoCQBwIM4Uae9s\u002fM\u002fWlwVCOI5AkDLo+D97yzyPw9+c7Hq7fs\u002fa3mfUG\u002fW0j8i+iDxy8LzPzwYxxTlh\u002fe\u002f"},"yaxis":"y","type":"scatter"},{"customdata":[["2706b8ca-e534-4900-a21a-284c4df20987","HIGH SCHOOL"],["4c7f0fcb-1ac8-4e5e-85ba-80e19becff58","COLLEGE"],["58ee620c-d441-4453-b223-dc4780bbb4e0","COLLEGE"],["6cb7fbf4-7dbb-45ce-b055-869874dd9e06","HIGH SCHOOL"],["7c5cdc7c-a501-4e63-b1af-9e1283cb75ed","HIGH SCHOOL"],["9eea68f3-b426-4afa-a41a-ae545f674b3e","HIGH SCHOOL"],["ba24bc43-20c7-4d05-a029-3ff44d413728","COLLEGE"],["c6aa3360-f887-473d-bc28-07c3bbc18e4e","COLLEGE"],["ddaf72be-468b-4268-bc7c-9592cb00b52e","COLLEGE"]],"hovertemplate":"archetype=0\u003cbr\u003ePC1=%{x}\u003cbr\u003ePC2=%{y}\u003cbr\u003eathlete_uuid=%{customdata[0]}\u003cbr\u003eage_group=%{customdata[1]}\u003cextra\u003e\u003c\u002fextra\u003e","legendgroup":"0","marker":{"color":"#EF553B","symbol":"circle"},"mode":"markers","name":"0","orientation":"v","showlegend":true,"x":{"dtype":"f8","bdata":"PamMFiB6CEAy0gXrDo7sP4hUlO91uvg\u002fecDy3toi9r9qGUZiiA3vP5B5Auphsw1A9E1Ug4UkuT9nQ2lFm4UAQLCLS83opsu\u002f"},"xaxis":"x","y":{"dtype":"f8","bdata":"VgLGV1LE9r+tDOsBjWgIQNu1aBOVvMe\u002fetkZqSyxwr8gpUOzVbznPxYsIOZAYvY\u002fmf6DL4w\u002f9b\u002fXT0VnHNHxv5G7hPLQncS\u002f"},"yaxis":"y","type":"scatter"},{"customdata":[["35f63740-93c1-4ece-a902-8e3798cc3bcc","HIGH SCHOOL"],["46c50e50-2a4c-46a0-a874-7260dd8173fe","HIGH SCHOOL"],["6518b26f-7e11-4912-b325-5285d8dba9bc","COLLEGE"],["940883ef-8c33-4a85-b277-b1c493e3577e","HIGH SCHOOL"],["b394b050-8ad4-4701-8817-a84f481451e3","HIGH SCHOOL"],["dbc63fcd-ed5b-4bf1-98e5-79f29c097126","HIGH SCHOOL"],["fdf72939-81e4-4bc0-9d65-70771d08da27","PRO"]],"hovertemplate":"archetype=2\u003cbr\u003ePC1=%{x}\u003cbr\u003ePC2=%{y}\u003cbr\u003eathlete_uuid=%{customdata[0]}\u003cbr\u003eage_group=%{customdata[1]}\u003cextra\u003e\u003c\u002fextra\u003e","legendgroup":"2","marker":{"color":"#00cc96","symbol":"circle"},"mode":"markers","name":"2","orientation":"v","showlegend":true,"x":{"dtype":"f8","bdata":"7rBVMICL7r8Gr5s56Bv4v9o96AUFePq\u002f+qi6GIInA8AYEpm2hpgIwK88Wj6C4BHADY9kuj0+2z8="},"xaxis":"x","y":{"dtype":"f8","bdata":"3Oz47IqE9T8LVZaZAgTTPxPeNdW2fek\u002fqrKWn0uQ+T9Bk82Q6ifov9Ni9atXzwFAvHrYpVu04T8="},"yaxis":"y","type":"scatter"},{"customdata":[["42ef4cf5-863d-45f6-8096-9c9a9425bcc2","COLLEGE"],["453902f1-af99-4e08-9b06-3dd0d5b9e206","COLLEGE"],["da66b536-aa71-4d88-9400-3ee53ac868dd","PRO"]],"hovertemplate":"archetype=4\u003cbr\u003ePC1=%{x}\u003cbr\u003ePC2=%{y}\u003cbr\u003eathlete_uuid=%{customdata[0]}\u003cbr\u003eage_group=%{customdata[1]}\u003cextra\u003e\u003c\u002fextra\u003e","legendgroup":"4","marker":{"color":"#ab63fa","symbol":"circle"},"mode":"markers","name":"4","orientation":"v","showlegend":true,"x":{"dtype":"f8","bdata":"O9XyDIeFgL+naJ\u002fuwR0QwCgUBnlzwfO\u002f"},"xaxis":"x","y":{"dtype":"f8","bdata":"Zw\u002f78yRFEMD+HR0cnIXzv4J3xqP2s\u002fi\u002f"},"yaxis":"y","type":"scatter"},{"customdata":[["ac5e8fb4-cdf7-4f60-812d-51899a5d83f5","PRO"]],"hovertemplate":"archetype=3\u003cbr\u003ePC1=%{x}\u003cbr\u003ePC2=%{y}\u003cbr\u003eathlete_uuid=%{customdata[0]}\u003cbr\u003eage_group=%{customdata[1]}\u003cextra\u003e\u003c\u002fextra\u003e","legendgroup":"3","marker":{"color":"#FFA15A","symbol":"circle"},"mode":"markers","name":"3","orientation":"v","showlegend":true,"x":{"dtype":"f8","bdata":"0QfLgK0i\u002f78="},"xaxis":"x","y":{"dtype":"f8","bdata":"YkajKBWXH8A="},"yaxis":"y","type":"scatter"}],                        {"template":{"data":{"histogram2dcontour":[{"type":"histogram2dcontour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"choropleth":[{"type":"choropleth","colorbar":{"outlinewidth":0,"ticks":""}}],"histogram2d":[{"type":"histogram2d","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"heatmap":[{"type":"heatmap","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"contourcarpet":[{"type":"contourcarpet","colorbar":{"outlinewidth":0,"ticks":""}}],"contour":[{"type":"contour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"surface":[{"type":"surface","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"mesh3d":[{"type":"mesh3d","colorbar":{"outlinewidth":0,"ticks":""}}],"scatter":[{"fillpattern":{"fillmode":"overlay","size":10,"solidity":0.2},"type":"scatter"}],"parcoords":[{"type":"parcoords","line":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolargl":[{"type":"scatterpolargl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"bar":[{"error_x":{"color":"#2a3f5f"},"error_y":{"color":"#2a3f5f"},"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"bar"}],"scattergeo":[{"type":"scattergeo","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolar":[{"type":"scatterpolar","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"histogram":[{"marker":{"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"histogram"}],"scattergl":[{"type":"scattergl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatter3d":[{"type":"scatter3d","line":{"colorbar":{"outlinewidth":0,"ticks":""}},"marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattermap":[{"type":"scattermap","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattermapbox":[{"type":"scattermapbox","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterternary":[{"type":"scatterternary","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattercarpet":[{"type":"scattercarpet","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"carpet":[{"aaxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"baxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"type":"carpet"}],"table":[{"cells":{"fill":{"color":"#EBF0F8"},"line":{"color":"white"}},"header":{"fill":{"color":"#C8D4E3"},"line":{"color":"white"}},"type":"table"}],"barpolar":[{"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"barpolar"}],"pie":[{"automargin":true,"type":"pie"}]},"layout":{"autotypenumbers":"strict","colorway":["#636efa","#EF553B","#00cc96","#ab63fa","#FFA15A","#19d3f3","#FF6692","#B6E880","#FF97FF","#FECB52"],"font":{"color":"#2a3f5f"},"hovermode":"closest","hoverlabel":{"align":"left"},"paper_bgcolor":"white","plot_bgcolor":"#E5ECF6","polar":{"bgcolor":"#E5ECF6","angularaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"radialaxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"ternary":{"bgcolor":"#E5ECF6","aaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"baxis":{"gridcolor":"white","linecolor":"white","ticks":""},"caxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"coloraxis":{"colorbar":{"outlinewidth":0,"ticks":""}},"colorscale":{"sequential":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"sequentialminus":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"diverging":[[0,"#8e0152"],[0.1,"#c51b7d"],[0.2,"#de77ae"],[0.3,"#f1b6da"],[0.4,"#fde0ef"],[0.5,"#f7f7f7"],[0.6,"#e6f5d0"],[0.7,"#b8e186"],[0.8,"#7fbc41"],[0.9,"#4d9221"],[1,"#276419"]]},"xaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"yaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"scene":{"xaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"yaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"zaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2}},"shapedefaults":{"line":{"color":"#2a3f5f"}},"annotationdefaults":{"arrowcolor":"#2a3f5f","arrowhead":0,"arrowwidth":1},"geo":{"bgcolor":"white","landcolor":"#E5ECF6","subunitcolor":"white","showland":true,"showlakes":true,"lakecolor":"white"},"title":{"x":0.05},"mapbox":{"style":"light"}}},"xaxis":{"anchor":"y","domain":[0.0,1.0],"title":{"text":"PC1"}},"yaxis":{"anchor":"x","domain":[0.0,1.0],"title":{"text":"PC2"}},"legend":{"title":{"text":"archetype"},"tracegroupgap":0},"title":{"text":"Athletes projected to 2D (PCA), colored by archetype"},"height":520},                        {"responsive": true}                    )                };            </script>        </div>
+
+<h2>5. Typical programming per archetype</h2>
+<p class="meta">Average program characteristics for athletes in each cluster.
+This is the closest thing to "what coaches do for this kind of athlete" we can derive without
+yet modeling individual exercise choices.</p>
+<table class="dataframe">
+  <thead>
+    <tr style="text-align: left;">
+      <th></th>
+      <th>duration_days</th>
+      <th>n_program_days</th>
+      <th>n_lift_prescriptions</th>
+      <th>n_unique_lifts</th>
+      <th>n_plyo_prescriptions</th>
+      <th>n_prep_prescriptions</th>
+      <th>n_bp_prescriptions</th>
+      <th>n_hit_prescriptions</th>
+      <th>n_me_prescriptions</th>
+      <th>lift_core</th>
+      <th>lift_lowerbodylift</th>
+      <th>lift_plyometric</th>
+      <th>lift_shouldercare</th>
+      <th>lift_sprint</th>
+      <th>lift_unknown</th>
+      <th>lift_upperbodylift</th>
+      <th>lift_warmup</th>
+      <th>plyo_plyo_0</th>
+      <th>plyo_plyo_1</th>
+      <th>plyo_plyo_2</th>
+      <th>plyo_plyo_3</th>
+      <th>prep_core</th>
+      <th>prep_shouldercare</th>
+      <th>prep_warmup</th>
+      <th>bp_core</th>
+      <th>bp_lowerbodylift</th>
+      <th>bp_shouldercare</th>
+      <th>bp_upperbodylift</th>
+      <th>bp_warmup</th>
+      <th>hit_hittingdrill</th>
+      <th>me_medball</th>
+      <th>me_warmup</th>
+      <th>n_athletes</th>
+    </tr>
+    <tr>
+      <th>label</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Archetype 0 — ↓ mob horiz abduction (-0.9) · ↓ mob thomas test hip flexor l (-0.8) · ↓ mob thomas test hip flexor r (-0.8) · ↓ mob shoulder er (-0.8) · ↑ mob shoulder ir (+1.3) · ↑ mob grip strength r (+0.9) · ↑ mob young stretch passive (+0.8) · ↑ mob pelvic tilt against wall (+0.8)</th>
+      <td>192.2</td>
+      <td>105.7</td>
+      <td>46.6</td>
+      <td>26.7</td>
+      <td>6.7</td>
+      <td>23.3</td>
+      <td>6.0</td>
+      <td>9.2</td>
+      <td>5.6</td>
+      <td>2.8</td>
+      <td>1.6</td>
+      <td>0.3</td>
+      <td>2.3</td>
+      <td>0.3</td>
+      <td>10.6</td>
+      <td>1.3</td>
+      <td>27.3</td>
+      <td>1.7</td>
+      <td>1.7</td>
+      <td>1.7</td>
+      <td>1.7</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>23.3</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>3.3</td>
+      <td>0.2</td>
+      <td>2.4</td>
+      <td>27.7</td>
+      <td>0.8</td>
+      <td>4.8</td>
+      <td>9</td>
+    </tr>
+    <tr>
+      <th>Archetype 1 — ↓ mob mid trap (-0.6) · ↓ mob low trap (-0.5) · ↑ mob pelvic tilt against wall (+0.6) · ↑ mob grip strength r (+0.5) · ↑ mob grip strength r at 90 (+0.5) · ↑ mob gs l (+0.5)</th>
+      <td>300.1</td>
+      <td>134.9</td>
+      <td>49.3</td>
+      <td>25.8</td>
+      <td>14.4</td>
+      <td>47.8</td>
+      <td>13.9</td>
+      <td>3.2</td>
+      <td>11.4</td>
+      <td>1.7</td>
+      <td>1.2</td>
+      <td>0.3</td>
+      <td>3.5</td>
+      <td>0.6</td>
+      <td>17.4</td>
+      <td>1.1</td>
+      <td>23.5</td>
+      <td>4.1</td>
+      <td>4.1</td>
+      <td>4.1</td>
+      <td>4.1</td>
+      <td>0.1</td>
+      <td>0.2</td>
+      <td>50.3</td>
+      <td>0.5</td>
+      <td>0.3</td>
+      <td>4.1</td>
+      <td>0.1</td>
+      <td>10.6</td>
+      <td>58.0</td>
+      <td>1.8</td>
+      <td>12.9</td>
+      <td>18</td>
+    </tr>
+    <tr>
+      <th>Archetype 2 — ↓ mob hip pinch (-1.3) · ↓ mob grip strength r at 90 (-0.5) · ↓ mob grip strength r (-0.4) · ↑ mob mid trap (+0.8) · ↑ mob sittiing t spine pvc l (+0.7) · ↑ mob sittiing t spine pvc r (+0.6) · ↑ mob shoulder er (+0.5)</th>
+      <td>234.3</td>
+      <td>133.1</td>
+      <td>30.7</td>
+      <td>13.4</td>
+      <td>10.3</td>
+      <td>20.1</td>
+      <td>8.6</td>
+      <td>0.9</td>
+      <td>8.4</td>
+      <td>1.1</td>
+      <td>0.0</td>
+      <td>0.1</td>
+      <td>1.3</td>
+      <td>0.4</td>
+      <td>15.4</td>
+      <td>1.3</td>
+      <td>11.0</td>
+      <td>2.6</td>
+      <td>2.6</td>
+      <td>2.6</td>
+      <td>2.6</td>
+      <td>0.1</td>
+      <td>0.0</td>
+      <td>20.0</td>
+      <td>0.1</td>
+      <td>0.1</td>
+      <td>3.0</td>
+      <td>0.0</td>
+      <td>5.3</td>
+      <td>6.0</td>
+      <td>0.6</td>
+      <td>7.9</td>
+      <td>7</td>
+    </tr>
+    <tr>
+      <th>Archetype 3 — ↓ mob prone hamstring raise (-4.2) · ↓ mob shoulder stability abduction (-3.5) · ↓ mob glute strength test prone hammy push (-3.3) · ↓ mob hip pinch (-2.6) · ↑ mob mid trap (+1.4) · ↑ mob ulnar nerve glide (+0.8) · ↑ mob gs l at 90 (+0.7) · ↑ mob back to wall shoulder flexion (+0.7)</th>
+      <td>44.0</td>
+      <td>33.0</td>
+      <td>7.0</td>
+      <td>0.0</td>
+      <td>8.0</td>
+      <td>35.0</td>
+      <td>6.0</td>
+      <td>0.0</td>
+      <td>7.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>7.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>2.0</td>
+      <td>2.0</td>
+      <td>2.0</td>
+      <td>2.0</td>
+      <td>2.0</td>
+      <td>0.0</td>
+      <td>31.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>5.0</td>
+      <td>NaN</td>
+      <td>3.0</td>
+      <td>4.0</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>Archetype 4 — ↓ mob ankle dorsiflextion to wall (-2.0) · ↓ mob pelvic tilt against wall (-1.0) · ↓ mob gs l at 90 (-1.0) · ↓ mob l prone hip ir (-0.9) · ↑ mob low trap (+1.3) · ↑ mob thomas test hip flexor r (+0.8) · ↑ mob shoulder stability er at 0 deg horiz abuduction (+0.8) · ↑ mob hamstring stretch (+0.7)</th>
+      <td>151.7</td>
+      <td>117.0</td>
+      <td>43.7</td>
+      <td>22.0</td>
+      <td>14.7</td>
+      <td>36.0</td>
+      <td>15.7</td>
+      <td>0.0</td>
+      <td>9.7</td>
+      <td>1.3</td>
+      <td>0.3</td>
+      <td>0.0</td>
+      <td>2.0</td>
+      <td>1.7</td>
+      <td>18.7</td>
+      <td>1.0</td>
+      <td>18.7</td>
+      <td>3.7</td>
+      <td>3.7</td>
+      <td>3.7</td>
+      <td>3.7</td>
+      <td>0.3</td>
+      <td>0.0</td>
+      <td>35.7</td>
+      <td>0.3</td>
+      <td>0.0</td>
+      <td>5.7</td>
+      <td>0.7</td>
+      <td>9.0</td>
+      <td>NaN</td>
+      <td>1.3</td>
+      <td>8.3</td>
+      <td>3</td>
+    </tr>
+  </tbody>
+</table>
+
+</body></html>

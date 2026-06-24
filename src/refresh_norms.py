@@ -90,8 +90,22 @@ def _per_session_sql(extract: dict) -> tuple[str, list[Any]]:
 
     if t == "mob_col":
         col = extract["column"]
+        midpoints = extract.get("midpoints") or {}
+        if midpoints:
+            # Legacy 1/2/3 grades -> midpoint values; modern measurements pass through.
+            when_clauses = " ".join(
+                f'WHEN "{col}"::numeric = {int(g)} THEN {float(v)}::numeric'
+                for g, v in sorted(midpoints.items())
+            )
+            value_expr = (
+                f'(CASE WHEN "{col}" IS NULL THEN NULL '
+                f'{when_clauses} '
+                f'ELSE "{col}"::numeric END)'
+            )
+        else:
+            value_expr = f'"{col}"::numeric'
         return (
-            f'SELECT athlete_uuid, session_date, "{col}"::numeric AS value '
+            f'SELECT athlete_uuid, session_date, {value_expr} AS value '
             f'FROM public.f_mobility WHERE "{col}" IS NOT NULL',
             [],
         )

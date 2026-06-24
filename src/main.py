@@ -103,19 +103,31 @@ def summarize_all_cmd() -> None:
 @click.option("--k", default=5, type=int, help="Number of archetype clusters.")
 @click.option("--role", type=click.Choice(["pitcher", "hitter", "all"], case_sensitive=False),
               default="all", help="Filter to pitchers, hitters, or all athletes.")
-@click.option("--domain", type=click.Choice(["movement", "functional", "all"], case_sensitive=False),
+@click.option("--domain",
+              type=click.Choice(
+                  ["movement", "mobility", "performance", "functional", "all"],
+                  case_sensitive=False),
               default="all",
-              help="movement = pitch/hit kinematics only. "
-                   "functional = mobility + proteus + screen only.")
+              help="movement = pitch/hit kinematics (drives plyo/drill rx). "
+                   "mobility = ROM + soft tissue (drives prep/bulletproofing). "
+                   "performance = athletic screen + proteus (drives lifts). "
+                   "functional = mobility + performance combined (legacy wide view).")
 @click.option("--output", default=None, help="Output HTML path (defaults to outputs/...).")
 def report(k: int, role: str, domain: str, output: str | None) -> None:
     """Generate a population correlation + archetype report (HTML).
 
-    Recommended sweep:
+    Recommended sharp-archetype sweep (one report per prescription type):
       python -m src.main report --role pitcher --domain movement
+      python -m src.main report --role pitcher --domain mobility
+      python -m src.main report --role pitcher --domain performance
+      python -m src.main report --role hitter  --domain movement     --k 3
+      python -m src.main report --role hitter  --domain mobility     --k 3
+      python -m src.main report --role hitter  --domain performance  --k 3
+
+    Wide net for cross-domain discovery (when you want to find surprise
+    correlations between mobility and power, etc.):
       python -m src.main report --role pitcher --domain functional
-      python -m src.main report --role hitter  --domain movement
-      python -m src.main report --role hitter  --domain functional
+      python -m src.main report --role pitcher --domain all
     """
     r = None if role == "all" else role
     d = None if domain == "all" else domain

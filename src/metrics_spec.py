@@ -49,56 +49,81 @@ _SCREEN_COLS_BASE = [
 ]
 _SCREEN_COLS_DJ_EXTRA = ["rsi", "ct"]
 
-# Mobility column list — using the OLDER assessment set (single-side ROM, no _mmt
-# suffix) because it has years of historical coverage. The newer expanded set
-# (split r/l, _rom / _mmt suffixes, hawkins-kennedy, scap winging, etc.) was
-# only added recently and has too few athletes for stable norms. Once the new
-# columns have ~50+ athletes each, we can migrate.
-_MOBILITY_COLS = [
-    # Cervical (single value, not split by side in old assessment)
-    "cervical_rotation",
-    "cervical_flexion",
-    "cervical_extension",
-    "cervical_lateral_flexion",
-    # Shoulder ROM
-    "shoulder_total_arc",
-    "horizontal_abduction",
-    "back_to_wall_shoulder_flexion",
-    "shoulder_ir",                                       # single (not dom/non-dom)
-    "shoulder_er",
-    "supine_shoulder_flexion",
-    "young_stretch_passive",
-    # Shoulder stability (MMT) — DB column name has the "abuduction" typo
-    "shoulder_stability_flexion",
-    "shoulder_stability_abduction",
-    "shoulder_stability_er_at_0_deg_horiz_abuduction",   # typo intentional
-    "shoulder_stability_ir_at_0_deg_horiz_abduction",
-    # Trunk / spine
-    "pelvic_tilt_against_wall",
-    "backbend",
-    "sittiing_t_spine_pvc_r", "sittiing_t_spine_pvc_l", # typo intentional
-    "slump_test",
-    "isa",
-    "mid_trap", "low_trap",
-    # Elbow / forearm
-    "elbow_extension", "elbow_flexion",
-    "elbow_pronation", "elbow_supination",
-    "radial_nerve_glide", "ulnar_nerve_glide",
-    # Grip
-    "grip_strength_r", "gs_l",
-    "grip_strength_r_at_90", "gs_l_at_90",
-    # Hip
-    "thomas_test_hip_flexor_r", "thomas_test_hip_flexor_l",
-    "hamstring_stretch",                                  # single (not r/l)
-    "hip_pinch",
-    "r_prone_hip_ir", "r_prone_hip_er",
-    "l_prone_hip_ir", "l_prone_hip_er",
-    "prone_hamstring_raise",                              # single
-    "glute_strength_test_prone_hammy_push",
-    # Ankle
-    "ankle_dorsiflextion_to_wall",                        # typo intentional
-    "ankle_manual_test",
-]
+# ─────────────────────── Mobility column rules ──────────────────────────────
+# Each column has a "rule" dict describing how to handle mixed legacy 1-3
+# grades and modern goniometer / dynamometer measurements:
+#
+#   midpoints: maps integer 1/2/3 grade -> equivalent ROM (degrees) or MMT (%BW)
+#              value. Pulled from Mobility Thresholds doc.
+#              The CASE in the SQL uses these for legacy entries (where the
+#              stored value is exactly 1, 2, or 3) and passes the raw value
+#              through unchanged for modern measurements (>3 or non-integer).
+#   no midpoints = pure pass-through (already on a single consistent scale,
+#                  OR pure 1-3 scale we keep as-is).
+#
+# DELETED columns from the thresholds doc (shoulder_total_arc, supine_shoulder_flexion)
+# are intentionally excluded.
+
+_MOBILITY_RULES: dict[str, dict] = {
+    # ── Cervical ROM (degrees) ──
+    "cervical_rotation":                 {"midpoints": {1: 55, 2: 65, 3: 75}},
+    "cervical_flexion":                  {"midpoints": {1: 37, 2: 42, 3: 48}},
+    "cervical_extension":                {"midpoints": {1: 55, 2: 65, 3: 75}},
+    "cervical_lateral_flexion":          {"midpoints": {1: 37, 2: 42, 3: 48}},
+    # ── Shoulder ROM (degrees) ──
+    "horizontal_abduction":              {"midpoints": {1: 27, 2: 32, 3: 38}},
+    "shoulder_ir":                       {"midpoints": {1: 27, 2: 35, 3: 42}},
+    "shoulder_er":                       {"midpoints": {1: 112, 2: 120, 3: 128}},
+    # ── Shoulder stability MMT (% BW) — DB col has the "abuduction" typo ──
+    "shoulder_stability_flexion":                       {"midpoints": {1: 11, 2: 17.5, 3: 25}},
+    "shoulder_stability_abduction":                     {"midpoints": {1: 10, 2: 15, 3: 21}},
+    "shoulder_stability_er_at_0_deg_horiz_abuduction":  {"midpoints": {1: 6,  2: 10, 3: 14}},  # typo
+    "shoulder_stability_ir_at_0_deg_horiz_abduction":   {"midpoints": {1: 8,  2: 13, 3: 18}},
+    # ── Elbow / forearm ROM (degrees) ──
+    # Elbow extension: 0° = full extension (best), positive = loss-of-extension (worse).
+    # So 1=worst (~7° lag), 2=middle (~3° lag), 3=full (0°). This is inverted from others.
+    "elbow_extension":                   {"midpoints": {1: 7,   2: 3,   3: 0}},
+    "elbow_flexion":                     {"midpoints": {1: 122, 2: 130, 3: 138}},
+    "elbow_pronation":                   {"midpoints": {1: 65,  2: 71,  3: 78}},
+    "elbow_supination":                  {"midpoints": {1: 67,  2: 75,  3: 83}},
+    # ── Grip / hand MMT (% BW) ──
+    "grip_strength_r":                   {"midpoints": {1: 45, 2: 57, 3: 70}},
+    "gs_l":                              {"midpoints": {1: 45, 2: 57, 3: 70}},
+    "grip_strength_r_at_90":             {"midpoints": {1: 40, 2: 52, 3: 63}},
+    "gs_l_at_90":                        {"midpoints": {1: 40, 2: 52, 3: 63}},
+    # ── Ankle (deg + MMT) ──
+    "ankle_dorsiflextion_to_wall":       {"midpoints": {1: 27, 2: 32, 3: 38}},  # typo intentional
+    "ankle_manual_test":                 {"midpoints": {1: 27, 2: 32, 3: 38}},  # MMT %BW
+    # ── T-spine ROM (degrees) ──
+    "sittiing_t_spine_pvc_r":            {"midpoints": {1: 57, 2: 67, 3: 78}},  # typo intentional
+    "sittiing_t_spine_pvc_l":            {"midpoints": {1: 57, 2: 68, 3: 78}},
+    # ── Hip ROM (degrees) ──
+    "hamstring_stretch":                 {"midpoints": {1: 67, 2: 75, 3: 83}},
+    "r_prone_hip_ir":                    {"midpoints": {1: 27, 2: 32, 3: 38}},
+    "r_prone_hip_er":                    {"midpoints": {1: 27, 2: 33, 3: 38}},
+    "l_prone_hip_ir":                    {"midpoints": {1: 27, 2: 33, 3: 38}},
+    "l_prone_hip_er":                    {"midpoints": {1: 27, 2: 33, 3: 38}},
+    # ── Lower body MMT (% BW) ──
+    "prone_hamstring_raise":             {"midpoints": {1: 17, 2: 22, 3: 28}},
+    "glute_strength_test_prone_hammy_push": {"midpoints": {1: 27, 2: 32, 3: 38}},
+    "mid_trap":                          {"midpoints": {1: 7, 2: 12, 3: 17}},
+    "low_trap":                          {"midpoints": {1: 7, 2: 12, 3: 17}},
+
+    # ── Pure 1-3 scale: subjective tests, no degree/%BW conversion ──
+    "back_to_wall_shoulder_flexion":     {},
+    "pelvic_tilt_against_wall":          {},
+    "radial_nerve_glide":                {},
+    "ulnar_nerve_glide":                 {},
+    "backbend":                          {},
+    "slump_test":                        {},
+    "thomas_test_hip_flexor_r":          {},
+    "thomas_test_hip_flexor_l":          {},
+    "young_stretch_passive":             {},
+    "hip_pinch":                         {},
+
+    # ── Other (raw degrees, no scale conversion) ──
+    "isa":                               {},
+}
 
 
 # ─────────────────────────── METRICS list ────────────────────────────────────
@@ -360,11 +385,14 @@ METRICS += [
 
 
 # ══════════════════════════ MOBILITY ════════════════════════════════════════
-for _col in _MOBILITY_COLS:
+for _col, _rule in _MOBILITY_RULES.items():
+    _extract = {"type": "mob_col", "column": _col}
+    if _rule.get("midpoints"):
+        _extract["midpoints"] = _rule["midpoints"]
     METRICS.append({
         "key": f"mob_{_col}",
         "modality": "mobility", "applies_to": "both",
-        "extract": {"type": "mob_col", "column": _col},
+        "extract": _extract,
     })
 
 

@@ -41,9 +41,15 @@ OUTPUTS_DIR.mkdir(exist_ok=True)
 
 # ─────────────────────────── Data loading ───────────────────────────────────
 
-# Metric prefixes that classify each Z-column into a domain bucket
-_MOVEMENT_PREFIXES   = ("z_pitch_", "z_hit_")
-_FUNCTIONAL_PREFIXES = ("z_mob_", "z_proteus_", "z_screen_")
+# Metric prefixes that classify each Z-column into a domain bucket.
+# A "domain" is a coherent assessment family that drives a specific kind of
+# program prescription. Splitting them into narrower slices means archetypes
+# within each domain are sharper and map more cleanly to prescription type.
+_MOVEMENT_PREFIXES    = ("z_pitch_", "z_hit_")             # 3D kinematics → drills / plyos
+_MOBILITY_PREFIXES    = ("z_mob_",)                         # passive ROM + soft tissue → prep / bulletproofing
+_PERFORMANCE_PREFIXES = ("z_proteus_", "z_screen_")         # active power output → lifts
+# "functional" is the legacy combined view (mobility + performance together).
+_FUNCTIONAL_PREFIXES  = _MOBILITY_PREFIXES + _PERFORMANCE_PREFIXES
 
 
 def _build_load_sql(role: str | None) -> str:
@@ -65,7 +71,9 @@ latest_program AS (
         enable_pitching, enable_hitting, duration_days,
         n_program_days, n_lift_prescriptions, n_unique_lifts,
         n_plyo_prescriptions, n_prep_prescriptions, n_bp_prescriptions,
-        n_hit_prescriptions, n_me_prescriptions
+        n_hit_prescriptions, n_me_prescriptions,
+        lift_breakdown, plyo_breakdown, prep_breakdown,
+        bp_breakdown,   hit_breakdown,  me_breakdown
     FROM ai_layer.program_summaries
     WHERE athlete_uuid IS NOT NULL
       AND (n_lift_prescriptions > 0
@@ -85,12 +93,65 @@ SELECT
     pr.n_program_days, pr.n_lift_prescriptions, pr.n_unique_lifts,
     pr.n_plyo_prescriptions, pr.n_prep_prescriptions, pr.n_bp_prescriptions,
     pr.n_hit_prescriptions, pr.n_me_prescriptions,
+    pr.lift_breakdown, pr.plyo_breakdown, pr.prep_breakdown,
+    pr.bp_breakdown,   pr.hit_breakdown,  pr.me_breakdown,
     d.has_pitching_data, d.has_hitting_data
 FROM latest_profile p
 INNER JOIN latest_program pr USING (athlete_uuid)
 INNER JOIN analytics.d_athletes d USING (athlete_uuid)
 {role_clause}
 """
+
+
+_BREAKDOWN_COLS = [
+    ("lift_breakdown", "lift"),
+    ("plyo_breakdown", "plyo"),
+    ("prep_breakdown", "prep"),
+    ("bp_breakdown",   "bp"),
+    ("hit_breakdown",  "hit"),
+    ("me_breakdown",   "me"),
+]
+
+
+def _slug(s: str) -> str:
+    """Make a JSON 'category' string safe for use as a column name."""
+    if s is None:
+        return "unknown"
+    out = []
+    for ch in str(s).lower():
+        if ch.isalnum():
+            out.append(ch)
+        elif ch in (" ", "-", "/"):
+            out.append("_")
+    cleaned = "".join(out).strip("_")
+    while "__" in cleaned:
+        cleaned = cleaned.replace("__", "_")
+    return cleaned or "unknown"
+
+
+def _flatten_breakdown(df: pd.DataFrame, col: str, prefix: str) -> pd.DataFrame:
+    """Expand a JSONB breakdown ([{category, n, unique_count}, ...]) into wide
+    per-category count columns prefixed with `{prefix}_`. Missing categories
+    get 0 (athlete's program didn't include that category)."""
+    if col not in df.columns:
+        return df
+    rows = []
+    for idx, breakdown in df[col].items():
+        if not breakdown:
+            continue
+        for entry in breakdown:
+            cat = _slug(entry.get("category"))
+            if not cat:
+                continue
+            rows.append({"idx": idx,
+                         "feature": f"{prefix}_{cat}",
+                         "n": int(entry.get("n") or 0)})
+    if not rows:
+        return df.drop(columns=[col])
+    pivot = (pd.DataFrame(rows)
+             .pivot_table(index="idx", columns="feature",
+                          values="n", aggfunc="sum", fill_value=0))
+    return df.drop(columns=[col]).join(pivot)
 
 
 def load_corpus(role: str | None = None) -> pd.DataFrame:
@@ -104,13 +165,23 @@ def load_corpus(role: str | None = None) -> pd.DataFrame:
     # Expand the z_scores JSONB into z_<metric> columns
     z = pd.json_normalize(df["z_scores"]).add_prefix("z_")
     df = pd.concat([df.drop(["z_scores", "raw_values"], axis=1), z], axis=1)
+
+    # Expand each program breakdown JSONB into per-category count columns,
+    # e.g. lift_breakdown -> lift_compound, lift_accessory, ...
+    for col, prefix in _BREAKDOWN_COLS:
+        df = _flatten_breakdown(df, col, prefix)
+
     return df
 
 
 def _filter_z_cols_by_domain(z_cols: list[str], domain: str | None) -> list[str]:
-    """domain ∈ {'movement', 'functional', None (=all)}."""
+    """domain ∈ {'movement', 'mobility', 'performance', 'functional', None (=all)}."""
     if domain == "movement":
         return [c for c in z_cols if c.startswith(_MOVEMENT_PREFIXES)]
+    if domain == "mobility":
+        return [c for c in z_cols if c.startswith(_MOBILITY_PREFIXES)]
+    if domain == "performance":
+        return [c for c in z_cols if c.startswith(_PERFORMANCE_PREFIXES)]
     if domain == "functional":
         return [c for c in z_cols if c.startswith(_FUNCTIONAL_PREFIXES)]
     return z_cols
@@ -412,9 +483,29 @@ def generate_report(k: int = 5, output: str | None = None,
     if not z_cols:
         raise RuntimeError(f"No Z-metrics survived domain filter '{domain}'.")
 
-    # Program columns (drop ones that are 100% null in this corpus, e.g. goals)
-    prog_cols = [c for c in df.columns
-                 if (c.startswith("n_") or c == "duration_days") and df[c].notna().any()]
+    # Program features: scalar counts/durations + every flattened breakdown column
+    # (e.g. lift_compound, plyo_rotational, prep_shoulder_mobility, etc.).
+    # These give us actual content-level correlation, not just total volume.
+    _breakdown_prefixes = tuple(f"{p}_" for _, p in _BREAKDOWN_COLS)
+    prog_cols = [
+        c for c in df.columns
+        if (
+            c.startswith("n_")
+            or c == "duration_days"
+            or c.startswith(_breakdown_prefixes)
+        )
+        and df[c].notna().any()
+    ]
+    # Drop sparse breakdown features (less than 5% of programs include them) to
+    # cut noise — singletons in the program corpus would produce spurious correlations.
+    sparse = []
+    for c in list(prog_cols):
+        if c.startswith(_breakdown_prefixes):
+            nonzero_pct = (df[c].fillna(0) > 0).mean()
+            if nonzero_pct < 0.05:
+                sparse.append(c)
+    if sparse:
+        prog_cols = [c for c in prog_cols if c not in sparse]
 
     print(f"[report] {len(df)} athletes, {len(z_cols)} Z-metrics (domain={domain or 'all'}), "
           f"{len(prog_cols)} program features (after dropping all-null)")

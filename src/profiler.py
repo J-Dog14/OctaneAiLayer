@@ -136,8 +136,21 @@ def _extract_value(conn, athlete_uuid: str, session_date: date,
 
     if t == "mob_col":
         col = extract["column"]
+        midpoints = extract.get("midpoints") or {}
+        if midpoints:
+            when_clauses = " ".join(
+                f'WHEN "{col}"::numeric = {int(g)} THEN {float(v)}'
+                for g, v in sorted(midpoints.items())
+            )
+            value_expr = (
+                f'(CASE WHEN "{col}" IS NULL THEN NULL '
+                f'{when_clauses} '
+                f'ELSE "{col}"::float END)'
+            )
+        else:
+            value_expr = f'"{col}"::float'
         rows = query(conn, f"""
-            SELECT "{col}"::float AS v FROM public.f_mobility
+            SELECT {value_expr} AS v FROM public.f_mobility
             WHERE athlete_uuid = %s AND session_date = %s
               AND "{col}" IS NOT NULL
             LIMIT 1

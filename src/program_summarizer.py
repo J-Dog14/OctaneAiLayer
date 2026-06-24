@@ -356,10 +356,185 @@ def save_summary(conn, s: dict) -> int:
         return cur.fetchone()[0]
 
 
+# ─────────────────────── Per-exercise prescriptions ────────────────────────
+# These populate ai_layer.program_exercise_prescriptions with one row per
+# individual exercise prescribed in a program, including sets/reps/weight
+# arrays. This is the data the recommender will use to actually compose
+# programs — it captures what coaches did at the exercise dose level.
+
+# Categories that go through the standard Exercise table:
+#   (category_key, link_table, bridge_table, bridge_to_link_fk, has_weight,
+#    notes_on_bridge)
+# notes_on_bridge=False means the bridge table has no notes column (e.g.
+# ExerciseToLift). We fall back to the parent link table's notes in that case.
+_PRESCRIPTION_CATEGORIES = [
+    ("lift", "LiftToProgram",                "ExerciseToLift",
+        "liftToProgramId",                  True,  False),
+    ("prep", "PrepToProgram",                "ExerciseToPrep",
+        "prepToProgramId",                  True,  True),
+    ("bp",   "BulletProofingToProgram",      "ExerciseToBulletProofing",
+        "BulletProofingToProgramId",        True,  True),
+    ("hit",  "HittingToProgram",             "ExerciseToHitting",
+        "hittingToProgramId",               True,  True),
+    ("me",   "MovementEnhancementToProgram", "ExerciseToMovementEnhancement",
+        "movementEnhancementToProgramId",   True,  True),
+]
+
+
+def _extract_exercise_prescriptions(conn, program_id: int, athlete_uuid: str | None
+                                    ) -> list[dict]:
+    """Pull one row per exercise prescription across all categories of a program.
+
+    Returns dicts ready to insert into ai_layer.program_exercise_prescriptions.
+    """
+    prescriptions: list[dict] = []
+
+    for (category, link_table, bridge_table, fk_col,
+         has_weight, notes_on_bridge) in _PRESCRIPTION_CATEGORIES:
+        weight_select = 'b."weight"' if has_weight else 'NULL'
+        weight_unit_select = (
+            'b."weightUnit"' if (has_weight and category == "lift") else 'NULL'
+        )
+        notes_select = 'b."notes"' if notes_on_bridge else 'l."notes"'
+        rows = query(conn, f"""
+            SELECT
+                b."exerciseId"::int   AS exercise_id,
+                e."name"              AS exercise_name,
+                e."type"::text        AS exercise_type,
+                b."reps"              AS reps_array,
+                {weight_select}       AS weight_array,
+                b."repsUnitCount"::int AS reps_unit_count,
+                {weight_unit_select}  AS weight_unit,
+                b."order"::int        AS order_in_program,
+                {notes_select}        AS notes
+            FROM app_db_snapshot."{link_table}" l
+            JOIN app_db_snapshot."{bridge_table}" b
+              ON b."{fk_col}" = l."id"
+            LEFT JOIN app_db_snapshot."Exercise" e ON e."id" = b."exerciseId"
+            WHERE l."programId" = %s
+            ORDER BY l."id", b."order"
+        """, [program_id])
+        for r in rows:
+            r["category"] = category
+        prescriptions.extend(rows)
+
+    # Plyos: PlyoToProgram → Plyo (parent) + ThrowingExerciseToPlyo (sets/reps).
+    # No Exercise join — plyos catalog through Plyo, sets/ball-weight live on
+    # the throwing-exercise bridge.
+    plyos = query(conn, """
+        SELECT
+            p2p."plyoId"::int     AS plyo_id,
+            pl."name"             AS plyo_name,
+            pl."intensity"::int   AS plyo_intensity,
+            tep."throwingExerciseId"::int AS exercise_id,
+            tep."reps"            AS reps_array,
+            tep."plyoBallWeight"  AS plyo_ball_weight,
+            tep."order"::int      AS order_in_program,
+            tep."notes"           AS notes
+        FROM app_db_snapshot."PlyoToProgram" p2p
+        LEFT JOIN app_db_snapshot."Plyo" pl ON pl."id" = p2p."plyoId"
+        LEFT JOIN app_db_snapshot."ThrowingExerciseToPlyo" tep
+          ON tep."plyoToProgramId" = p2p."id"
+        WHERE p2p."programId" = %s
+        ORDER BY p2p."id", tep."order"
+    """, [program_id])
+    for r in plyos:
+        r["category"] = "plyo"
+        r["exercise_name"] = r.get("plyo_name")
+        r["exercise_type"] = "plyo"
+    prescriptions.extend(plyos)
+
+    # Derive numeric summaries from the array fields. The raw arrays may come
+    # through as text[] (because Prisma's Int[]/Float[] sources get stored
+    # permissively in the snapshot), and entries can include non-numeric
+    # tokens like "AMRAP" or "30s" — those get dropped here.
+    def _to_int(v):
+        try:
+            return int(float(v)) if v is not None and str(v).strip() != "" else None
+        except (TypeError, ValueError):
+            return None
+
+    def _to_float(v):
+        try:
+            return float(v) if v is not None and str(v).strip() != "" else None
+        except (TypeError, ValueError):
+            return None
+
+    for p in prescriptions:
+        p["athlete_uuid"] = athlete_uuid
+
+        raw_reps = p.get("reps_array") or []
+        raw_weights = p.get("weight_array") or []
+
+        reps    = [r for r in (_to_int(x)   for x in raw_reps)    if r is not None]
+        weights = [w for w in (_to_float(x) for x in raw_weights) if w is not None]
+
+        # IMPORTANT: write None instead of [] for empty arrays so psycopg2
+        # serializes them as SQL NULL (not '{}', which would be text-array typed).
+        p["reps_array"]   = reps    or None
+        p["weight_array"] = weights or None
+
+        p["n_sets"]     = len(reps)             if reps else None
+        p["total_reps"] = sum(reps)             if reps else None
+        p["avg_reps"]   = sum(reps) / len(reps) if reps else None
+        p["max_reps"]   = max(reps)             if reps else None
+        p["min_reps"]   = min(reps)             if reps else None
+        p["avg_weight"] = sum(weights) / len(weights) if weights else None
+        p["max_weight"] = max(weights)                if weights else None
+
+    return prescriptions
+
+
+def _save_prescriptions(conn, program_id: int, prescriptions: list[dict]) -> int:
+    """Wipe and replace prescription rows for a program. Returns count written."""
+    exec_sql(conn,
+        "DELETE FROM ai_layer.program_exercise_prescriptions WHERE program_id = %s",
+        [program_id])
+    n = 0
+    for p in prescriptions:
+        exec_sql(conn, """
+            INSERT INTO ai_layer.program_exercise_prescriptions (
+                program_id, athlete_uuid, category,
+                exercise_id, exercise_name, exercise_type,
+                plyo_id, plyo_name, plyo_intensity, plyo_ball_weight,
+                n_sets, reps_array, weight_array,
+                total_reps, avg_reps, max_reps, min_reps,
+                avg_weight, max_weight,
+                reps_unit_count, weight_unit,
+                order_in_program, notes
+            ) VALUES (
+                %s, %s, %s,
+                %s, %s, %s,
+                %s, %s, %s, %s,
+                %s, %s, %s,
+                %s, %s, %s, %s,
+                %s, %s,
+                %s, %s,
+                %s, %s
+            )
+        """, [
+            program_id, p.get("athlete_uuid"), p["category"],
+            p.get("exercise_id"), p.get("exercise_name"), p.get("exercise_type"),
+            p.get("plyo_id"), p.get("plyo_name"),
+            p.get("plyo_intensity"), p.get("plyo_ball_weight"),
+            p.get("n_sets"), p.get("reps_array"), p.get("weight_array"),
+            p.get("total_reps"), p.get("avg_reps"),
+            p.get("max_reps"), p.get("min_reps"),
+            p.get("avg_weight"), p.get("max_weight"),
+            p.get("reps_unit_count"), p.get("weight_unit"),
+            p.get("order_in_program"), p.get("notes"),
+        ])
+        n += 1
+    return n
+
+
 def summarize_one_and_save(program_id: int) -> tuple[int, dict]:
     with backend_conn() as conn:
         s = summarize_one(conn, program_id)
         sid = save_summary(conn, s)
+        prescriptions = _extract_exercise_prescriptions(conn, program_id, s["athlete_uuid"])
+        n_pres = _save_prescriptions(conn, program_id, prescriptions)
+        s["_prescriptions_saved"] = n_pres
     return sid, s
 
 
@@ -387,6 +562,9 @@ def summarize_all() -> None:
             with backend_conn() as conn:
                 s = summarize_one(conn, pid)
                 save_summary(conn, s)
+                prescriptions = _extract_exercise_prescriptions(
+                    conn, pid, s["athlete_uuid"])
+                _save_prescriptions(conn, pid, prescriptions)
             successes += 1
         except Exception as e:
             failures.append((pid, str(e)[:200]))
