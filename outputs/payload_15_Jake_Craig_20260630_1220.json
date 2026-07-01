@@ -1,0 +1,1539 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-06-30T12:20:35.171545",
+  "source": {
+    "recommended_program_id": 15,
+    "athlete_uuid": "dd798f8e-cb27-4048-b03a-20f1d1b2945c",
+    "athlete_name": "Jake Craig",
+    "age_group": "HIGH SCHOOL",
+    "focus": "Strength",
+    "role": "pitcher",
+    "model_name": "gemini-2.5-flash"
+  },
+  "app_db_links": {
+    "app_user_id": null,
+    "org_id": null
+  },
+  "weekly_template": {
+    "name": "AI Recommended \u2014 Jake Craig \u2014 Strength \u2014 2026-06-30",
+    "description": "AI-generated weekly program. Focus: Strength. Source: ai_layer.recommended_programs id=15.",
+    "is_generated": true,
+    "is_internal": true,
+    "is_archived": false,
+    "prep_template_role": "prep",
+    "bulletproofing_template_role": "bulletproofing",
+    "plyo_template_role": "plyo",
+    "movement_enhancement_template_role": null
+  },
+  "activity_templates": [
+    {
+      "role": "prep",
+      "name": "Prep \u2014 Jake Craig",
+      "description": "Jake's prep focuses on improving significant thoracic spine extension and rotation deficits, addressing left hip flexor tightness, and enhancing hip and core stability. The block progresses from general dynamic movements to targeted mobility and activation, finishing with a rotational CNS primer to address his pelvic rotation deficit and prepare for strength work.",
+      "exercises": [
+        {
+          "exercise_id": 307,
+          "exercise_name": "Pull Back Butt Kick to Walking Spiderman w/ Hip Lift and Reach",
+          "matched_exercise_name": "Pull Back Butt Kick to Walking Spiderman w/ Hip Lift and Reach",
+          "match_method": "exact",
+          "sets": 1,
+          "reps": 5,
+          "duration_seconds": null,
+          "reps_array": [
+            5
+          ],
+          "weight_array": [],
+          "order": 0,
+          "slot": "general warmup",
+          "notes": "To initiate dynamic movement, raise core temperature, and promote general hip and thoracic mobility."
+        },
+        {
+          "exercise_id": 716,
+          "exercise_name": "Cradle Walk to Lateral Lunge w/ Arms OH",
+          "matched_exercise_name": "Cradle Walk to Lateral Lunge w/ Arms OH",
+          "match_method": "exact",
+          "sets": 1,
+          "reps": 5,
+          "duration_seconds": null,
+          "reps_array": [
+            5
+          ],
+          "weight_array": [],
+          "order": 1,
+          "slot": "general warmup",
+          "notes": "To further warm up the hips and adductors, improving range of motion for upcoming movements."
+        },
+        {
+          "exercise_id": 332,
+          "exercise_name": "Band Hip Flexor",
+          "matched_exercise_name": "Band Hip Flexor",
+          "match_method": "exact",
+          "sets": 1,
+          "reps": 8,
+          "duration_seconds": null,
+          "reps_array": [
+            8
+          ],
+          "weight_array": [],
+          "order": 2,
+          "slot": "mobility",
+          "notes": "Directly targets the significant left hip flexor tightness identified in his mobility assessment."
+        },
+        {
+          "exercise_id": 561,
+          "exercise_name": "Wall Slides w/ liftoff",
+          "matched_exercise_name": "Wall Slides w/ liftoff",
+          "match_method": "exact",
+          "sets": 1,
+          "reps": 7,
+          "duration_seconds": null,
+          "reps_array": [
+            7
+          ],
+          "weight_array": [],
+          "order": 3,
+          "slot": "mobility",
+          "notes": "Addresses the extreme backbend deficit by promoting thoracic extension and scapular control."
+        },
+        {
+          "exercise_id": 574,
+          "exercise_name": "T Spine Windmill",
+          "matched_exercise_name": "T Spine Windmill",
+          "match_method": "exact",
+          "sets": 1,
+          "reps": 10,
+          "duration_seconds": null,
+          "reps_array": [
+            10
+          ],
+          "weight_array": [],
+          "order": 4,
+          "slot": "mobility",
+          "notes": "To improve right-sided thoracic spine rotation, which is a key mobility deficit for Jake."
+        },
+        {
+          "exercise_id": 352,
+          "exercise_name": "90/90 Hip Shifts",
+          "matched_exercise_name": "90/90 Hip Shifts",
+          "match_method": "exact",
+          "sets": 1,
+          "reps": 7,
+          "duration_seconds": null,
+          "reps_array": [
+            7
+          ],
+          "weight_array": [],
+          "order": 5,
+          "slot": "activation",
+          "notes": "Activates hip stabilizers and improves hip dissociation, supporting single-leg stability and pelvic control."
+        },
+        {
+          "exercise_id": 711,
+          "exercise_name": "Alligator Breathing L1",
+          "matched_exercise_name": "Alligator Breathing L1",
+          "match_method": "exact",
+          "sets": 2,
+          "reps": 5,
+          "duration_seconds": null,
+          "reps_array": [
+            5,
+            5
+          ],
+          "weight_array": [],
+          "order": 6,
+          "slot": "activation",
+          "notes": "To activate deep core stabilizers and enhance breathing mechanics, crucial for pelvic control during rotational movements."
+        },
+        {
+          "exercise_id": 1037,
+          "exercise_name": "WB Stomp & Twist",
+          "matched_exercise_name": "WB Stomp & Twist",
+          "match_method": "exact",
+          "sets": 1,
+          "reps": 7,
+          "duration_seconds": null,
+          "reps_array": [
+            7
+          ],
+          "weight_array": [],
+          "order": 7,
+          "slot": "cns prep",
+          "notes": "Primes the nervous system for rotational power and integrates core and hip mechanics, addressing the low pelvic angular velocity."
+        }
+      ]
+    },
+    {
+      "role": "bulletproofing",
+      "name": "Bulletproofing \u2014 Jake Craig",
+      "description": "Jake's bulletproofing prioritizes addressing significant thoracic spine and shoulder mobility deficits, crucial for optimal throwing mechanics and injury prevention. This program aims to improve pec length, T-spine rotation, scapular stability, and shoulder joint decompression.",
+      "exercises": [
+        {
+          "exercise_id": 1028,
+          "exercise_name": "Incline Ys",
+          "matched_exercise_name": "Incline Ys",
+          "match_method": "exact",
+          "sets": 2,
+          "reps": 12,
+          "duration_seconds": null,
+          "reps_array": [
+            12,
+            12
+          ],
+          "weight_array": [],
+          "order": 0,
+          "slot": "mid-low trap",
+          "notes": "Strengthens mid and lower traps to improve scapular control and support healthy overhead mechanics."
+        },
+        {
+          "exercise_id": 1184,
+          "exercise_name": "Dead Hang Series",
+          "matched_exercise_name": "Dead Hang Series",
+          "match_method": "exact",
+          "sets": 1,
+          "reps": null,
+          "duration_seconds": 60,
+          "reps_array": [],
+          "weight_array": [],
+          "order": 1,
+          "slot": "iso",
+          "notes": "Promotes shoulder joint decompression and enhances passive stability through sustained traction."
+        },
+        {
+          "exercise_id": 371,
+          "exercise_name": "Corner Stretch",
+          "matched_exercise_name": "Corner Stretch",
+          "match_method": "exact",
+          "sets": 2,
+          "reps": null,
+          "duration_seconds": 30,
+          "reps_array": [],
+          "weight_array": [],
+          "order": 2,
+          "slot": "scap stability",
+          "notes": "Improves pectoral length and anterior shoulder mobility, which can alleviate limitations in T-spine extension and improve scapular positioning."
+        },
+        {
+          "exercise_id": 319,
+          "exercise_name": "Pec Scorpion",
+          "matched_exercise_name": "Pec Scorpion",
+          "match_method": "exact",
+          "sets": 2,
+          "reps": null,
+          "duration_seconds": 20,
+          "reps_array": [],
+          "weight_array": [],
+          "order": 3,
+          "slot": "scap stability",
+          "notes": "Addresses T-spine rotation and pec tightness, essential for robust overhead throwing mechanics and preventing anterior shoulder stress."
+        },
+        {
+          "exercise_id": 370,
+          "exercise_name": "Sleeper Stretch",
+          "matched_exercise_name": "Sleeper Stretch",
+          "match_method": "exact",
+          "sets": 2,
+          "reps": null,
+          "duration_seconds": 45,
+          "reps_array": [],
+          "weight_array": [],
+          "order": 4,
+          "slot": "cuff",
+          "notes": "Increases posterior capsule flexibility to improve internal rotation range of motion, critical for arm health in throwers."
+        }
+      ]
+    },
+    {
+      "role": "plyo",
+      "name": "Plyo \u2014 Jake Craig",
+      "description": "Jake Craig, a starter in the Rebuild Capacity phase, presents significant deficits in pelvis angular velocity, hip-shoulder separation, and rotational power (shotput metrics). The plyo cycle prioritizes drills that enhance rotational explosiveness and kinetic sequencing, aiming for a 'hip drive' and 'intent' feel. Due to the 'Rebuild Capacity' annual phase, the P2 session's volume and intensity are intentionally moderated to function as a high-end P1, respecting the phase's guardrails for arm health and durability while still introducing movements targeted at inefficiency correction. The weekly layout reflects this phase constraint, limiting true 'work' days to the highest allowed intensity (P1 in this phase).",
+      "sessions": [
+        {
+          "plyo_id": 1,
+          "plyo_level": "P0",
+          "label": "Recovery day",
+          "session_intent": "Focus on active recovery, restoring general movement patterns, and promoting tissue health with low-intensity, feel-oriented drills.",
+          "drills": [
+            {
+              "throwing_exercise_id": 419,
+              "throwing_exercise_name": "Throw to Reverse Throw",
+              "matched_exercise_name": "Throw to Reverse Throw",
+              "match_method": "exact",
+              "ball_weight": "OZ_32",
+              "ball_weight_display": "32 oz",
+              "reps_array": [
+                6
+              ],
+              "sets": 1,
+              "reps": 6,
+              "order": 0,
+              "notes": "Initiates full-body connection and gentle hip rotation, priming the kinetic chain for recovery and light movement."
+            },
+            {
+              "throwing_exercise_id": 421,
+              "throwing_exercise_name": "OG Pivots",
+              "matched_exercise_name": "OG Pivots",
+              "match_method": "exact",
+              "ball_weight": "OZ_16",
+              "ball_weight_display": "16 oz",
+              "reps_array": [
+                6
+              ],
+              "sets": 1,
+              "reps": 6,
+              "order": 1,
+              "notes": "Encourages controlled trunk rotation and arm slot feel, promoting fluidity without high effort."
+            },
+            {
+              "throwing_exercise_id": 113,
+              "throwing_exercise_name": "P90 Saddle",
+              "matched_exercise_name": "P90 Saddle",
+              "match_method": "exact",
+              "ball_weight": "OZ_7",
+              "ball_weight_display": "7 oz",
+              "reps_array": [
+                6
+              ],
+              "sets": 1,
+              "reps": 6,
+              "order": 2,
+              "notes": "Activates scapular mobility and reinforces a healthy arm path through gentle, repetitive motion."
+            },
+            {
+              "throwing_exercise_id": 616,
+              "throwing_exercise_name": "Toe Tap Load (Tornado)",
+              "matched_exercise_name": "Toe Tap Load (Tornado)",
+              "match_method": "exact",
+              "ball_weight": "OZ_7",
+              "ball_weight_display": "7 oz",
+              "reps_array": [
+                6
+              ],
+              "sets": 1,
+              "reps": 6,
+              "order": 3,
+              "notes": "Provides a light cue for lower-half loading and controlled hip rotation, improving body awareness."
+            },
+            {
+              "throwing_exercise_id": 109,
+              "throwing_exercise_name": "Backward Walks",
+              "matched_exercise_name": "Backward Walks",
+              "match_method": "exact",
+              "ball_weight": "OZ_7",
+              "ball_weight_display": "7 oz",
+              "reps_array": [
+                6
+              ],
+              "sets": 1,
+              "reps": 6,
+              "order": 4,
+              "notes": "Aids in general movement restoration and promotes active recovery in the lower body and core."
+            }
+          ],
+          "order": 0
+        },
+        {
+          "plyo_id": 2,
+          "plyo_level": "P1",
+          "label": "Hybrid day",
+          "session_intent": "Builds on recovery by introducing moderate intent, emphasizing controlled hip drive and maintaining feel for rotational patterns.",
+          "drills": [
+            {
+              "throwing_exercise_id": 419,
+              "throwing_exercise_name": "Throw to Reverse Throw",
+              "matched_exercise_name": "Throw to Reverse Throw",
+              "match_method": "exact",
+              "ball_weight": "OZ_32",
+              "ball_weight_display": "32 oz",
+              "reps_array": [
+                7
+              ],
+              "sets": 1,
+              "reps": 7,
+              "order": 0,
+              "notes": "Primes the kinetic chain with slightly increased intent, emphasizing hip-shoulder separation and full-body connection."
+            },
+            {
+              "throwing_exercise_id": 421,
+              "throwing_exercise_name": "OG Pivots",
+              "matched_exercise_name": "OG Pivots",
+              "match_method": "exact",
+              "ball_weight": "OZ_16",
+              "ball_weight_display": "16 oz",
+              "reps_array": [
+                7
+              ],
+              "sets": 1,
+              "reps": 7,
+              "order": 1,
+              "notes": "Reinforces controlled rotational mechanics and hip-shoulder separation with moderate effort."
+            },
+            {
+              "throwing_exercise_id": 616,
+              "throwing_exercise_name": "Toe Tap Load (Tornado)",
+              "matched_exercise_name": "Toe Tap Load (Tornado)",
+              "match_method": "exact",
+              "ball_weight": "OZ_7",
+              "ball_weight_display": "7 oz",
+              "reps_array": [
+                7
+              ],
+              "sets": 1,
+              "reps": 7,
+              "order": 2,
+              "notes": "Focuses on loading the glutes and driving from the hips to improve pelvis angular velocity."
+            },
+            {
+              "throwing_exercise_id": 620,
+              "throwing_exercise_name": "Drop Steps",
+              "matched_exercise_name": "Drop Steps",
+              "match_method": "exact",
+              "ball_weight": "OZ_5",
+              "ball_weight_display": "5 oz",
+              "reps_array": [
+                7
+              ],
+              "sets": 1,
+              "reps": 7,
+              "order": 3,
+              "notes": "Enhances lead leg block efficiency and promotes powerful hip drive into ball release."
+            },
+            {
+              "throwing_exercise_id": 93,
+              "throwing_exercise_name": "Windmills",
+              "matched_exercise_name": "Windmills",
+              "match_method": "exact",
+              "ball_weight": "OZ_5",
+              "ball_weight_display": "5 oz",
+              "reps_array": [
+                7
+              ],
+              "sets": 1,
+              "reps": 7,
+              "order": 4,
+              "notes": "Refines arm path and promotes efficient energy transfer through trunk rotation and extension."
+            }
+          ],
+          "order": 1
+        },
+        {
+          "plyo_id": 3,
+          "plyo_level": "P2",
+          "label": "Work day",
+          "session_intent": "Addresses hip-shoulder separation and rotational power deficits with maximum intensity within the 'Rebuild Capacity' phase's overall volume and intensity limits.",
+          "drills": [
+            {
+              "throwing_exercise_id": 419,
+              "throwing_exercise_name": "Throw to Reverse Throw",
+              "matched_exercise_name": "Throw to Reverse Throw",
+              "match_method": "exact",
+              "ball_weight": "OZ_32",
+              "ball_weight_display": "32 oz",
+              "reps_array": [
+                8
+              ],
+              "sets": 1,
+              "reps": 8,
+              "order": 0,
+              "notes": "Maximal intent priming of the kinetic chain, emphasizing rotational transfer and hip-shoulder separation."
+            },
+            {
+              "throwing_exercise_id": 421,
+              "throwing_exercise_name": "OG Pivots",
+              "matched_exercise_name": "OG Pivots",
+              "match_method": "exact",
+              "ball_weight": "OZ_16",
+              "ball_weight_display": "16 oz",
+              "reps_array": [
+                8
+              ],
+              "sets": 1,
+              "reps": 8,
+              "order": 1,
+              "notes": "Drives higher-intent trunk rotation to improve hip-shoulder separation and pelvis angular velocity."
+            },
+            {
+              "throwing_exercise_id": 603,
+              "throwing_exercise_name": "Janitors",
+              "matched_exercise_name": "Janitors",
+              "match_method": "exact",
+              "ball_weight": "OZ_5",
+              "ball_weight_display": "5 oz",
+              "reps_array": [
+                8
+              ],
+              "sets": 1,
+              "reps": 8,
+              "order": 2,
+              "notes": "Develops explosive trunk rotation and mimics shotput power to address Proteus rotational power deficits."
+            },
+            {
+              "throwing_exercise_id": 620,
+              "throwing_exercise_name": "Drop Steps",
+              "matched_exercise_name": "Drop Steps",
+              "match_method": "exact",
+              "ball_weight": "OZ_5",
+              "ball_weight_display": "5 oz",
+              "reps_array": [
+                8
+              ],
+              "sets": 1,
+              "reps": 8,
+              "order": 3,
+              "notes": "Aggressively trains lead leg block and efficient hip drive for maximum power generation."
+            },
+            {
+              "throwing_exercise_id": 112,
+              "throwing_exercise_name": "Rhythm Step Backs",
+              "matched_exercise_name": "Rhythm Step Backs",
+              "match_method": "exact",
+              "ball_weight": "OZ_5",
+              "ball_weight_display": "5 oz",
+              "reps_array": [
+                8
+              ],
+              "sets": 1,
+              "reps": 8,
+              "order": 4,
+              "notes": "Focuses on developing a powerful and well-sequenced kinematic chain for optimal velocity transfer."
+            }
+          ],
+          "order": 2
+        }
+      ]
+    },
+    {
+      "role": "lift",
+      "name": "Lift Legs \u2014 Jake Craig",
+      "description": "Highschool - Strength - Posterior Chain/Rotation",
+      "source_template_id": "4119-11",
+      "movement_bucket": "Legs",
+      "exercises": [
+        {
+          "exercise_id": 6,
+          "exercise_name": "Gravity Drop",
+          "matched_exercise_name": "Gravity Drop",
+          "match_method": "exact",
+          "sets_x_reps_raw": "3 x 3",
+          "sets": 3,
+          "reps_array": [
+            3,
+            3,
+            3
+          ],
+          "weight_array": [],
+          "order": 0
+        },
+        {
+          "exercise_id": 830,
+          "exercise_name": "Trapbar Jumps",
+          "matched_exercise_name": "Trapbar Jumps",
+          "match_method": "exact",
+          "sets_x_reps_raw": "3 x 4",
+          "sets": 3,
+          "reps_array": [
+            4,
+            4,
+            4
+          ],
+          "weight_array": [],
+          "order": 1
+        },
+        {
+          "exercise_id": 763,
+          "exercise_name": "Flying 10",
+          "matched_exercise_name": "Flying 10",
+          "match_method": "exact",
+          "sets_x_reps_raw": "3 x 1",
+          "sets": 3,
+          "reps_array": [
+            1,
+            1,
+            1
+          ],
+          "weight_array": [],
+          "order": 2
+        },
+        {
+          "exercise_id": 717,
+          "exercise_name": "Quarter Squat From Pins",
+          "matched_exercise_name": "SSB Quarter Squat from Pins",
+          "match_method": "fuzzy:0.92",
+          "sets_x_reps_raw": "4 x 4",
+          "sets": 4,
+          "reps_array": [
+            4,
+            4,
+            4,
+            4
+          ],
+          "weight_array": [],
+          "order": 3
+        },
+        {
+          "exercise_id": 44,
+          "exercise_name": "Barbell RDL",
+          "matched_exercise_name": "Barbell RDL",
+          "match_method": "exact",
+          "sets_x_reps_raw": "4 x 5",
+          "sets": 4,
+          "reps_array": [
+            5,
+            5,
+            5,
+            5
+          ],
+          "weight_array": [],
+          "order": 4
+        },
+        {
+          "exercise_id": 820,
+          "exercise_name": "Landmine Speed Eccentric Split Squat",
+          "matched_exercise_name": "Landmine Speed Eccentric Split Squat",
+          "match_method": "exact",
+          "sets_x_reps_raw": "3 x 5",
+          "sets": 3,
+          "reps_array": [
+            5,
+            5,
+            5
+          ],
+          "weight_array": [],
+          "order": 5
+        },
+        {
+          "exercise_id": 402,
+          "exercise_name": "Single Leg Lowering Off Box",
+          "matched_exercise_name": "Single Leg Lowering Off Box",
+          "match_method": "exact",
+          "sets_x_reps_raw": "3 x 5",
+          "sets": 3,
+          "reps_array": [
+            5,
+            5,
+            5
+          ],
+          "weight_array": [],
+          "order": 6
+        },
+        {
+          "exercise_id": 1126,
+          "exercise_name": "KOT Split Squat",
+          "matched_exercise_name": "KOT Split Squat",
+          "match_method": "exact",
+          "sets_x_reps_raw": "2 x 8",
+          "sets": 2,
+          "reps_array": [
+            8,
+            8
+          ],
+          "weight_array": [],
+          "order": 7
+        },
+        {
+          "exercise_id": 171,
+          "exercise_name": "Copenhagen Plank",
+          "matched_exercise_name": "Copenhagen Plank",
+          "match_method": "exact",
+          "sets_x_reps_raw": "1 x 60s",
+          "sets": 1,
+          "reps_array": [],
+          "weight_array": [],
+          "order": 8
+        }
+      ]
+    },
+    {
+      "role": "lift",
+      "name": "Lift Upper \u2014 Jake Craig",
+      "description": "Highschool - Strength - Posterior Chain/Rotation",
+      "source_template_id": "4119-12",
+      "movement_bucket": "Upper",
+      "exercises": [
+        {
+          "exercise_id": 188,
+          "exercise_name": "Recoiled Rollover MB Stomp",
+          "matched_exercise_name": "Recoiled Rollover MB Stomp",
+          "match_method": "exact",
+          "sets_x_reps_raw": "3 x 4",
+          "sets": 3,
+          "reps_array": [
+            4,
+            4,
+            4
+          ],
+          "weight_array": [],
+          "order": 0
+        },
+        {
+          "exercise_id": 186,
+          "exercise_name": "MB Shotput",
+          "matched_exercise_name": "MB Shotput",
+          "match_method": "exact",
+          "sets_x_reps_raw": "3 x 4",
+          "sets": 3,
+          "reps_array": [
+            4,
+            4,
+            4
+          ],
+          "weight_array": [],
+          "order": 1
+        },
+        {
+          "exercise_id": 1128,
+          "exercise_name": "Hitting MB Throws",
+          "matched_exercise_name": "Hitting MB Throws",
+          "match_method": "exact",
+          "sets_x_reps_raw": "3 x 4",
+          "sets": 3,
+          "reps_array": [
+            4,
+            4,
+            4
+          ],
+          "weight_array": [],
+          "order": 2
+        },
+        {
+          "exercise_id": 155,
+          "exercise_name": "Band Accelerated Pushup",
+          "matched_exercise_name": "Band Accelerated Pushup",
+          "match_method": "exact",
+          "sets_x_reps_raw": "3 x 5",
+          "sets": 3,
+          "reps_array": [
+            5,
+            5,
+            5
+          ],
+          "weight_array": [],
+          "order": 3
+        },
+        {
+          "exercise_id": null,
+          "exercise_name": "Cable Rotational Row",
+          "matched_exercise_name": null,
+          "match_method": null,
+          "sets_x_reps_raw": "3 x 5",
+          "sets": 3,
+          "reps_array": [
+            5,
+            5,
+            5
+          ],
+          "weight_array": [],
+          "order": 4
+        },
+        {
+          "exercise_id": 71,
+          "exercise_name": "Landmine Rotational Press",
+          "matched_exercise_name": "Landmine Rotational Press",
+          "match_method": "exact",
+          "sets_x_reps_raw": "3 x 5",
+          "sets": 3,
+          "reps_array": [
+            5,
+            5,
+            5
+          ],
+          "weight_array": [],
+          "order": 5
+        },
+        {
+          "exercise_id": 185,
+          "exercise_name": "SS Anti Rotation MB Scoop Toss",
+          "matched_exercise_name": "SS Anti Rotation MB Scoop Toss",
+          "match_method": "exact",
+          "sets_x_reps_raw": "3 x 4",
+          "sets": 3,
+          "reps_array": [
+            4,
+            4,
+            4
+          ],
+          "weight_array": [],
+          "order": 6
+        },
+        {
+          "exercise_id": 228,
+          "exercise_name": "Seated DB ER off Knee",
+          "matched_exercise_name": "Seated DB ER off Knee",
+          "match_method": "exact",
+          "sets_x_reps_raw": "2 x 15",
+          "sets": 2,
+          "reps_array": [
+            15,
+            15
+          ],
+          "weight_array": [],
+          "order": 7
+        },
+        {
+          "exercise_id": 1028,
+          "exercise_name": "Incline Y's",
+          "matched_exercise_name": "Incline Ys",
+          "match_method": "fuzzy:0.95",
+          "sets_x_reps_raw": "2 x 12",
+          "sets": 2,
+          "reps_array": [
+            12,
+            12
+          ],
+          "weight_array": [],
+          "order": 8
+        }
+      ]
+    },
+    {
+      "role": "lift",
+      "name": "Lift Total Body \u2014 Jake Craig",
+      "description": "Highschool - Strength - Posterior Chain/Rotation",
+      "source_template_id": "4119-13",
+      "movement_bucket": "Total Body",
+      "exercises": [
+        {
+          "exercise_id": 203,
+          "exercise_name": "Reactive Lateral Heiden",
+          "matched_exercise_name": "Reactive Lateral Heiden",
+          "match_method": "exact",
+          "sets_x_reps_raw": "3 x 3",
+          "sets": 3,
+          "reps_array": [
+            3,
+            3,
+            3
+          ],
+          "weight_array": [],
+          "order": 0
+        },
+        {
+          "exercise_id": 1074,
+          "exercise_name": "Box Blast Vert",
+          "matched_exercise_name": "Box Blast Vert",
+          "match_method": "exact",
+          "sets_x_reps_raw": "3 x 4",
+          "sets": 3,
+          "reps_array": [
+            4,
+            4,
+            4
+          ],
+          "weight_array": [],
+          "order": 1
+        },
+        {
+          "exercise_id": 554,
+          "exercise_name": "Tall Kneeling Forward Scoop Toss",
+          "matched_exercise_name": "Tall Kneeling Forward Scoop Toss",
+          "match_method": "exact",
+          "sets_x_reps_raw": "3 x 4",
+          "sets": 3,
+          "reps_array": [
+            4,
+            4,
+            4
+          ],
+          "weight_array": [],
+          "order": 2
+        },
+        {
+          "exercise_id": 22,
+          "exercise_name": "Single Leg DB RDL",
+          "matched_exercise_name": "Single Leg DB RDL",
+          "match_method": "exact",
+          "sets_x_reps_raw": "3 x 5",
+          "sets": 3,
+          "reps_array": [
+            5,
+            5,
+            5
+          ],
+          "weight_array": [],
+          "order": 3
+        },
+        {
+          "exercise_id": 72,
+          "exercise_name": "Keiser Push-Pull",
+          "matched_exercise_name": "Keiser Push-Pull",
+          "match_method": "exact",
+          "sets_x_reps_raw": "3 x 5",
+          "sets": 3,
+          "reps_array": [
+            5,
+            5,
+            5
+          ],
+          "weight_array": [],
+          "order": 4
+        },
+        {
+          "exercise_id": 1227,
+          "exercise_name": "Reverse Hypers",
+          "matched_exercise_name": "Reverse Hypers",
+          "match_method": "exact",
+          "sets_x_reps_raw": "3 x 12",
+          "sets": 3,
+          "reps_array": [
+            12,
+            12,
+            12
+          ],
+          "weight_array": [],
+          "order": 5
+        },
+        {
+          "exercise_id": 74,
+          "exercise_name": "Single Arm TRX Row w/ Rotation",
+          "matched_exercise_name": "Single Arm TRX Row w/ Rotation",
+          "match_method": "exact",
+          "sets_x_reps_raw": "3 x 5",
+          "sets": 3,
+          "reps_array": [
+            5,
+            5,
+            5
+          ],
+          "weight_array": [],
+          "order": 6
+        },
+        {
+          "exercise_id": 1048,
+          "exercise_name": "Single Arm Farmers Carry With Head Turn",
+          "matched_exercise_name": "Single Arm Farmers Carry With Head Turn",
+          "match_method": "exact",
+          "sets_x_reps_raw": "3 x 30",
+          "sets": 3,
+          "reps_array": [
+            30,
+            30,
+            30
+          ],
+          "weight_array": [],
+          "order": 7
+        },
+        {
+          "exercise_id": 790,
+          "exercise_name": "GHD Side Plank Plate Press",
+          "matched_exercise_name": "GHD Side Plank Plate Press",
+          "match_method": "exact",
+          "sets_x_reps_raw": "3 x 10",
+          "sets": 3,
+          "reps_array": [
+            10,
+            10,
+            10
+          ],
+          "weight_array": [],
+          "order": 8
+        }
+      ]
+    },
+    {
+      "role": "lift",
+      "name": "Lift Sprint \u2014 Jake Craig",
+      "description": "Highschool - Strength - Posterior Chain/Rotation",
+      "source_template_id": "4119-14",
+      "movement_bucket": "Sprint",
+      "exercises": [
+        {
+          "exercise_id": 39,
+          "exercise_name": "Single Leg Gravity Drop",
+          "matched_exercise_name": "Single Leg Gravity Drop",
+          "match_method": "exact",
+          "sets_x_reps_raw": "2 x 3",
+          "sets": 2,
+          "reps_array": [
+            3,
+            3
+          ],
+          "weight_array": [],
+          "order": 0
+        },
+        {
+          "exercise_id": 940,
+          "exercise_name": "Low Intensity Pogos",
+          "matched_exercise_name": "Low Intensity Pogos",
+          "match_method": "exact",
+          "sets_x_reps_raw": "2 x 8",
+          "sets": 2,
+          "reps_array": [
+            8,
+            8
+          ],
+          "weight_array": [],
+          "order": 1
+        },
+        {
+          "exercise_id": 202,
+          "exercise_name": "Lateral Heiden",
+          "matched_exercise_name": "Lateral Heiden",
+          "match_method": "exact",
+          "sets_x_reps_raw": "2 x 4",
+          "sets": 2,
+          "reps_array": [
+            4,
+            4
+          ],
+          "weight_array": [],
+          "order": 2
+        },
+        {
+          "exercise_id": null,
+          "exercise_name": "SL 45\u00ba Hops",
+          "matched_exercise_name": null,
+          "match_method": null,
+          "sets_x_reps_raw": "2 x 15",
+          "sets": 2,
+          "reps_array": [
+            15,
+            15
+          ],
+          "weight_array": [],
+          "order": 3
+        },
+        {
+          "exercise_id": 1100,
+          "exercise_name": "Power Skips For Height",
+          "matched_exercise_name": "Power Skip for Height",
+          "match_method": "fuzzy:0.98",
+          "sets_x_reps_raw": "2 x 15",
+          "sets": 2,
+          "reps_array": [
+            15,
+            15
+          ],
+          "weight_array": [],
+          "order": 4
+        },
+        {
+          "exercise_id": 1099,
+          "exercise_name": "Power Skips For Distance",
+          "matched_exercise_name": "Power Skip for Distance",
+          "match_method": "fuzzy:0.98",
+          "sets_x_reps_raw": "2 x 15",
+          "sets": 2,
+          "reps_array": [
+            15,
+            15
+          ],
+          "weight_array": [],
+          "order": 5
+        },
+        {
+          "exercise_id": 8,
+          "exercise_name": "Sled March",
+          "matched_exercise_name": "Sled March",
+          "match_method": "exact",
+          "sets_x_reps_raw": "2 x 15",
+          "sets": 2,
+          "reps_array": [
+            15,
+            15
+          ],
+          "weight_array": [],
+          "order": 6
+        },
+        {
+          "exercise_id": 198,
+          "exercise_name": "Sled Sprint",
+          "matched_exercise_name": "Sled Sprint",
+          "match_method": "exact",
+          "sets_x_reps_raw": "2 x 15",
+          "sets": 2,
+          "reps_array": [
+            15,
+            15
+          ],
+          "weight_array": [],
+          "order": 7
+        },
+        {
+          "exercise_id": null,
+          "exercise_name": "Glute Bridge Drops",
+          "matched_exercise_name": null,
+          "match_method": null,
+          "sets_x_reps_raw": "2 x 4",
+          "sets": 2,
+          "reps_array": [
+            4,
+            4
+          ],
+          "weight_array": [],
+          "order": 8
+        },
+        {
+          "exercise_id": 191,
+          "exercise_name": "Falling Start",
+          "matched_exercise_name": "Falling Start",
+          "match_method": "exact",
+          "sets_x_reps_raw": "2 x 1",
+          "sets": 2,
+          "reps_array": [
+            1,
+            1
+          ],
+          "weight_array": [],
+          "order": 9
+        },
+        {
+          "exercise_id": 763,
+          "exercise_name": "Flying 10",
+          "matched_exercise_name": "Flying 10",
+          "match_method": "exact",
+          "sets_x_reps_raw": "2 x 1",
+          "sets": 2,
+          "reps_array": [
+            1,
+            1
+          ],
+          "weight_array": [],
+          "order": 10
+        },
+        {
+          "exercise_id": 714,
+          "exercise_name": "Hill Sprint",
+          "matched_exercise_name": "Hill Sprint",
+          "match_method": "exact",
+          "sets_x_reps_raw": "2 x 1",
+          "sets": 2,
+          "reps_array": [
+            1,
+            1
+          ],
+          "weight_array": [],
+          "order": 11
+        },
+        {
+          "exercise_id": 1016,
+          "exercise_name": "Calf Raises",
+          "matched_exercise_name": "Calf Raises",
+          "match_method": "exact",
+          "sets_x_reps_raw": "2 x 20",
+          "sets": 2,
+          "reps_array": [
+            20,
+            20
+          ],
+          "weight_array": [],
+          "order": 12
+        },
+        {
+          "exercise_id": 1031,
+          "exercise_name": "Tib Raise",
+          "matched_exercise_name": "Tib Raise",
+          "match_method": "exact",
+          "sets_x_reps_raw": "2 x 20",
+          "sets": 2,
+          "reps_array": [
+            20,
+            20
+          ],
+          "weight_array": [],
+          "order": 13
+        }
+      ]
+    },
+    {
+      "role": "lift",
+      "name": "Lift Jump \u2014 Jake Craig",
+      "description": "Highschool - Strength - Posterior Chain/Rotation",
+      "source_template_id": "4119-15",
+      "movement_bucket": "Jump",
+      "exercises": [
+        {
+          "exercise_id": 6,
+          "exercise_name": "Gravity Drop",
+          "matched_exercise_name": "Gravity Drop",
+          "match_method": "exact",
+          "sets_x_reps_raw": "2 x 3",
+          "sets": 2,
+          "reps_array": [
+            3,
+            3
+          ],
+          "weight_array": [],
+          "order": 0
+        },
+        {
+          "exercise_id": 214,
+          "exercise_name": "Lateral Heiden to Broad Jump",
+          "matched_exercise_name": "Lateral Heiden to Broad Jump",
+          "match_method": "exact",
+          "sets_x_reps_raw": "2 x 3",
+          "sets": 2,
+          "reps_array": [
+            3,
+            3
+          ],
+          "weight_array": [],
+          "order": 1
+        },
+        {
+          "exercise_id": 403,
+          "exercise_name": "KB Swing",
+          "matched_exercise_name": "KB Swing",
+          "match_method": "exact",
+          "sets_x_reps_raw": "2 x 5",
+          "sets": 2,
+          "reps_array": [
+            5,
+            5
+          ],
+          "weight_array": [],
+          "order": 2
+        },
+        {
+          "exercise_id": null,
+          "exercise_name": "Bounce To Vertical Jump",
+          "matched_exercise_name": null,
+          "match_method": null,
+          "sets_x_reps_raw": "2 x 3",
+          "sets": 2,
+          "reps_array": [
+            3,
+            3
+          ],
+          "weight_array": [],
+          "order": 3
+        },
+        {
+          "exercise_id": 930,
+          "exercise_name": "Double Hop MB Shotput",
+          "matched_exercise_name": "Double Hop MB Shotput",
+          "match_method": "exact",
+          "sets_x_reps_raw": "2 x 3",
+          "sets": 2,
+          "reps_array": [
+            3,
+            3
+          ],
+          "weight_array": [],
+          "order": 4
+        },
+        {
+          "exercise_id": 1050,
+          "exercise_name": "Rapid Vertical Jumps",
+          "matched_exercise_name": "Rapid Vertical Jumps",
+          "match_method": "exact",
+          "sets_x_reps_raw": "2 x 6",
+          "sets": 2,
+          "reps_array": [
+            6,
+            6
+          ],
+          "weight_array": [],
+          "order": 5
+        },
+        {
+          "exercise_id": null,
+          "exercise_name": "Glute Bridge Drops",
+          "matched_exercise_name": null,
+          "match_method": null,
+          "sets_x_reps_raw": "2 x 4",
+          "sets": 2,
+          "reps_array": [
+            4,
+            4
+          ],
+          "weight_array": [],
+          "order": 6
+        },
+        {
+          "exercise_id": 1074,
+          "exercise_name": "Box Blast Vert",
+          "matched_exercise_name": "Box Blast Vert",
+          "match_method": "exact",
+          "sets_x_reps_raw": "2 x 4",
+          "sets": 2,
+          "reps_array": [
+            4,
+            4
+          ],
+          "weight_array": [],
+          "order": 7
+        },
+        {
+          "exercise_id": 1075,
+          "exercise_name": "Bulgarian Vertical",
+          "matched_exercise_name": "Bulgarian Vertical",
+          "match_method": "exact",
+          "sets_x_reps_raw": "2 x 4",
+          "sets": 2,
+          "reps_array": [
+            4,
+            4
+          ],
+          "weight_array": [],
+          "order": 8
+        },
+        {
+          "exercise_id": 835,
+          "exercise_name": "5-10-5 Shuffles",
+          "matched_exercise_name": "5-10-5 Shuffles",
+          "match_method": "exact",
+          "sets_x_reps_raw": "2 x 1",
+          "sets": 2,
+          "reps_array": [
+            1,
+            1
+          ],
+          "weight_array": [],
+          "order": 9
+        },
+        {
+          "exercise_id": 836,
+          "exercise_name": "5-10-5 Sprints",
+          "matched_exercise_name": "5-10-5 Sprints",
+          "match_method": "exact",
+          "sets_x_reps_raw": "2 x 1",
+          "sets": 2,
+          "reps_array": [
+            1,
+            1
+          ],
+          "weight_array": [],
+          "order": 10
+        },
+        {
+          "exercise_id": 714,
+          "exercise_name": "Hill Sprint",
+          "matched_exercise_name": "Hill Sprint",
+          "match_method": "exact",
+          "sets_x_reps_raw": "2 x 1",
+          "sets": 2,
+          "reps_array": [
+            1,
+            1
+          ],
+          "weight_array": [],
+          "order": 11
+        },
+        {
+          "exercise_id": 1016,
+          "exercise_name": "Calf Raises",
+          "matched_exercise_name": "Calf Raises",
+          "match_method": "exact",
+          "sets_x_reps_raw": "2 x 20",
+          "sets": 2,
+          "reps_array": [
+            20,
+            20
+          ],
+          "weight_array": [],
+          "order": 12
+        },
+        {
+          "exercise_id": 1031,
+          "exercise_name": "Tib Raise",
+          "matched_exercise_name": "Tib Raise",
+          "match_method": "exact",
+          "sets_x_reps_raw": "2 x 20",
+          "sets": 2,
+          "reps_array": [
+            20,
+            20
+          ],
+          "weight_array": [],
+          "order": 13
+        }
+      ]
+    }
+  ],
+  "days": [
+    {
+      "day_of_week": "MONDAY",
+      "lift_template_index": 0,
+      "lift_template_bucket": "Legs",
+      "plyo_level": "P1",
+      "plyo_id": 2,
+      "throwing_activity_id": null,
+      "hitting_template_id": null,
+      "is_off_day": false,
+      "notes": null
+    },
+    {
+      "day_of_week": "TUESDAY",
+      "lift_template_index": 1,
+      "lift_template_bucket": "Upper",
+      "plyo_level": "P0",
+      "plyo_id": 1,
+      "throwing_activity_id": null,
+      "hitting_template_id": null,
+      "is_off_day": false,
+      "notes": null
+    },
+    {
+      "day_of_week": "WEDNESDAY",
+      "lift_template_index": 2,
+      "lift_template_bucket": "Total Body",
+      "plyo_level": "P1",
+      "plyo_id": 2,
+      "throwing_activity_id": null,
+      "hitting_template_id": null,
+      "is_off_day": false,
+      "notes": null
+    },
+    {
+      "day_of_week": "THURSDAY",
+      "lift_template_index": 3,
+      "lift_template_bucket": "Sprint",
+      "plyo_level": "P0",
+      "plyo_id": 1,
+      "throwing_activity_id": null,
+      "hitting_template_id": null,
+      "is_off_day": false,
+      "notes": null
+    },
+    {
+      "day_of_week": "FRIDAY",
+      "lift_template_index": 4,
+      "lift_template_bucket": "Jump",
+      "plyo_level": "P1",
+      "plyo_id": 2,
+      "throwing_activity_id": null,
+      "hitting_template_id": null,
+      "is_off_day": false,
+      "notes": null
+    },
+    {
+      "day_of_week": "SATURDAY",
+      "lift_template_index": null,
+      "lift_template_bucket": null,
+      "plyo_level": null,
+      "plyo_id": null,
+      "throwing_activity_id": null,
+      "hitting_template_id": null,
+      "is_off_day": true,
+      "notes": null
+    },
+    {
+      "day_of_week": "SUNDAY",
+      "lift_template_index": null,
+      "lift_template_bucket": null,
+      "plyo_level": null,
+      "plyo_id": null,
+      "throwing_activity_id": null,
+      "hitting_template_id": null,
+      "is_off_day": true,
+      "notes": null
+    }
+  ],
+  "application": null,
+  "unmatched_exercises": [
+    {
+      "category": "lift",
+      "bucket": "Upper",
+      "name": "Cable Rotational Row",
+      "sets_x_reps": "3 x 5",
+      "closest_candidates": [
+        {
+          "exercise_id": 65,
+          "exercise_name": "Split Stance Cable Rotational Row",
+          "similarity": 0.755
+        },
+        {
+          "exercise_id": 912,
+          "exercise_name": "Cable Pivot Lunge to Rotational Row ",
+          "similarity": 0.727
+        },
+        {
+          "exercise_id": 341,
+          "exercise_name": "Barbell Rotational Series",
+          "similarity": 0.711
+        }
+      ]
+    },
+    {
+      "category": "lift",
+      "bucket": "Sprint",
+      "name": "SL 45\u00ba Hops",
+      "sets_x_reps": "2 x 15",
+      "closest_candidates": [
+        {
+          "exercise_id": 1106,
+          "exercise_name": "SL 45 degree Hops",
+          "similarity": 0.714
+        },
+        {
+          "exercise_id": 100,
+          "exercise_name": "SL Drops",
+          "similarity": 0.632
+        },
+        {
+          "exercise_id": 1105,
+          "exercise_name": "RDL Crow Hop",
+          "similarity": 0.609
+        }
+      ]
+    },
+    {
+      "category": "lift",
+      "bucket": "Sprint",
+      "name": "Glute Bridge Drops",
+      "sets_x_reps": "2 x 4",
+      "closest_candidates": [
+        {
+          "exercise_id": 1121,
+          "exercise_name": "Glute Bridge ISO",
+          "similarity": 0.824
+        },
+        {
+          "exercise_id": 1127,
+          "exercise_name": "Glute Bridge Catch",
+          "similarity": 0.722
+        },
+        {
+          "exercise_id": 1090,
+          "exercise_name": "Glute Brige Overcoming ISO",
+          "similarity": 0.682
+        }
+      ]
+    },
+    {
+      "category": "lift",
+      "bucket": "Jump",
+      "name": "Bounce To Vertical Jump",
+      "sets_x_reps": "2 x 3",
+      "closest_candidates": [
+        {
+          "exercise_id": 210,
+          "exercise_name": "Bounce Drop Vertical",
+          "similarity": 0.791
+        },
+        {
+          "exercise_id": 932,
+          "exercise_name": "Vertical Jump",
+          "similarity": 0.722
+        },
+        {
+          "exercise_id": 220,
+          "exercise_name": "Bounce Drop Broad Jump",
+          "similarity": 0.711
+        }
+      ]
+    },
+    {
+      "category": "lift",
+      "bucket": "Jump",
+      "name": "Glute Bridge Drops",
+      "sets_x_reps": "2 x 4",
+      "closest_candidates": [
+        {
+          "exercise_id": 1121,
+          "exercise_name": "Glute Bridge ISO",
+          "similarity": 0.824
+        },
+        {
+          "exercise_id": 1127,
+          "exercise_name": "Glute Bridge Catch",
+          "similarity": 0.722
+        },
+        {
+          "exercise_id": 1090,
+          "exercise_name": "Glute Brige Overcoming ISO",
+          "similarity": 0.682
+        }
+      ]
+    }
+  ]
+}

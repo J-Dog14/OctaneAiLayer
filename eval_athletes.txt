@@ -1,0 +1,27 @@
+# Eval athlete roster — one name per line. Lines starting with `#` are skipped.
+# Run with: python -m src.main eval-batch eval_athletes.txt
+#
+# Each athlete must:
+#   - exist in analytics.d_athletes (warehouse) — fuzzy name match is fine
+#   - have at least one non-archived program in ai_layer.program_summaries
+#     (run `python -m src.main summarize-all` first if Connor's program isn't there yet)
+#
+# The eval auto-detects the focus from each coach program's goals. If you want
+# to force a focus for a specific athlete, use single-athlete mode:
+#   python -m src.main eval-athlete "Name" --focus Power
+#
+# Add ~25 names below to spend the $0.50 budget.
+
+Isaiah Pinero
+Simon Martone
+Connor Hathaway
+Ryan Chasse
+Barron Mcconnell
+Simon Brutskiy
+Luke Bryant
+Oliver Swartz
+Max Boyatt
+Eli Dadisman
+Ethan Dumar
+Connor Wong
+Brett Jordan

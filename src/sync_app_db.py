@@ -47,6 +47,10 @@ TABLES: list[str] = [
     "ExerciseToPrepTemplate", "ExerciseToBulletProofingTemplate",
     "ExerciseToHittingTemplate", "ExerciseToMovementEnhancementTemplate",
     "PlyoToTemplate", "ThrowingExerciseToPlyoTemplate",
+    # NOTE: There is NO separate "ThrowingExercise" table. Plyo drill names live
+    # in the standard Exercise table — ThrowingExerciseToPlyo.throwingExerciseId
+    # is a FK to Exercise.id. See program_summarizer._extract_exercise_prescriptions
+    # for the join that resolves drill names.
 ]
 
 # Map information_schema data_type -> a permissive Postgres type for the snapshot.

@@ -14,6 +14,7 @@ References:
 from __future__ import annotations
 
 import os
+import random
 import time
 from typing import Any
 
@@ -68,6 +69,8 @@ def generate(
     model: str | None = None,
     generated_report_id: int | None = None,
     response_mime_type: str | None = None,
+    max_output_tokens: int | None = None,
+    response_schema: Any = None,
 ) -> dict[str, Any]:
     """Run a single chat completion against Gemini and log the call.
 
@@ -88,6 +91,16 @@ def generate(
     cfg_kwargs: dict[str, Any] = {"system_instruction": system_prompt}
     if response_mime_type:
         cfg_kwargs["response_mime_type"] = response_mime_type
+    if max_output_tokens is not None:
+        cfg_kwargs["max_output_tokens"] = max_output_tokens
+    if response_schema is not None:
+        # Structured output — the model is constrained to produce JSON that
+        # conforms to this schema. Dramatically reduces parse failures.
+        # Accepts Pydantic model classes or dict schemas.
+        cfg_kwargs["response_schema"] = response_schema
+        # response_schema requires application/json mime
+        if "response_mime_type" not in cfg_kwargs:
+            cfg_kwargs["response_mime_type"] = "application/json"
     config = types.GenerateContentConfig(**cfg_kwargs)
 
     t0 = time.time()
@@ -98,21 +111,49 @@ def generate(
     out_toks = 0
     raised: Exception | None = None
 
-    try:
-        resp = _client.models.generate_content(
-            model=model,
-            contents=user_content,
-            config=config,
-        )
-        text = resp.text or ""
-        usage = getattr(resp, "usage_metadata", None)
-        if usage is not None:
-            in_toks = getattr(usage, "prompt_token_count", 0) or 0
-            out_toks = getattr(usage, "candidates_token_count", 0) or 0
-    except Exception as e:
-        status = "error"
-        err_msg = str(e)[:500]
-        raised = e
+    # Retry on transient 503/UNAVAILABLE — Gemini's free-tier capacity spikes
+    # are routine. Exponential backoff up to 6 attempts with ±20% jitter to
+    # avoid thundering-herd retries all hitting Gemini in lockstep.
+    # Base sequence: 2s, 4s, 8s, 16s, 32s (total ~62s of backoff)
+    # With jitter: each sleep multiplied by [0.8 - 1.2]
+    # If all 6 fail, the batch-level retry in eval_harness catches it 30s later.
+    max_attempts = 6
+    for attempt in range(1, max_attempts + 1):
+        try:
+            resp = _client.models.generate_content(
+                model=model,
+                contents=user_content,
+                config=config,
+            )
+            text = resp.text or ""
+            usage = getattr(resp, "usage_metadata", None)
+            if usage is not None:
+                in_toks = getattr(usage, "prompt_token_count", 0) or 0
+                out_toks = getattr(usage, "candidates_token_count", 0) or 0
+            raised = None  # success
+            break
+        except Exception as e:
+            err_str = str(e)
+            is_transient = (
+                "503" in err_str or "UNAVAILABLE" in err_str.upper()
+                or "RESOURCE_EXHAUSTED" in err_str.upper() or "429" in err_str
+            )
+            if is_transient and attempt < max_attempts:
+                # Exponential backoff (2s, 4s, 8s, 16s, 32s) with ±20% jitter.
+                # Jitter spreads out concurrent retries so the entire process
+                # isn't hammering Gemini at exactly the same moment when a
+                # spike passes.
+                base = 2 ** attempt  # 2, 4, 8, 16, 32 for attempts 1-5
+                jitter_factor = random.uniform(0.8, 1.2)
+                backoff = base * jitter_factor
+                print(f"[gemini] transient error (attempt {attempt}/{max_attempts}), "
+                      f"retrying in {backoff:.1f}s: {err_str[:120]}")
+                time.sleep(backoff)
+                continue
+            status = "error"
+            err_msg = err_str[:500]
+            raised = e
+            break
 
     latency_ms = int((time.time() - t0) * 1000)
     cost = _estimate_cost(model, in_toks, out_toks)

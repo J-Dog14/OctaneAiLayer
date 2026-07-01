@@ -418,15 +418,18 @@ def _extract_exercise_prescriptions(conn, program_id: int, athlete_uuid: str | N
             r["category"] = category
         prescriptions.extend(rows)
 
-    # Plyos: PlyoToProgram → Plyo (parent) + ThrowingExerciseToPlyo (sets/reps).
-    # No Exercise join — plyos catalog through Plyo, sets/ball-weight live on
-    # the throwing-exercise bridge.
+    # Plyos: PlyoToProgram → Plyo (parent umbrella) + ThrowingExerciseToPlyo
+    # (per-drill sets/reps/ball-weight) + Exercise (the actual drill name).
+    # The "throwingExerciseId" on the bridge is a FK to Exercise.id — the drill
+    # names ARE in the standard Exercise catalog, not in a separate table.
     plyos = query(conn, """
         SELECT
             p2p."plyoId"::int     AS plyo_id,
             pl."name"             AS plyo_name,
             pl."intensity"::int   AS plyo_intensity,
             tep."throwingExerciseId"::int AS exercise_id,
+            e."name"              AS exercise_name,
+            e."type"::text        AS exercise_type,
             tep."reps"            AS reps_array,
             tep."plyoBallWeight"  AS plyo_ball_weight,
             tep."order"::int      AS order_in_program,
@@ -435,13 +438,18 @@ def _extract_exercise_prescriptions(conn, program_id: int, athlete_uuid: str | N
         LEFT JOIN app_db_snapshot."Plyo" pl ON pl."id" = p2p."plyoId"
         LEFT JOIN app_db_snapshot."ThrowingExerciseToPlyo" tep
           ON tep."plyoToProgramId" = p2p."id"
+        LEFT JOIN app_db_snapshot."Exercise" e
+          ON e."id" = tep."throwingExerciseId"
         WHERE p2p."programId" = %s
         ORDER BY p2p."id", tep."order"
     """, [program_id])
     for r in plyos:
         r["category"] = "plyo"
-        r["exercise_name"] = r.get("plyo_name")
-        r["exercise_type"] = "plyo"
+        # If the join failed (orphan drill ID), fall back to the umbrella name
+        # so we don't lose the row entirely.
+        if not r.get("exercise_name"):
+            r["exercise_name"] = r.get("plyo_name") or "Unknown plyo drill"
+            r["exercise_type"] = "plyo"
     prescriptions.extend(plyos)
 
     # Derive numeric summaries from the array fields. The raw arrays may come

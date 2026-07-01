@@ -37,6 +37,13 @@ def _json_default(o: Any):
 def _determine_role(conn, athlete_uuid: str) -> tuple[str, str | None]:
     """Return (role, age_group). Role in {'pitcher','hitter','both','unknown'}.
 
+    Role is derived from d_athletes.has_pitching_data / has_hitting_data, with
+    a secondary signal: if the flag is False but the warehouse fact tables
+    (f_pitching_trials, f_hitting_trials) have rows for this athlete, treat
+    the flag as True. The flags are derived nightly and sometimes lag behind
+    raw data ingestion, so this catches the gap for athletes who were inserted
+    directly into the warehouse without the flag being refreshed.
+
     age_group is normalized the same way refresh_norms does: trim whitespace,
     fall back to deriving from age if the stored value is NULL/empty.
     """
@@ -58,11 +65,35 @@ def _determine_role(conn, athlete_uuid: str) -> tuple[str, str | None]:
     if not rows:
         raise ValueError(f"Athlete {athlete_uuid} not found in d_athletes.")
     r = rows[0]
-    if r["has_pitching_data"] and r["has_hitting_data"]:
+    has_p = bool(r["has_pitching_data"])
+    has_h = bool(r["has_hitting_data"])
+
+    # Secondary signal from fact tables — these are the source of truth even
+    # when the d_athletes flag is stale.
+    if not has_p:
+        pt = query(conn, """
+            SELECT 1 FROM public.f_pitching_trials
+            WHERE athlete_uuid = %s LIMIT 1
+        """, [athlete_uuid])
+        if pt:
+            has_p = True
+            print(f"[profiler] {athlete_uuid}: d_athletes.has_pitching_data=False "
+                  f"but f_pitching_trials has rows → treating as pitcher")
+    if not has_h:
+        ht = query(conn, """
+            SELECT 1 FROM public.f_hitting_trials
+            WHERE athlete_uuid = %s LIMIT 1
+        """, [athlete_uuid])
+        if ht:
+            has_h = True
+            print(f"[profiler] {athlete_uuid}: d_athletes.has_hitting_data=False "
+                  f"but f_hitting_trials has rows → treating as hitter")
+
+    if has_p and has_h:
         role = "both"
-    elif r["has_pitching_data"]:
+    elif has_p:
         role = "pitcher"
-    elif r["has_hitting_data"]:
+    elif has_h:
         role = "hitter"
     else:
         role = "unknown"
