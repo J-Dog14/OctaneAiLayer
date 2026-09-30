@@ -1,0 +1,2111 @@
+# ─────────────────────────────────────────────────────────────────────────
+# Coach-facing metric dictionary
+#
+# Purpose: one place that turns a warehouse key like
+#   fm_lead_rfd_braking_bw_per_s
+# into something a coach reads without translating:
+#   "Front-leg braking rate — how fast he gets the brakes on after landing"
+#
+# Two layers:
+#   metrics:    hand-curated entries. These are the only ones allowed to
+#               appear on a coach-facing page with a plain-language name.
+#   vocabulary: token tables the composer uses to auto-generate a readable
+#               (but uncurated) name for the long tail of ~600 kin_* keys.
+#               Auto names are marked status=auto and are shown only in the
+#               analyst appendix.
+#
+# direction values:
+#   higher_better  — more is better, all else equal
+#   lower_better   — less is better, all else equal
+#   context        — depends on the athlete / archetype; do NOT colour it
+#   load           — a tissue-load measure. Higher is not "worse technique",
+#                    it is more stress. Never render as good/bad.
+#   review         — nobody has decided yet. Rendered as context + flagged
+#                    in `research metric-coverage`.
+#
+# Adding an entry is the ONLY thing needed to promote a metric to
+# coach-facing. Run `python -m src.main research metric-coverage` to see
+# what is still missing, ranked by how often it actually shows up.
+# ─────────────────────────────────────────────────────────────────────────
+version: 2
+
+groups:
+  sequencing:   {label: "Sequencing & separation", order: 10}
+  force:        {label: "Force & ground contact",  order: 20}
+  lower_half:   {label: "Lower half",              order: 30}
+  arm:          {label: "Arm action",              order: 40}
+  posture:      {label: "Posture & direction",     order: 50}
+  timing:       {label: "Timing",                  order: 60}
+  output:       {label: "Output",                  order: 70}
+  mobility:     {label: "Mobility & ROM",          order: 80}
+  strength:     {label: "Strength & power",        order: 90}
+  jump:         {label: "Jump & reactive",         order: 100}
+  load:         {label: "Arm load",                order: 110}
+  other:        {label: "Other",                   order: 999}
+
+# ═════════════════════════════════════════════════════════════════════════
+# CURATED
+# ═════════════════════════════════════════════════════════════════════════
+metrics:
+
+  # ── Output ─────────────────────────────────────────────────────────────
+  velocity_mph:
+    name: "Pitch velocity"
+    short: "Velo"
+    definition: "Ball speed out of the hand."
+    unit: mph
+    direction: higher_better
+    group: output
+    status: curated
+
+  pitch_ball_release_speed:
+    name: "Pitch velocity"
+    short: "Velo"
+    definition: "Ball speed out of the hand."
+    unit: mph
+    direction: higher_better
+    group: output
+    status: curated
+
+  # ── Sequencing & separation ────────────────────────────────────────────
+  pitch_hip_shoulder_sep_at_fc:
+    name: "Hip–shoulder separation at foot strike"
+    short: "Hip–shoulder sep"
+    definition: >-
+      How far the pelvis has rotated ahead of the torso at the instant the
+      front foot lands. The stretch the upper half gets to fire against.
+    unit: deg
+    direction: higher_better
+    group: sequencing
+    cue: "Hips first, chest stays closed through landing."
+    status: curated
+
+  pitch_hss_at_fc_120ms_z:
+    name: "Hip–shoulder separation, 120 ms before foot strike"
+    short: "Hip–shoulder sep (−120 ms)"
+    definition: >-
+      Separation measured a tenth of a second before landing — catches whether
+      the separation is being built into the stride or created late.
+    unit: deg
+    direction: context
+    group: sequencing
+    status: curated
+
+  pitch_trunk_rot_wrt_pelvis_at_fc:
+    name: "Torso rotation relative to pelvis at foot strike"
+    short: "Torso-on-pelvis at FS"
+    definition: "Torso angle measured against the pelvis rather than the world at landing."
+    unit: deg
+    direction: context
+    group: sequencing
+    status: curated
+
+  pitch_pelvis_ang_vel_max:
+    name: "Peak pelvis rotation speed"
+    short: "Peak pelvis speed"
+    definition: "Fastest the hips rotate at any point in the delivery."
+    unit: deg/s
+    direction: higher_better
+    group: sequencing
+    status: curated
+
+  pitch_thorax_ang_vel_max:
+    name: "Peak torso rotation speed"
+    short: "Peak torso speed"
+    definition: "Fastest the chest rotates at any point in the delivery."
+    unit: deg/s
+    direction: higher_better
+    group: sequencing
+    status: curated
+
+  pitch_time_max_pelvis_to_max_thorax:
+    name: "Pelvis-to-torso handoff time"
+    short: "Hips→chest handoff"
+    definition: >-
+      Gap between the hips hitting top speed and the chest hitting top speed.
+      The core of the kinematic sequence — too short means they are going
+      together instead of in order.
+    unit: s
+    direction: context
+    group: sequencing
+    cue: "Feel the hips finish before the chest starts."
+    status: curated
+
+  pitch_pelvis_ang_vel_at_fc:
+    name: "Pelvis rotation speed at foot strike"
+    short: "Pelvis speed at FS"
+    definition: "How fast the hips are already turning when the front foot lands."
+    unit: deg/s
+    direction: context
+    group: sequencing
+    status: curated
+
+  pitch_pelvis_ang_vel_at_max_er:
+    name: "Pelvis rotation speed at max external rotation"
+    short: "Pelvis speed at max ER"
+    definition: "Hip rotation speed at the arm's lay-back position."
+    unit: deg/s
+    direction: context
+    group: sequencing
+    status: curated
+
+  pitch_pelvis_rotation_at_fc:
+    name: "Pelvis rotation at foot strike"
+    short: "Pelvis rotation at FS"
+    definition: "How far the hips have opened to the target when the front foot lands."
+    unit: deg
+    direction: context
+    group: sequencing
+    status: curated
+
+  pitch_pelvis_rot_stop_time:
+    name: "Pelvis rotation stop time"
+    short: "Pelvis stop"
+    definition: >-
+      When the hips stop rotating. A clean stop is what the torso accelerates
+      against; hips that keep drifting bleed energy out of the chain.
+    unit: s
+    direction: context
+    group: sequencing
+    status: curated
+
+  # ── Force & ground contact (Visual3D-derived) ──────────────────────────
+  pitch_lead_leg_grf_mag_max:
+    name: "Peak front-leg ground force"
+    short: "Front-leg peak force"
+    definition: "Largest total force the front leg puts into the ground."
+    unit: N
+    direction: higher_better
+    group: force
+    status: curated
+
+  pitch_lead_leg_grf_max_z:
+    name: "Peak front-leg vertical force"
+    short: "Front-leg vertical peak"
+    definition: "Largest straight-down force through the front leg."
+    unit: N
+    direction: higher_better
+    group: force
+    status: curated
+
+  pitch_lead_leg_grf_min_y_abs:
+    name: "Peak front-leg braking force"
+    short: "Front-leg braking peak"
+    definition: "Largest backward force the front leg uses to stop forward momentum."
+    unit: N
+    direction: higher_better
+    group: force
+    status: curated
+
+  pitch_lead_leg_grf_mag_midpoint:
+    name: "Front-leg force at midpoint of foot strike → release"
+    short: "Front-leg force at midpoint"
+    definition: "How much force the front leg is holding halfway between landing and release."
+    unit: N
+    direction: context
+    group: force
+    status: curated
+
+  pitch_back_leg_grf_mag_max:
+    name: "Peak back-leg ground force"
+    short: "Back-leg peak force"
+    definition: "Largest total force the drive leg puts into the ground."
+    unit: N
+    direction: higher_better
+    group: force
+    status: curated
+
+  pitch_front_leg_extension:
+    name: "Front-leg extension"
+    short: "Front-leg extension"
+    definition: "How much the front knee straightens from landing into release."
+    unit: deg
+    direction: context
+    group: lower_half
+    cue: "Post and push the hip back over the front foot."
+    status: curated
+
+  # ── Force plate (f_pitching_force_metrics) ─────────────────────────────
+  fm_lead_peak_vertical_bw:
+    name: "Front-leg peak vertical force"
+    short: "Front-leg vertical peak"
+    definition: "Biggest straight-down push through the front leg, in bodyweights."
+    unit: BW
+    direction: higher_better
+    group: force
+    status: curated
+
+  fm_lead_peak_braking_bw:
+    name: "Front-leg peak braking force"
+    short: "Front-leg braking peak"
+    definition: "Biggest backward force the front leg uses to stop the body, in bodyweights."
+    unit: BW
+    direction: higher_better
+    group: force
+    cue: "Land to stop, not to absorb."
+    status: curated
+
+  fm_lead_peak_resultant_bw:
+    name: "Front-leg peak total force"
+    short: "Front-leg total peak"
+    definition: "Biggest combined (vertical + braking) force through the front leg."
+    unit: BW
+    direction: higher_better
+    group: force
+    status: curated
+
+  fm_lead_rfd_vertical_bw_per_s:
+    name: "Front-leg vertical force rate"
+    short: "Vertical force rate"
+    definition: >-
+      How fast the front leg builds straight-down force after landing. Two
+      pitchers can hit the same peak; the one who gets there faster has more
+      of it available before release.
+    unit: BW/s
+    direction: higher_better
+    group: force
+    cue: "Beat the ground quickly — the peak has to arrive early."
+    status: curated
+
+  fm_lead_rfd_braking_bw_per_s:
+    name: "Front-leg braking rate"
+    short: "Braking rate"
+    definition: "How fast the front leg gets the brakes on after the foot lands."
+    unit: BW/s
+    direction: higher_better
+    group: force
+    cue: "Stiff front side — stop the hip, don't ride it."
+    status: curated
+
+  fm_lead_time_to_peak_fz_ms:
+    name: "Time to peak front-leg vertical force"
+    short: "Time to vertical peak"
+    definition: "How long after landing the front leg reaches its biggest downward push."
+    unit: ms
+    direction: lower_better
+    group: force
+    status: curated
+
+  fm_peak_v_to_peak_b_lag_ms:
+    name: "Vertical-to-braking peak lag"
+    short: "Peak stacking"
+    definition: >-
+      Gap between the vertical force peak and the braking force peak. Near
+      zero means the two peaks stack into one clean impulse; a large gap
+      means the front leg is doing two separate jobs.
+    unit: ms
+    direction: lower_better
+    group: force
+    cue: "One block, not a catch-then-push."
+    status: curated
+
+  fm_impulse_peak_count:
+    name: "Front-leg force peak count"
+    short: "Force peaks"
+    definition: >-
+      How many distinct force peaks the front leg produces between landing
+      and release. One is a clean single block; more than one usually means
+      the athlete re-loads after landing.
+    unit: count
+    direction: lower_better
+    group: force
+    status: curated
+
+  fm_lead_impulse_v_into_ball_bws:
+    name: "Front-leg vertical impulse into the ball"
+    short: "Vertical impulse"
+    definition: >-
+      Total downward force multiplied by the time it is applied, over the
+      window that actually contributes to the pitch.
+    unit: BW·s
+    direction: higher_better
+    group: force
+    status: curated
+
+  fm_lead_impulse_b_into_ball_bws:
+    name: "Front-leg braking impulse into the ball"
+    short: "Braking impulse"
+    definition: "Total braking force multiplied by the time it is applied, over the release window."
+    unit: BW·s
+    direction: higher_better
+    group: force
+    status: curated
+
+  fm_lead_impulse_resultant_into_ball_bws:
+    name: "Front-leg total impulse into the ball"
+    short: "Total impulse"
+    definition: "Combined vertical and braking impulse over the release window."
+    unit: BW·s
+    direction: higher_better
+    group: force
+    status: curated
+
+  fm_drive_peak_vertical_bw:
+    name: "Back-leg peak vertical force"
+    short: "Back-leg vertical peak"
+    definition: "Biggest downward push off the rubber, in bodyweights."
+    unit: BW
+    direction: higher_better
+    group: force
+    status: curated
+
+  fm_drive_peak_braking_bw:
+    name: "Back-leg peak braking force"
+    short: "Back-leg braking peak"
+    definition: "Biggest backward force through the drive leg."
+    unit: BW
+    direction: context
+    group: force
+    status: curated
+
+  fm_drive_to_lead_handoff_ms:
+    name: "Back-leg to front-leg handoff time"
+    short: "Leg handoff"
+    definition: "Gap between the drive leg unloading and the front leg taking over."
+    unit: ms
+    direction: context
+    group: timing
+    status: curated
+
+  fm_fc_to_br_duration_s:
+    name: "Foot strike to release time"
+    short: "FS→release"
+    definition: >-
+      How long the athlete spends between the front foot landing and letting
+      go of the ball. Shorter is quicker but leaves less time to apply force.
+    unit: s
+    direction: context
+    group: timing
+    status: curated
+
+  fm_total_vertical_peak_n:
+    name: "Peak total vertical force (both legs)"
+    short: "Total vertical peak"
+    definition: "Largest combined downward force from both plates."
+    unit: N
+    direction: higher_better
+    group: force
+    status: curated
+
+  fm_foot_loading_time_ms:
+    name: "Front-foot loading time"
+    short: "Loading time"
+    definition: "How long the front foot takes to go from first contact to full load."
+    unit: ms
+    direction: lower_better
+    group: force
+    status: curated
+
+  # Alias family: the pitch_force_* profile keys mirror the fm_* trial keys.
+  pitch_force_lead_peak_braking_bw:      {alias_of: fm_lead_peak_braking_bw}
+  pitch_force_lead_peak_vertical_bw:     {alias_of: fm_lead_peak_vertical_bw}
+  pitch_force_lead_peak_resultant_bw:    {alias_of: fm_lead_peak_resultant_bw}
+  pitch_force_lead_rfd_braking_bw_per_s: {alias_of: fm_lead_rfd_braking_bw_per_s}
+  pitch_force_lead_rfd_vertical_bw_per_s: {alias_of: fm_lead_rfd_vertical_bw_per_s}
+  pitch_force_lead_impulse_v_into_ball_bws: {alias_of: fm_lead_impulse_v_into_ball_bws}
+  pitch_force_lead_impulse_b_into_ball_bws: {alias_of: fm_lead_impulse_b_into_ball_bws}
+  pitch_force_lead_time_to_peak_fz_ms:   {alias_of: fm_lead_time_to_peak_fz_ms}
+  pitch_force_peak_v_to_b_lag_ms:        {alias_of: fm_peak_v_to_peak_b_lag_ms}
+
+  pitch_force_lead_fz_at_midpoint_bw:
+    name: "Front-leg vertical force at midpoint"
+    short: "Vertical at midpoint"
+    definition: "Downward force through the front leg halfway from landing to release."
+    unit: BW
+    direction: context
+    group: force
+    status: curated
+
+  pitch_force_lead_peak_vertical_pct_fc_br:
+    name: "When the front-leg vertical peak happens"
+    short: "Vertical peak timing"
+    definition: >-
+      Where the vertical force peak falls between landing (0%) and release
+      (100%). Early peaks mean the force is available while the arm is still
+      accelerating.
+    unit: "%"
+    direction: lower_better
+    group: force
+    status: curated
+
+  pitch_force_peaks_before_mer:
+    name: "Force peaks before max external rotation"
+    short: "Peaks before max ER"
+    definition: "How many front-leg force peaks land before the arm reaches full lay-back."
+    unit: count
+    direction: context
+    group: force
+    status: curated
+
+  # ── Lower half ─────────────────────────────────────────────────────────
+  pitch_stride_length:
+    name: "Stride length"
+    short: "Stride"
+    definition: "Distance from the rubber to front-foot contact."
+    unit: in
+    direction: context
+    group: lower_half
+    status: curated
+
+  pitch_stride_length_mean_percent:
+    name: "Stride length as % of height"
+    short: "Stride (% height)"
+    definition: "Stride length normalised to the athlete's height, so tall and short pitchers compare."
+    unit: "%"
+    direction: context
+    group: lower_half
+    status: curated
+
+  pitch_lead_knee_at_fc:
+    name: "Front knee angle at foot strike"
+    short: "Front knee at FS"
+    definition: "How bent the front knee is the moment it lands."
+    unit: deg
+    direction: context
+    group: lower_half
+    status: curated
+
+  pitch_lead_knee_at_release:
+    name: "Front knee angle at release"
+    short: "Front knee at release"
+    definition: "How bent the front knee is when the ball comes out — the block."
+    unit: deg
+    direction: context
+    group: lower_half
+    cue: "Front leg firms up as the chest comes over it."
+    status: curated
+
+  pitch_back_knee_at_fc:
+    name: "Back knee angle at foot strike"
+    short: "Back knee at FS"
+    definition: "Drive-leg knee bend at the moment the front foot lands."
+    unit: deg
+    direction: context
+    group: lower_half
+    status: curated
+
+  pitch_back_knee_at_max_er:
+    name: "Back knee angle at max external rotation"
+    short: "Back knee at max ER"
+    definition: "Drive-leg knee bend at the arm's lay-back position."
+    unit: deg
+    direction: context
+    group: lower_half
+    status: curated
+
+  pitch_back_knee_at_release:
+    name: "Back knee angle at release"
+    short: "Back knee at release"
+    definition: "Drive-leg knee bend when the ball comes out."
+    unit: deg
+    direction: context
+    group: lower_half
+    status: curated
+
+  pitch_max_pelvis_linear_vel_mph:
+    name: "Peak pelvis travel speed"
+    short: "Pelvis travel speed"
+    definition: "How fast the hips move down the mound (not rotation — travel)."
+    unit: mph
+    direction: higher_better
+    group: lower_half
+    status: curated
+
+  pitch_max_trunk_linear_vel_mph_y:
+    name: "Peak torso travel speed"
+    short: "Torso travel speed"
+    definition: "How fast the chest moves toward the plate."
+    unit: mph
+    direction: higher_better
+    group: lower_half
+    status: curated
+
+  pitch_trunk_cog_vel_at_release_mph_y:
+    name: "Torso travel speed at release"
+    short: "Torso speed at release"
+    definition: "How fast the chest is still moving toward the plate when the ball comes out."
+    unit: mph
+    direction: context
+    group: lower_half
+    status: curated
+
+  # ── Arm action ─────────────────────────────────────────────────────────
+  pitch_max_external_rotation_simple:
+    name: "Max external rotation (lay-back)"
+    short: "Max ER"
+    definition: "How far the throwing arm lays back before it turns over."
+    unit: deg
+    direction: context
+    group: arm
+    status: curated
+
+  pitch_max_external_rotation_xyz:
+    name: "Max external rotation (3-axis)"
+    short: "Max ER (XYZ)"
+    definition: "Lay-back measured with the full three-axis shoulder model."
+    unit: deg
+    direction: context
+    group: arm
+    status: curated
+
+  pitch_max_horizontal_abduction:
+    name: "Max horizontal abduction"
+    short: "Max horiz abduction"
+    definition: >-
+      How far behind the plane of the shoulders the elbow travels. Large
+      values are the classic 'arm drag behind the body' pattern.
+    unit: deg
+    direction: context
+    group: arm
+    cue: "Keep the elbow in front of the shoulder line."
+    status: curated
+
+  pitch_time_to_max_abduction_ms:
+    name: "Time to max abduction"
+    short: "Time to max abduction"
+    definition: "How long into the delivery the arm reaches its widest point."
+    unit: ms
+    direction: context
+    group: timing
+    status: curated
+
+  pitch_peak_abduction:
+    name: "Peak shoulder abduction"
+    short: "Peak abduction"
+    definition: "How high the arm is carried away from the body at its peak."
+    unit: deg
+    direction: context
+    group: arm
+    status: curated
+
+  pitch_shoulder_y_at_fc:
+    name: "Shoulder abduction at foot strike"
+    short: "Shoulder abd at FS"
+    definition: "Arm slot height at the moment the front foot lands."
+    unit: deg
+    direction: context
+    group: arm
+    status: curated
+
+  pitch_shoulder_y_at_max_er:
+    name: "Shoulder abduction at max external rotation"
+    short: "Shoulder abd at max ER"
+    definition: "Arm slot height at full lay-back."
+    unit: deg
+    direction: context
+    group: arm
+    status: curated
+
+  pitch_shoulder_at_fc_120ms_x:
+    name: "Shoulder angle 120 ms before foot strike"
+    short: "Shoulder (−120 ms)"
+    definition: "Where the arm is a tenth of a second before landing — catches early arm timing."
+    unit: deg
+    direction: context
+    group: arm
+    status: curated
+
+  pitch_arm_timing_at_fc_simple:
+    name: "Arm timing at foot strike"
+    short: "Arm timing at FS"
+    definition: "Whether the arm is on schedule, early or late when the front foot lands."
+    unit: deg
+    direction: context
+    group: timing
+    status: curated
+
+  pitch_arm_er_timing_at_fc_xyz:
+    name: "Arm external-rotation timing at foot strike"
+    short: "ER timing at FS"
+    definition: "How much lay-back the arm has already reached at landing."
+    unit: deg
+    direction: context
+    group: timing
+    status: curated
+
+  pitch_elbow_flex_at_max_er:
+    name: "Elbow flexion at max external rotation"
+    short: "Elbow flex at max ER"
+    definition: "How bent the elbow is at the arm's lay-back position."
+    unit: deg
+    direction: context
+    group: arm
+    status: curated
+
+  pitch_elbow_ang_vel_max:
+    name: "Peak elbow extension speed"
+    short: "Peak elbow speed"
+    definition: "Fastest the elbow straightens."
+    unit: deg/s
+    direction: higher_better
+    group: arm
+    status: curated
+
+  pitch_humerus_ang_vel_max:
+    name: "Peak upper-arm rotation speed"
+    short: "Peak humerus speed"
+    definition: "Fastest the upper arm internally rotates — the last big link in the chain."
+    unit: deg/s
+    direction: higher_better
+    group: arm
+    status: curated
+
+  pitch_hand_ang_vel_max:
+    name: "Peak hand speed"
+    short: "Peak hand speed"
+    definition: "Fastest the hand moves — the closest kinematic proxy to ball speed."
+    unit: deg/s
+    direction: higher_better
+    group: arm
+    status: curated
+
+  # ── Posture & direction ────────────────────────────────────────────────
+  pitch_trunk_lateral_at_fc:
+    name: "Torso side-bend at foot strike"
+    short: "Side-bend at FS"
+    definition: "How far the chest is tilted to the side when the front foot lands."
+    unit: deg
+    direction: context
+    group: posture
+    status: curated
+
+  pitch_trunk_lateral_at_release:
+    name: "Torso side-bend at release"
+    short: "Side-bend at release"
+    definition: "How far the chest is tilted to the glove side at ball release."
+    unit: deg
+    direction: context
+    group: posture
+    status: curated
+
+  pitch_trunk_flexion_at_release:
+    name: "Torso forward tilt at release"
+    short: "Forward tilt at release"
+    definition: "How far the chest has folded over the front leg when the ball comes out."
+    unit: deg
+    direction: context
+    group: posture
+    status: curated
+
+  pitch_total_trunk_flexion:
+    name: "Total torso forward tilt"
+    short: "Total trunk flexion"
+    definition: "Total range of forward trunk tilt through the delivery."
+    unit: deg
+    direction: context
+    group: posture
+    status: curated
+
+  pitch_trunk_rotation_at_fc:
+    name: "Torso rotation at foot strike"
+    short: "Torso rotation at FS"
+    definition: "How far the chest has opened to the target when the front foot lands."
+    unit: deg
+    direction: context
+    group: posture
+    status: curated
+
+  pitch_pelvic_obliquity_total:
+    name: "Total pelvic tilt range"
+    short: "Pelvic obliquity range"
+    definition: "How much the pelvis tips side to side across the delivery."
+    unit: deg
+    direction: context
+    group: posture
+    status: curated
+
+  pitch_pelvis_obliquity_at_fc:
+    name: "Pelvic side-tilt at foot strike"
+    short: "Pelvic tilt at FS"
+    definition: "Whether the front hip is higher or lower than the back hip at landing."
+    unit: deg
+    direction: context
+    group: posture
+    status: curated
+
+  pitch_pelvis_obliquity_at_release:
+    name: "Pelvic side-tilt at release"
+    short: "Pelvic tilt at release"
+    definition: "Whether the front hip is higher or lower than the back hip at release."
+    unit: deg
+    direction: context
+    group: posture
+    status: curated
+
+  # ── Timing ─────────────────────────────────────────────────────────────
+  pitch_release_time:      {name: "Time to release", short: "Release time", definition: "Elapsed time from the start of the delivery to ball release.", unit: s, direction: context, group: timing, status: curated}
+  pitch_time_max_pelvis_vel: {name: "Time of peak pelvis speed", short: "Peak pelvis time", definition: "When in the delivery the hips hit top rotation speed.", unit: s, direction: context, group: timing, status: curated}
+  pitch_time_max_thorax_vel: {name: "Time of peak torso speed", short: "Peak torso time", definition: "When in the delivery the chest hits top rotation speed.", unit: s, direction: context, group: timing, status: curated}
+  pitch_time_max_humerus_vel: {name: "Time of peak upper-arm speed", short: "Peak humerus time", definition: "When the upper arm hits top rotation speed.", unit: s, direction: context, group: timing, status: curated}
+  pitch_time_max_hand_vel: {name: "Time of peak hand speed", short: "Peak hand time", definition: "When the hand hits top speed.", unit: s, direction: context, group: timing, status: curated}
+  pitch_max_elbow_vel_time: {name: "Time of peak elbow speed", short: "Peak elbow time", definition: "When the elbow hits top extension speed.", unit: s, direction: context, group: timing, status: curated}
+  pitch_max_shoulder_rot_time: {name: "Time of max external rotation", short: "Max ER time", definition: "When the arm reaches full lay-back.", unit: s, direction: context, group: timing, status: curated}
+
+  # ── Arm load (never rendered good/bad) ─────────────────────────────────
+  pitch_max_elbow_varus_torque_nm:
+    name: "Peak elbow varus torque"
+    short: "Elbow varus torque"
+    definition: >-
+      Peak stress across the inside of the elbow. Scales with velocity, so a
+      rise alongside a velo jump is expected, not a red flag on its own.
+      Watch it per-mph rather than in absolute terms.
+    unit: Nm
+    direction: load
+    group: load
+    status: curated
+
+  pitch_elbow_torque_nm_at_max_er:
+    name: "Elbow torque at max external rotation"
+    short: "Elbow torque at max ER"
+    definition: "Elbow stress at the arm's lay-back position — usually the peak-stress instant."
+    unit: Nm
+    direction: load
+    group: load
+    status: curated
+
+  pitch_shoulder_force_abd_at_max:
+    name: "Peak shoulder abduction force"
+    short: "Shoulder abd force"
+    definition: "Peak force pulling the arm away from the shoulder socket."
+    unit: N
+    direction: load
+    group: load
+    status: curated
+
+  # ── Mobility ───────────────────────────────────────────────────────────
+  mob_shoulder_er:       {name: "Shoulder external rotation", short: "Shoulder ER", definition: "Passive range turning the throwing arm back.", unit: deg, direction: context, group: mobility, status: curated}
+  mob_shoulder_ir:       {name: "Shoulder internal rotation", short: "Shoulder IR", definition: "Passive range turning the throwing arm forward. Low IR is the classic GIRD pattern.", unit: deg, direction: context, group: mobility, status: curated}
+  mob_horizontal_abduction: {name: "Shoulder horizontal abduction ROM", short: "Horiz abduction ROM", definition: "How far the arm can travel behind the shoulder line passively.", unit: deg, direction: context, group: mobility, status: curated}
+  mob_back_to_wall_shoulder_flexion: {name: "Back-to-wall shoulder flexion", short: "BTW shoulder flexion", definition: "Overhead reach with the low back flat against the wall.", unit: deg, direction: higher_better, group: mobility, status: curated}
+  mob_sittiing_t_spine_pvc_l: {name: "Seated T-spine rotation (left)", short: "T-spine rot (L)", definition: "Seated thoracic rotation to the left, measured with the PVC test.", unit: deg, direction: higher_better, group: mobility, status: curated}
+  mob_sittiing_t_spine_pvc_r: {name: "Seated T-spine rotation (right)", short: "T-spine rot (R)", definition: "Seated thoracic rotation to the right, measured with the PVC test.", unit: deg, direction: higher_better, group: mobility, status: curated}
+  mob_l_prone_hip_ir:    {name: "Left hip internal rotation", short: "Hip IR (L)", definition: "Prone hip internal rotation range, left side.", unit: deg, direction: higher_better, group: mobility, status: curated}
+  mob_r_prone_hip_ir:    {name: "Right hip internal rotation", short: "Hip IR (R)", definition: "Prone hip internal rotation range, right side.", unit: deg, direction: higher_better, group: mobility, status: curated}
+  mob_l_prone_hip_er:    {name: "Left hip external rotation", short: "Hip ER (L)", definition: "Prone hip external rotation range, left side.", unit: deg, direction: higher_better, group: mobility, status: curated}
+  mob_r_prone_hip_er:    {name: "Right hip external rotation", short: "Hip ER (R)", definition: "Prone hip external rotation range, right side.", unit: deg, direction: higher_better, group: mobility, status: curated}
+  mob_ankle_dorsiflextion_to_wall: {name: "Ankle dorsiflexion (knee-to-wall)", short: "Ankle DF", definition: "How far the knee travels past the toes before the heel lifts.", unit: in, direction: higher_better, group: mobility, status: curated}
+  mob_hamstring_stretch: {name: "Hamstring range", short: "Hamstring ROM", definition: "Passive straight-leg hamstring range.", unit: deg, direction: higher_better, group: mobility, status: curated}
+  mob_thomas_test_hip_flexor_l: {name: "Hip flexor length (left)", short: "Hip flexor (L)", definition: "Thomas test — how tight the left hip flexor sits.", unit: deg, direction: higher_better, group: mobility, status: curated}
+  mob_thomas_test_hip_flexor_r: {name: "Hip flexor length (right)", short: "Hip flexor (R)", definition: "Thomas test — how tight the right hip flexor sits.", unit: deg, direction: higher_better, group: mobility, status: curated}
+  mob_backbend:          {name: "Back extension", short: "Backbend", definition: "Standing back extension range.", unit: deg, direction: context, group: mobility, status: curated}
+  mob_grip_strength_r:   {name: "Grip strength (right)", short: "Grip (R)", definition: "Right-hand grip dynamometer.", unit: lb, direction: higher_better, group: strength, status: curated}
+  mob_gs_l:              {name: "Grip strength (left)", short: "Grip (L)", definition: "Left-hand grip dynamometer.", unit: lb, direction: higher_better, group: strength, status: curated}
+  mob_grip_strength_r_at_90: {name: "Grip strength at 90° (right)", short: "Grip @90 (R)", definition: "Right-hand grip with the elbow at 90 degrees.", unit: lb, direction: higher_better, group: strength, status: curated}
+  mob_gs_l_at_90:        {name: "Grip strength at 90° (left)", short: "Grip @90 (L)", definition: "Left-hand grip with the elbow at 90 degrees.", unit: lb, direction: higher_better, group: strength, status: curated}
+  mob_low_trap:          {name: "Lower trap strength", short: "Low trap", definition: "Manual muscle test of the lower trapezius.", unit: "%BW", direction: higher_better, group: strength, status: curated}
+  mob_mid_trap:          {name: "Mid trap strength", short: "Mid trap", definition: "Manual muscle test of the middle trapezius.", unit: "%BW", direction: higher_better, group: strength, status: curated}
+  mob_shoulder_stability_er_at_0_deg_horiz_abuduction: {name: "Shoulder ER strength at neutral", short: "ER strength", definition: "External-rotation strength with the arm at the side.", unit: "%BW", direction: higher_better, group: strength, status: curated}
+  mob_shoulder_stability_ir_at_0_deg_horiz_abduction: {name: "Shoulder IR strength at neutral", short: "IR strength", definition: "Internal-rotation strength with the arm at the side.", unit: "%BW", direction: higher_better, group: strength, status: curated}
+  mob_shoulder_stability_flexion: {name: "Shoulder flexion strength", short: "Flexion strength", definition: "Manual muscle test of shoulder flexion.", unit: "%BW", direction: higher_better, group: strength, status: curated}
+  mob_shoulder_stability_abduction: {name: "Shoulder abduction strength", short: "Abduction strength", definition: "Manual muscle test of shoulder abduction.", unit: "%BW", direction: higher_better, group: strength, status: curated}
+  mob_glute_strength_test_prone_hammy_push: {name: "Glute/hamstring strength", short: "Glute strength", definition: "Prone hamstring push test.", unit: "%BW", direction: higher_better, group: strength, status: curated}
+  mob_prone_hamstring_raise: {name: "Prone hamstring raise", short: "Prone hammy", definition: "Active prone hamstring raise.", unit: deg, direction: higher_better, group: strength, status: curated}
+  mob_slump_test:        {name: "Slump test", short: "Slump", definition: "Neural tension screen for the posterior chain.", unit: deg, direction: context, group: mobility, status: curated}
+  mob_radial_nerve_glide: {name: "Radial nerve glide", short: "Radial glide", definition: "Radial nerve mobility screen.", unit: deg, direction: context, group: mobility, status: curated}
+  mob_ulnar_nerve_glide: {name: "Ulnar nerve glide", short: "Ulnar glide", definition: "Ulnar nerve mobility screen.", unit: deg, direction: context, group: mobility, status: curated}
+  mob_cervical_lateral_flexion: {name: "Neck side-bend", short: "Cervical flexion", definition: "Lateral neck range.", unit: deg, direction: context, group: mobility, status: curated}
+  mob_pelvic_tilt_against_wall: {name: "Pelvic tilt control", short: "Pelvic tilt", definition: "Ability to posteriorly tilt the pelvis against a wall.", unit: deg, direction: context, group: mobility, status: curated}
+  mob_hip_pinch:         {name: "Hip impingement screen", short: "Hip pinch", definition: "Anterior hip impingement screen.", unit: deg, direction: context, group: mobility, status: curated}
+  mob_ankle_manual_test: {name: "Ankle manual test", short: "Ankle MMT", definition: "Manual ankle strength/mobility test.", unit: "", direction: context, group: mobility, status: curated}
+  mob_young_stretch_passive: {name: "Young stretch (passive)", short: "Young stretch", definition: "Passive shoulder stretch screen.", unit: deg, direction: context, group: mobility, status: curated}
+  mob_isa:               {name: "ISA", short: "ISA", definition: "Internal shoulder assessment screen.", unit: "", direction: review, group: mobility, status: curated}
+
+  # ── Athletic screen ────────────────────────────────────────────────────
+  screen_cmj_jh_in:        {name: "Counter-movement jump height", short: "CMJ height", definition: "How high he jumps from a standing counter-movement.", unit: in, direction: higher_better, group: jump, status: curated}
+  screen_cmj_pp_w_per_kg:  {name: "CMJ peak power per kg", short: "CMJ power/kg", definition: "Peak jump power relative to bodyweight — the size-fair power number.", unit: W/kg, direction: higher_better, group: jump, status: curated}
+  screen_cmj_force_at_pp:  {name: "CMJ force at peak power", short: "CMJ force @PP", definition: "How much force he is producing at the instant of peak power.", unit: N, direction: higher_better, group: jump, status: curated}
+  screen_cmj_vel_at_pp:    {name: "CMJ velocity at peak power", short: "CMJ velo @PP", definition: "How fast he is moving at the instant of peak power.", unit: m/s, direction: higher_better, group: jump, status: curated}
+  screen_cmj_rpd_max_w_per_s: {name: "CMJ peak power development rate", short: "CMJ RPD", definition: "How fast he ramps into peak power.", unit: W/s, direction: higher_better, group: jump, status: curated}
+  screen_cmj_time_to_rpd_max_s: {name: "CMJ time to peak power rate", short: "CMJ time to RPD", definition: "How long it takes to hit the fastest power ramp.", unit: s, direction: lower_better, group: jump, status: curated}
+  screen_cmj_auc_j:        {name: "CMJ work done", short: "CMJ work", definition: "Total area under the jump power curve.", unit: J, direction: higher_better, group: jump, status: curated}
+  screen_cmj_kurtosis:     {name: "CMJ power-curve shape", short: "CMJ kurtosis", definition: "Whether the power curve is one sharp spike or a broad plateau.", unit: "", direction: context, group: jump, status: curated}
+
+  screen_dj_rsi:           {name: "Drop-jump reactive strength index", short: "RSI", definition: "Jump height divided by ground-contact time — how springy he is off the floor.", unit: "", direction: higher_better, group: jump, cue: "Minimise ground time without losing height.", status: curated}
+  screen_dj_ct:            {name: "Drop-jump ground contact time", short: "DJ contact time", definition: "How long the feet stay on the ground in the drop jump.", unit: s, direction: context, group: jump, status: curated}
+  screen_dj_jh_in:         {name: "Drop-jump height", short: "DJ height", definition: "Jump height out of the drop.", unit: in, direction: higher_better, group: jump, status: curated}
+  screen_dj_pp_w_per_kg:   {name: "Drop-jump peak power per kg", short: "DJ power/kg", definition: "Peak drop-jump power relative to bodyweight.", unit: W/kg, direction: higher_better, group: jump, status: curated}
+  screen_dj_force_at_pp:   {name: "Drop-jump force at peak power", short: "DJ force @PP", definition: "Force at the instant of peak drop-jump power.", unit: N, direction: higher_better, group: jump, status: curated}
+  screen_dj_vel_at_pp:     {name: "Drop-jump velocity at peak power", short: "DJ velo @PP", definition: "Velocity at the instant of peak drop-jump power.", unit: m/s, direction: higher_better, group: jump, status: curated}
+  screen_dj_rpd_max_w_per_s: {name: "Drop-jump peak power development rate", short: "DJ RPD", definition: "How fast he ramps into peak power off the drop.", unit: W/s, direction: higher_better, group: jump, status: curated}
+  screen_dj_time_to_rpd_max_s: {name: "Drop-jump time to peak power rate", short: "DJ time to RPD", definition: "How long to reach the fastest power ramp off the drop.", unit: s, direction: lower_better, group: jump, status: curated}
+  screen_dj_auc_j:         {name: "Drop-jump work done", short: "DJ work", definition: "Total area under the drop-jump power curve.", unit: J, direction: higher_better, group: jump, status: curated}
+  screen_dj_kurtosis:      {name: "Drop-jump power-curve shape", short: "DJ kurtosis", definition: "Spike vs plateau shape of the drop-jump power curve.", unit: "", direction: context, group: jump, status: curated}
+
+  screen_ppu_jh_in:        {name: "Plyo push-up height", short: "PPU height", definition: "How far off the floor he pushes in the plyo push-up.", unit: in, direction: higher_better, group: strength, status: curated}
+  screen_ppu_pp_w_per_kg:  {name: "Plyo push-up peak power per kg", short: "PPU power/kg", definition: "Upper-body explosive power relative to bodyweight.", unit: W/kg, direction: higher_better, group: strength, status: curated}
+  screen_ppu_force_at_pp:  {name: "Plyo push-up force at peak power", short: "PPU force @PP", definition: "Force at the instant of peak upper-body power.", unit: N, direction: higher_better, group: strength, status: curated}
+  screen_ppu_vel_at_pp:    {name: "Plyo push-up velocity at peak power", short: "PPU velo @PP", definition: "Velocity at the instant of peak upper-body power.", unit: m/s, direction: higher_better, group: strength, status: curated}
+  screen_ppu_rpd_max_w_per_s: {name: "Plyo push-up power development rate", short: "PPU RPD", definition: "How fast he ramps into peak upper-body power.", unit: W/s, direction: higher_better, group: strength, status: curated}
+  screen_ppu_time_to_rpd_max_s: {name: "Plyo push-up time to peak power rate", short: "PPU time to RPD", definition: "Time to the fastest upper-body power ramp.", unit: s, direction: lower_better, group: strength, status: curated}
+  screen_ppu_auc_j:        {name: "Plyo push-up work done", short: "PPU work", definition: "Area under the plyo push-up power curve.", unit: J, direction: higher_better, group: strength, status: curated}
+  screen_ppu_kurtosis:     {name: "Plyo push-up power-curve shape", short: "PPU kurtosis", definition: "Spike vs plateau shape of the upper-body power curve.", unit: "", direction: context, group: strength, status: curated}
+
+  screen_slv_left_jh_in:   {name: "Single-leg vertical, left", short: "SLV height (L)", definition: "Single-leg jump height off the left leg.", unit: in, direction: higher_better, group: jump, status: curated}
+  screen_slv_right_jh_in:  {name: "Single-leg vertical, right", short: "SLV height (R)", definition: "Single-leg jump height off the right leg.", unit: in, direction: higher_better, group: jump, status: curated}
+  screen_slv_left_pp_w_per_kg:  {name: "Single-leg peak power per kg, left", short: "SLV power/kg (L)", definition: "Left-leg explosive power relative to bodyweight.", unit: W/kg, direction: higher_better, group: jump, status: curated}
+  screen_slv_right_pp_w_per_kg: {name: "Single-leg peak power per kg, right", short: "SLV power/kg (R)", definition: "Right-leg explosive power relative to bodyweight.", unit: W/kg, direction: higher_better, group: jump, status: curated}
+  screen_slv_left_force_at_pp:  {name: "Single-leg force at peak power, left", short: "SLV force @PP (L)", definition: "Left-leg force at peak power.", unit: N, direction: higher_better, group: jump, status: curated}
+  screen_slv_right_force_at_pp: {name: "Single-leg force at peak power, right", short: "SLV force @PP (R)", definition: "Right-leg force at peak power.", unit: N, direction: higher_better, group: jump, status: curated}
+
+  # ── Proteus ────────────────────────────────────────────────────────────
+  proteus_pitcher_d2_extension_power_mean: {name: "Proteus D2 extension power (avg)", short: "D2 power", definition: "Average power through the throwing-pattern diagonal.", unit: W, direction: higher_better, group: strength, status: curated}
+  proteus_pitcher_d2_extension_power_high: {name: "Proteus D2 extension power (best)", short: "D2 power (best)", definition: "Best single-rep power through the throwing-pattern diagonal.", unit: W, direction: higher_better, group: strength, status: curated}
+  proteus_pitcher_d2_extension_velocity_mean: {name: "Proteus D2 extension velocity (avg)", short: "D2 velocity", definition: "Average speed through the throwing-pattern diagonal.", unit: m/s, direction: higher_better, group: strength, status: curated}
+  proteus_pitcher_d2_extension_velocity_high: {name: "Proteus D2 extension velocity (best)", short: "D2 velocity (best)", definition: "Best single-rep speed through the throwing-pattern diagonal.", unit: m/s, direction: higher_better, group: strength, status: curated}
+  proteus_pitcher_d2_extension_acceleration_mean: {name: "Proteus D2 extension acceleration (avg)", short: "D2 accel", definition: "Average acceleration through the throwing-pattern diagonal.", unit: m/s2, direction: higher_better, group: strength, status: curated}
+  proteus_pitcher_d2_extension_acceleration_high: {name: "Proteus D2 extension acceleration (best)", short: "D2 accel (best)", definition: "Best single-rep acceleration through the throwing diagonal.", unit: m/s2, direction: higher_better, group: strength, status: curated}
+  proteus_pitcher_shotput_power_mean:   {name: "Proteus shotput power (avg)", short: "Shotput power", definition: "Average power in the shotput pattern.", unit: W, direction: higher_better, group: strength, status: curated}
+  proteus_pitcher_shotput_power_high:   {name: "Proteus shotput power (best)", short: "Shotput power (best)", definition: "Best single-rep shotput power.", unit: W, direction: higher_better, group: strength, status: curated}
+  proteus_pitcher_shotput_velocity_mean: {name: "Proteus shotput velocity (avg)", short: "Shotput velocity", definition: "Average shotput-pattern speed.", unit: m/s, direction: higher_better, group: strength, status: curated}
+  proteus_pitcher_shotput_velocity_high: {name: "Proteus shotput velocity (best)", short: "Shotput velocity (best)", definition: "Best single-rep shotput speed.", unit: m/s, direction: higher_better, group: strength, status: curated}
+  proteus_pitcher_shotput_acceleration_mean: {name: "Proteus shotput acceleration (avg)", short: "Shotput accel", definition: "Average shotput-pattern acceleration.", unit: m/s2, direction: higher_better, group: strength, status: curated}
+  proteus_pitcher_shotput_acceleration_high: {name: "Proteus shotput acceleration (best)", short: "Shotput accel (best)", definition: "Best single-rep shotput acceleration.", unit: m/s2, direction: higher_better, group: strength, status: curated}
+
+
+# ═════════════════════════════════════════════════════════════════════════
+# VOCABULARY — used to auto-compose names for uncurated kin_* / fm_* keys.
+# Anything built from this is status=auto and never appears on a coach page
+# with a plain-language label.
+# ═════════════════════════════════════════════════════════════════════════
+  # ══════════════════════════════════════════════════════════════════
+  # Added from `research metric-coverage --status raw`: every metric
+  # below was carrying real data but had no coach-facing name, so its
+  # findings were held off the page and filed under a warehouse key.
+  # ══════════════════════════════════════════════════════════════════
+
+  score:
+    name: "Delivery score"
+    short: "Delivery score"
+    definition: >-
+      The pipeline's composite score for the delivery, built from
+      the mechanical variables in the scoring formula. Read the
+      inputs before the score — a composite can move for reasons
+      that cancel out underneath.
+    direction: higher_better
+    group: output
+    status: curated
+
+  kin_BALLSPEED.SPIN_RATE.X:
+    name: "Spin rate"
+    short: "Spin rate"
+    definition: >-
+      Ball spin measured at release.
+    unit: "rpm"
+    direction: context
+    group: output
+    status: curated
+
+  kin_BALLSPEED.SPIN_AXIS.X:
+    name: "Spin axis"
+    short: "Spin axis"
+    definition: >-
+      Orientation of the spin axis at release.
+    unit: "deg"
+    direction: context
+    group: output
+    status: curated
+
+  kin_STRIDE_LENGTH.STRIDE_LENGTH.X:
+    name: "Stride length"
+    short: "Stride"
+    definition: >-
+      Distance from the back foot at setup to the front foot at
+      landing.
+    unit: "m"
+    direction: context
+    group: lower_half
+    cue: "Same stride every pitch beats a long one."
+    status: curated
+
+  kin_STRIDE_LENGTH.STRIDE_LENGTH_MEAN_PERCENT.X:
+    name: "Stride length (% of height)"
+    short: "Stride %"
+    definition: >-
+      Stride length as a share of standing height, so it compares
+      across athletes of different sizes.
+    unit: "%"
+    direction: context
+    group: lower_half
+    status: curated
+
+  kin_MODEL.LAR_Seg_Length.X:
+    name: "Left arm segment length (model)"
+    short: "LAR length"
+    definition: >-
+      Fixed by where the markers were placed and how the model was
+      built, not measured from the athlete. It changes when the
+      marker set changes, which is why it is kept out of the change
+      tables.
+    unit: "m"
+    direction: context
+    group: other
+    status: curated
+
+  kin_MODEL.RAR_Seg_Length.X:
+    name: "Right arm segment length (model)"
+    short: "RAR length"
+    definition: >-
+      Fixed by where the markers were placed and how the model was
+      built, not measured from the athlete. It changes when the
+      marker set changes, which is why it is kept out of the change
+      tables.
+    unit: "m"
+    direction: context
+    group: other
+    status: curated
+
+  kin_MODEL.LTH_Seg_Length.X:
+    name: "Left thigh segment length (model)"
+    short: "LTH length"
+    definition: >-
+      Fixed by where the markers were placed and how the model was
+      built, not measured from the athlete. It changes when the
+      marker set changes, which is why it is kept out of the change
+      tables.
+    unit: "m"
+    direction: context
+    group: other
+    status: curated
+
+  kin_MODEL.RTH_Seg_Length.X:
+    name: "Right thigh segment length (model)"
+    short: "RTH length"
+    definition: >-
+      Fixed by where the markers were placed and how the model was
+      built, not measured from the athlete. It changes when the
+      marker set changes, which is why it is kept out of the change
+      tables.
+    unit: "m"
+    direction: context
+    group: other
+    status: curated
+
+  kin_MODEL.RTA_Seg_Length.X:
+    name: "Right shank segment length (model)"
+    short: "RTA length"
+    definition: >-
+      Fixed by where the markers were placed and how the model was
+      built, not measured from the athlete. It changes when the
+      marker set changes, which is why it is kept out of the change
+      tables.
+    unit: "m"
+    direction: context
+    group: other
+    status: curated
+
+  fm_body_weight_kg:
+    name: "Body weight"
+    short: "Weight"
+    definition: >-
+      The weight used to normalise every force metric on this
+      capture. If it is wrong, every BW-normalised number on the
+      page is wrong with it.
+    unit: "kg"
+    direction: context
+    group: other
+    status: curated
+
+  fm_body_weight_n:
+    name: "Body weight (newtons)"
+    short: "Weight (N)"
+    definition: >-
+      The same weight expressed as a force. Kept for the force
+      maths; the kilogram version is the one to read.
+    unit: "N"
+    direction: context
+    group: other
+    status: curated
+
+  fm_fc_time_s:
+    name: "Front foot contact — clock time in capture"
+    short: "Front clock"
+    definition: >-
+      Where this event falls on the capture's own clock, which
+      starts whenever recording started. It says nothing about the
+      delivery — the intervals between events do. Not differenced
+      between captures.
+    unit: "s"
+    direction: context
+    group: timing
+    status: curated
+
+  fm_br_time_s:
+    name: "Ball release — clock time in capture"
+    short: "Ball clock"
+    definition: >-
+      Where this event falls on the capture's own clock, which
+      starts whenever recording started. It says nothing about the
+      delivery — the intervals between events do. Not differenced
+      between captures.
+    unit: "s"
+    direction: context
+    group: timing
+    status: curated
+
+  fm_mer_time_s:
+    name: "Maximum external rotation — clock time in capture"
+    short: "Maximum clock"
+    definition: >-
+      Where this event falls on the capture's own clock, which
+      starts whenever recording started. It says nothing about the
+      delivery — the intervals between events do. Not differenced
+      between captures.
+    unit: "s"
+    direction: context
+    group: timing
+    status: curated
+
+  fm_initial_contact_time_s:
+    name: "First contact with the plate — clock time in capture"
+    short: "First clock"
+    definition: >-
+      Where this event falls on the capture's own clock, which
+      starts whenever recording started. It says nothing about the
+      delivery — the intervals between events do. Not differenced
+      between captures.
+    unit: "s"
+    direction: context
+    group: timing
+    status: curated
+
+  fm_virtual_plate_xcheck_pct:
+    name: "Plate cross-check"
+    short: "Plate check"
+    definition: >-
+      Quality check on the force-plate assignment: how well the
+      virtual plate agrees with the recorded one. A data-quality
+      number, not an athlete one.
+    unit: "%"
+    direction: context
+    group: other
+    status: curated
+
+  fm_axis_braking:
+    name: "Which axis is braking"
+    short: "Braking axis"
+    definition: >-
+      Records which lab axis the processor treated as this direction
+      for the trial. Bookkeeping, not a measurement.
+    direction: context
+    group: other
+    status: curated
+
+  fm_axis_vertical:
+    name: "Which axis is vertical"
+    short: "Vertical axis"
+    definition: >-
+      Records which lab axis the processor treated as this direction
+      for the trial. Bookkeeping, not a measurement.
+    direction: context
+    group: other
+    status: curated
+
+  fm_axis_mediolateral:
+    name: "Which axis is side-to-side"
+    short: "Side-to-side axis"
+    definition: >-
+      Records which lab axis the processor treated as this direction
+      for the trial. Bookkeeping, not a measurement.
+    direction: context
+    group: other
+    status: curated
+
+  screen_slv_left_auc_j:
+    name: "Single-leg vertical — Work done (left)"
+    short: "SLV Work (L)"
+    definition: >-
+      Area under the power curve — the total work in the jump, not
+      just its peak.
+    unit: "J"
+    direction: higher_better
+    group: jump
+    status: curated
+
+  screen_slv_left_rpd_max_w_per_s:
+    name: "Single-leg vertical — Peak rate of power development (left)"
+    short: "SLV Peak RPD (L)"
+    definition: >-
+      How fast he builds power, rather than how much he ends up
+      with.
+    unit: "W/s"
+    direction: higher_better
+    group: jump
+    status: curated
+
+  screen_slv_left_time_to_rpd_max_s:
+    name: "Single-leg vertical — Time to peak power rate (left)"
+    short: "SLV Time to peak RPD (L)"
+    definition: >-
+      How long it takes to reach that fastest build. Sooner is more
+      explosive.
+    unit: "s"
+    direction: lower_better
+    group: jump
+    status: curated
+
+  screen_slv_left_vel_at_pp:
+    name: "Single-leg vertical — Speed at peak power (left)"
+    short: "SLV Velo at peak power (L)"
+    definition: >-
+      How fast he is moving at the instant power peaks — the
+      velocity side of his force-velocity profile.
+    unit: "m/s"
+    direction: higher_better
+    group: jump
+    status: curated
+
+  screen_slv_left_kurtosis:
+    name: "Single-leg vertical — Power-curve shape (left)"
+    short: "SLV Curve shape (L)"
+    definition: >-
+      How peaked or flat the power curve is. A spike and a plateau
+      can reach the same peak and mean different things.
+    direction: context
+    group: jump
+    status: curated
+
+  screen_slv_right_auc_j:
+    name: "Single-leg vertical — Work done (right)"
+    short: "SLV Work (R)"
+    definition: >-
+      Area under the power curve — the total work in the jump, not
+      just its peak.
+    unit: "J"
+    direction: higher_better
+    group: jump
+    status: curated
+
+  screen_slv_right_rpd_max_w_per_s:
+    name: "Single-leg vertical — Peak rate of power development (right)"
+    short: "SLV Peak RPD (R)"
+    definition: >-
+      How fast he builds power, rather than how much he ends up
+      with.
+    unit: "W/s"
+    direction: higher_better
+    group: jump
+    status: curated
+
+  screen_slv_right_time_to_rpd_max_s:
+    name: "Single-leg vertical — Time to peak power rate (right)"
+    short: "SLV Time to peak RPD (R)"
+    definition: >-
+      How long it takes to reach that fastest build. Sooner is more
+      explosive.
+    unit: "s"
+    direction: lower_better
+    group: jump
+    status: curated
+
+  screen_slv_right_vel_at_pp:
+    name: "Single-leg vertical — Speed at peak power (right)"
+    short: "SLV Velo at peak power (R)"
+    definition: >-
+      How fast he is moving at the instant power peaks — the
+      velocity side of his force-velocity profile.
+    unit: "m/s"
+    direction: higher_better
+    group: jump
+    status: curated
+
+  screen_slv_right_kurtosis:
+    name: "Single-leg vertical — Power-curve shape (right)"
+    short: "SLV Curve shape (R)"
+    definition: >-
+      How peaked or flat the power curve is. A spike and a plateau
+      can reach the same peak and mean different things.
+    direction: context
+    group: jump
+    status: curated
+
+  proteus_hitter_shotput_power_mean:
+    name: "Proteus shot put power (average)"
+    short: "Shot power (mean)"
+    definition: >-
+      Average power across the shot put reps on the Proteus, hitting
+      position.
+    unit: "W"
+    direction: higher_better
+    group: strength
+    status: curated
+
+  proteus_hitter_shotput_power_high:
+    name: "Proteus shot put power (best)"
+    short: "Shot power (high)"
+    definition: >-
+      Best power across the shot put reps on the Proteus, hitting
+      position.
+    unit: "W"
+    direction: higher_better
+    group: strength
+    status: curated
+
+  proteus_hitter_shotput_velocity_mean:
+    name: "Proteus shot put speed (average)"
+    short: "Shot speed (mean)"
+    definition: >-
+      Average speed across the shot put reps on the Proteus, hitting
+      position.
+    unit: "m/s"
+    direction: higher_better
+    group: strength
+    status: curated
+
+  proteus_hitter_shotput_velocity_high:
+    name: "Proteus shot put speed (best)"
+    short: "Shot speed (high)"
+    definition: >-
+      Best speed across the shot put reps on the Proteus, hitting
+      position.
+    unit: "m/s"
+    direction: higher_better
+    group: strength
+    status: curated
+
+  proteus_hitter_shotput_acceleration_mean:
+    name: "Proteus shot put acceleration (average)"
+    short: "Shot acceleration (mean)"
+    definition: >-
+      Average acceleration across the shot put reps on the Proteus,
+      hitting position.
+    unit: "m/s²"
+    direction: higher_better
+    group: strength
+    status: curated
+
+  proteus_hitter_shotput_acceleration_high:
+    name: "Proteus shot put acceleration (best)"
+    short: "Shot acceleration (high)"
+    definition: >-
+      Best acceleration across the shot put reps on the Proteus,
+      hitting position.
+    unit: "m/s²"
+    direction: higher_better
+    group: strength
+    status: curated
+
+  proteus_hitter_trunk_rotation_power_mean:
+    name: "Proteus straight-arm trunk rotation power (average)"
+    short: "Straight-arm power (mean)"
+    definition: >-
+      Average power across the straight-arm trunk rotation reps on
+      the Proteus, hitting position.
+    unit: "W"
+    direction: higher_better
+    group: strength
+    status: curated
+
+  proteus_hitter_trunk_rotation_power_high:
+    name: "Proteus straight-arm trunk rotation power (best)"
+    short: "Straight-arm power (high)"
+    definition: >-
+      Best power across the straight-arm trunk rotation reps on the
+      Proteus, hitting position.
+    unit: "W"
+    direction: higher_better
+    group: strength
+    status: curated
+
+  proteus_hitter_trunk_rotation_velocity_mean:
+    name: "Proteus straight-arm trunk rotation speed (average)"
+    short: "Straight-arm speed (mean)"
+    definition: >-
+      Average speed across the straight-arm trunk rotation reps on
+      the Proteus, hitting position.
+    unit: "m/s"
+    direction: higher_better
+    group: strength
+    status: curated
+
+  proteus_hitter_trunk_rotation_velocity_high:
+    name: "Proteus straight-arm trunk rotation speed (best)"
+    short: "Straight-arm speed (high)"
+    definition: >-
+      Best speed across the straight-arm trunk rotation reps on the
+      Proteus, hitting position.
+    unit: "m/s"
+    direction: higher_better
+    group: strength
+    status: curated
+
+  proteus_hitter_trunk_rotation_acceleration_mean:
+    name: "Proteus straight-arm trunk rotation acceleration (average)"
+    short: "Straight-arm acceleration (mean)"
+    definition: >-
+      Average acceleration across the straight-arm trunk rotation
+      reps on the Proteus, hitting position.
+    unit: "m/s²"
+    direction: higher_better
+    group: strength
+    status: curated
+
+  proteus_hitter_trunk_rotation_acceleration_high:
+    name: "Proteus straight-arm trunk rotation acceleration (best)"
+    short: "Straight-arm acceleration (high)"
+    definition: >-
+      Best acceleration across the straight-arm trunk rotation reps
+      on the Proteus, hitting position.
+    unit: "m/s²"
+    direction: higher_better
+    group: strength
+    status: curated
+
+  mob_cervical_flexion:
+    name: "Neck flexion"
+    short: "Neck flexion"
+    definition: >-
+      Range of motion measured on the mobility screen — chin toward
+      chest.
+    unit: "deg"
+    direction: context
+    group: mobility
+    status: curated
+
+  mob_cervical_extension:
+    name: "Neck extension"
+    short: "Neck extension"
+    definition: >-
+      Range of motion measured on the mobility screen — chin away
+      from chest.
+    unit: "deg"
+    direction: context
+    group: mobility
+    status: curated
+
+  mob_cervical_rotation:
+    name: "Neck rotation"
+    short: "Neck rotation"
+    definition: >-
+      Range of motion measured on the mobility screen — turning the
+      head.
+    unit: "deg"
+    direction: context
+    group: mobility
+    status: curated
+
+  mob_elbow_flexion:
+    name: "Elbow flexion"
+    short: "Elbow flexion"
+    definition: >-
+      Range of motion measured on the mobility screen — bending the
+      elbow.
+    unit: "deg"
+    direction: context
+    group: mobility
+    status: curated
+
+  mob_elbow_extension:
+    name: "Elbow extension"
+    short: "Elbow extension"
+    definition: >-
+      Range of motion measured on the mobility screen —
+      straightening the elbow.
+    unit: "deg"
+    direction: context
+    group: mobility
+    status: curated
+
+  mob_elbow_pronation:
+    name: "Forearm pronation"
+    short: "Forearm pronation"
+    definition: >-
+      Range of motion measured on the mobility screen — palm turning
+      down.
+    unit: "deg"
+    direction: context
+    group: mobility
+    status: curated
+
+  mob_elbow_supination:
+    name: "Forearm supination"
+    short: "Forearm supination"
+    definition: >-
+      Range of motion measured on the mobility screen — palm turning
+      up.
+    unit: "deg"
+    direction: context
+    group: mobility
+    status: curated
+
+  hit_max_bat_ang_vel:
+    name: "Bat angular speed (peak)"
+    short: "Bat angular speed (peak)"
+    definition: >-
+      Fastest the bat rotates through the swing.
+    unit: "deg/s"
+    direction: higher_better
+    group: sequencing
+    status: curated
+
+  hit_max_bat_ang_vel_mean:
+    name: "Bat angular speed (peak) — session average"
+    short: "Bat angular speed (peak) (avg)"
+    definition: >-
+      Fastest the bat rotates through the swing. Averaged across the
+      swings in the session rather than his best one.
+    unit: "deg/s"
+    direction: higher_better
+    group: sequencing
+    status: curated
+
+  hit_max_lead_hand_ang_vel:
+    name: "Lead hand angular speed (peak)"
+    short: "Lead hand angular speed (peak)"
+    definition: >-
+      Fastest the lead hand rotates.
+    unit: "deg/s"
+    direction: higher_better
+    group: sequencing
+    status: curated
+
+  hit_max_lead_hand_ang_vel_mean:
+    name: "Lead hand angular speed (peak) — session average"
+    short: "Lead hand angular speed (peak) (avg)"
+    definition: >-
+      Fastest the lead hand rotates. Averaged across the swings in
+      the session rather than his best one.
+    unit: "deg/s"
+    direction: higher_better
+    group: sequencing
+    status: curated
+
+  hit_max_lead_forearm_ang_vel:
+    name: "Lead forearm angular speed (peak)"
+    short: "Lead forearm angular speed (peak)"
+    definition: >-
+      Fastest the lead forearm rotates.
+    unit: "deg/s"
+    direction: higher_better
+    group: sequencing
+    status: curated
+
+  hit_max_lead_forearm_ang_vel_mean:
+    name: "Lead forearm angular speed (peak) — session average"
+    short: "Lead forearm angular speed (peak) (avg)"
+    definition: >-
+      Fastest the lead forearm rotates. Averaged across the swings
+      in the session rather than his best one.
+    unit: "deg/s"
+    direction: higher_better
+    group: sequencing
+    status: curated
+
+  hit_max_pelvis_ang_vel:
+    name: "Pelvis rotation speed (peak)"
+    short: "Pelvis rotation speed (peak)"
+    definition: >-
+      Fastest the hips turn through the swing.
+    unit: "deg/s"
+    direction: higher_better
+    group: sequencing
+    status: curated
+
+  hit_max_pelvis_ang_vel_mean:
+    name: "Pelvis rotation speed (peak) — session average"
+    short: "Pelvis rotation speed (peak) (avg)"
+    definition: >-
+      Fastest the hips turn through the swing. Averaged across the
+      swings in the session rather than his best one.
+    unit: "deg/s"
+    direction: higher_better
+    group: sequencing
+    status: curated
+
+  hit_max_thorax_ang_vel:
+    name: "Torso rotation speed (peak)"
+    short: "Torso rotation speed (peak)"
+    definition: >-
+      Fastest the chest turns through the swing.
+    unit: "deg/s"
+    direction: higher_better
+    group: sequencing
+    status: curated
+
+  hit_max_thorax_ang_vel_mean:
+    name: "Torso rotation speed (peak) — session average"
+    short: "Torso rotation speed (peak) (avg)"
+    definition: >-
+      Fastest the chest turns through the swing. Averaged across the
+      swings in the session rather than his best one.
+    unit: "deg/s"
+    direction: higher_better
+    group: sequencing
+    status: curated
+
+  hit_lead_knee_ang_vel_ext_max:
+    name: "Lead knee extension speed (peak)"
+    short: "Lead knee extension speed (peak)"
+    definition: >-
+      How fast the front knee straightens into contact — the block.
+    unit: "deg/s"
+    direction: higher_better
+    group: sequencing
+    status: curated
+
+  hit_lead_knee_ang_vel_ext_max_mean:
+    name: "Lead knee extension speed (peak) — session average"
+    short: "Lead knee extension speed (peak) (avg)"
+    definition: >-
+      How fast the front knee straightens into contact — the block.
+      Averaged across the swings in the session rather than his best
+      one.
+    unit: "deg/s"
+    direction: higher_better
+    group: sequencing
+    status: curated
+
+  hit_pelvis_at_contact:
+    name: "Pelvis rotation at contact"
+    short: "Pelvis rotation at contact"
+    definition: >-
+      How far the hips have turned at the moment of contact.
+    unit: "deg"
+    direction: context
+    group: sequencing
+    status: curated
+
+  hit_pelvis_at_contact_mean:
+    name: "Pelvis rotation at contact — session average"
+    short: "Pelvis rotation at contact (avg)"
+    definition: >-
+      How far the hips have turned at the moment of contact.
+      Averaged across the swings in the session rather than his best
+      one.
+    unit: "deg"
+    direction: context
+    group: sequencing
+    status: curated
+
+  hit_trunk_at_contact:
+    name: "Torso rotation at contact"
+    short: "Torso rotation at contact"
+    definition: >-
+      How far the chest has turned at contact.
+    unit: "deg"
+    direction: context
+    group: sequencing
+    status: curated
+
+  hit_trunk_at_contact_mean:
+    name: "Torso rotation at contact — session average"
+    short: "Torso rotation at contact (avg)"
+    definition: >-
+      How far the chest has turned at contact. Averaged across the
+      swings in the session rather than his best one.
+    unit: "deg"
+    direction: context
+    group: sequencing
+    status: curated
+
+  hit_lead_knee_at_contact:
+    name: "Lead knee angle at contact"
+    short: "Lead knee angle at contact"
+    definition: >-
+      How bent or straight the front knee is at contact.
+    unit: "deg"
+    direction: context
+    group: sequencing
+    status: curated
+
+  hit_lead_knee_at_contact_mean:
+    name: "Lead knee angle at contact — session average"
+    short: "Lead knee angle at contact (avg)"
+    definition: >-
+      How bent or straight the front knee is at contact. Averaged
+      across the swings in the session rather than his best one.
+    unit: "deg"
+    direction: context
+    group: sequencing
+    status: curated
+
+  hit_pelvis_at_lead_foot_down:
+    name: "Pelvis rotation at foot down"
+    short: "Pelvis rotation at foot down"
+    definition: >-
+      How far the hips have turned when the front foot lands.
+    unit: "deg"
+    direction: context
+    group: sequencing
+    status: curated
+
+  hit_pelvis_at_lead_foot_down_mean:
+    name: "Pelvis rotation at foot down — session average"
+    short: "Pelvis rotation at foot down (avg)"
+    definition: >-
+      How far the hips have turned when the front foot lands.
+      Averaged across the swings in the session rather than his best
+      one.
+    unit: "deg"
+    direction: context
+    group: sequencing
+    status: curated
+
+  hit_trunk_at_lead_foot_down:
+    name: "Torso rotation at foot down"
+    short: "Torso rotation at foot down"
+    definition: >-
+      How far the chest has turned when the front foot lands.
+    unit: "deg"
+    direction: context
+    group: sequencing
+    status: curated
+
+  hit_trunk_at_lead_foot_down_mean:
+    name: "Torso rotation at foot down — session average"
+    short: "Torso rotation at foot down (avg)"
+    definition: >-
+      How far the chest has turned when the front foot lands.
+      Averaged across the swings in the session rather than his best
+      one.
+    unit: "deg"
+    direction: context
+    group: sequencing
+    status: curated
+
+  hit_lead_knee_at_lead_foot_down:
+    name: "Lead knee angle at foot down"
+    short: "Lead knee angle at foot down"
+    definition: >-
+      Front knee angle as the foot lands.
+    unit: "deg"
+    direction: context
+    group: sequencing
+    status: curated
+
+  hit_lead_knee_at_lead_foot_down_mean:
+    name: "Lead knee angle at foot down — session average"
+    short: "Lead knee angle at foot down (avg)"
+    definition: >-
+      Front knee angle as the foot lands. Averaged across the swings
+      in the session rather than his best one.
+    unit: "deg"
+    direction: context
+    group: sequencing
+    status: curated
+
+  hit_pelvis_shoulders_sep_at_contact:
+    name: "Hip–shoulder separation at contact"
+    short: "Hip–shoulder separation at contact"
+    definition: >-
+      Separation left at contact.
+    unit: "deg"
+    direction: context
+    group: sequencing
+    status: curated
+
+  hit_pelvis_shoulders_sep_at_contact_mean:
+    name: "Hip–shoulder separation at contact — session average"
+    short: "Hip–shoulder separation at contact (avg)"
+    definition: >-
+      Separation left at contact. Averaged across the swings in the
+      session rather than his best one.
+    unit: "deg"
+    direction: context
+    group: sequencing
+    status: curated
+
+  hit_pelvis_shoulders_sep_at_lead_foot_down:
+    name: "Hip–shoulder separation at foot down"
+    short: "Hip–shoulder separation at foot down"
+    definition: >-
+      The stretch he lands into — the coil available to swing
+      against.
+    unit: "deg"
+    direction: higher_better
+    group: sequencing
+    status: curated
+
+  hit_pelvis_shoulders_sep_at_lead_foot_down_mean:
+    name: "Hip–shoulder separation at foot down — session average"
+    short: "Hip–shoulder separation at foot down (avg)"
+    definition: >-
+      The stretch he lands into — the coil available to swing
+      against. Averaged across the swings in the session rather than
+      his best one.
+    unit: "deg"
+    direction: higher_better
+    group: sequencing
+    status: curated
+
+  hit_pelvis_shoulders_sep_at_downswing:
+    name: "Hip–shoulder separation at start of downswing"
+    short: "Hip–shoulder separation at start of downswing"
+    definition: >-
+      Separation as the hands start forward.
+    unit: "deg"
+    direction: higher_better
+    group: sequencing
+    status: curated
+
+  hit_pelvis_shoulders_sep_at_downswing_mean:
+    name: "Hip–shoulder separation at start of downswing — session average"
+    short: "Hip–shoulder separation at start of downswing (avg)"
+    definition: >-
+      Separation as the hands start forward. Averaged across the
+      swings in the session rather than his best one.
+    unit: "deg"
+    direction: higher_better
+    group: sequencing
+    status: curated
+
+  hit_pelvis_shoulders_sep_at_max_bat_ang_vel:
+    name: "Hip–shoulder separation at peak bat speed"
+    short: "Hip–shoulder separation at peak bat speed"
+    definition: >-
+      Separation remaining when the bat is moving fastest.
+    unit: "deg"
+    direction: context
+    group: sequencing
+    status: curated
+
+  hit_pelvis_shoulders_sep_at_max_bat_ang_vel_mean:
+    name: "Hip–shoulder separation at peak bat speed — session average"
+    short: "Hip–shoulder separation at peak bat speed (avg)"
+    definition: >-
+      Separation remaining when the bat is moving fastest. Averaged
+      across the swings in the session rather than his best one.
+    unit: "deg"
+    direction: context
+    group: sequencing
+    status: curated
+
+  hit_pelvis_shoulders_sep_at_max_lead_hand_ang_vel:
+    name: "Hip–shoulder separation at peak hand speed"
+    short: "Hip–shoulder separation at peak hand speed"
+    definition: >-
+      Separation remaining when the lead hand is moving fastest.
+    unit: "deg"
+    direction: context
+    group: sequencing
+    status: curated
+
+  hit_pelvis_shoulders_sep_at_max_lead_hand_ang_vel_mean:
+    name: "Hip–shoulder separation at peak hand speed — session average"
+    short: "Hip–shoulder separation at peak hand speed (avg)"
+    definition: >-
+      Separation remaining when the lead hand is moving fastest.
+      Averaged across the swings in the session rather than his best
+      one.
+    unit: "deg"
+    direction: context
+    group: sequencing
+    status: curated
+
+  hit_pelvis_total_rotation:
+    name: "Total pelvis rotation"
+    short: "Total pelvis rotation"
+    definition: >-
+      Total hip turn across the swing.
+    unit: "deg"
+    direction: context
+    group: sequencing
+    status: curated
+
+  hit_pelvis_total_rotation_mean:
+    name: "Total pelvis rotation — session average"
+    short: "Total pelvis rotation (avg)"
+    definition: >-
+      Total hip turn across the swing. Averaged across the swings in
+      the session rather than his best one.
+    unit: "deg"
+    direction: context
+    group: sequencing
+    status: curated
+
+  hit_trunk_total_rotation:
+    name: "Total torso rotation"
+    short: "Total torso rotation"
+    definition: >-
+      Total chest turn across the swing.
+    unit: "deg"
+    direction: context
+    group: sequencing
+    status: curated
+
+  hit_trunk_total_rotation_mean:
+    name: "Total torso rotation — session average"
+    short: "Total torso rotation (avg)"
+    definition: >-
+      Total chest turn across the swing. Averaged across the swings
+      in the session rather than his best one.
+    unit: "deg"
+    direction: context
+    group: sequencing
+    status: curated
+
+  hit_lead_leg_block_delta:
+    name: "Lead-leg block"
+    short: "Lead-leg block"
+    definition: >-
+      How much the front knee straightens from landing to contact.
+      The brake the swing rotates around.
+    unit: "deg"
+    direction: higher_better
+    group: sequencing
+    status: curated
+
+  hit_lead_leg_block_delta_mean:
+    name: "Lead-leg block — session average"
+    short: "Lead-leg block (avg)"
+    definition: >-
+      How much the front knee straightens from landing to contact.
+      The brake the swing rotates around. Averaged across the swings
+      in the session rather than his best one.
+    unit: "deg"
+    direction: higher_better
+    group: sequencing
+    status: curated
+
+  hit_stride_width_at_lead_foot_down:
+    name: "Stride width at foot down"
+    short: "Stride width at foot down"
+    definition: >-
+      How wide the front foot lands relative to the back.
+    unit: "m"
+    direction: context
+    group: sequencing
+    status: curated
+
+  hit_stride_width_at_lead_foot_down_mean:
+    name: "Stride width at foot down — session average"
+    short: "Stride width at foot down (avg)"
+    definition: >-
+      How wide the front foot lands relative to the back. Averaged
+      across the swings in the session rather than his best one.
+    unit: "m"
+    direction: context
+    group: sequencing
+    status: curated
+
+  hit_hip_shoulder_sep_at_setup:
+    name: "Hip–shoulder separation at setup"
+    short: "Hip–shoulder separation at setup"
+    definition: >-
+      Separation he starts from.
+    unit: "deg"
+    direction: context
+    group: sequencing
+    status: curated
+
+  hit_hip_shoulder_sep_at_setup_mean:
+    name: "Hip–shoulder separation at setup — session average"
+    short: "Hip–shoulder separation at setup (avg)"
+    definition: >-
+      Separation he starts from. Averaged across the swings in the
+      session rather than his best one.
+    unit: "deg"
+    direction: context
+    group: sequencing
+    status: curated
+
+  hit_bat_angle_frontal_at_contact:
+    name: "Bat angle at contact (frontal)"
+    short: "Bat angle at contact (frontal)"
+    definition: >-
+      Bat tilt seen from the front at contact.
+    unit: "deg"
+    direction: context
+    group: sequencing
+    status: curated
+
+  hit_bat_angle_frontal_at_contact_mean:
+    name: "Bat angle at contact (frontal) — session average"
+    short: "Bat angle at contact (frontal) (avg)"
+    definition: >-
+      Bat tilt seen from the front at contact. Averaged across the
+      swings in the session rather than his best one.
+    unit: "deg"
+    direction: context
+    group: sequencing
+    status: curated
+
+  hit_bat_angle_sagittal_at_contact:
+    name: "Bat angle at contact (side)"
+    short: "Bat angle at contact (side)"
+    definition: >-
+      Bat tilt seen from the side at contact.
+    unit: "deg"
+    direction: context
+    group: sequencing
+    status: curated
+
+  hit_bat_angle_sagittal_at_contact_mean:
+    name: "Bat angle at contact (side) — session average"
+    short: "Bat angle at contact (side) (avg)"
+    definition: >-
+      Bat tilt seen from the side at contact. Averaged across the
+      swings in the session rather than his best one.
+    unit: "deg"
+    direction: context
+    group: sequencing
+    status: curated
+
+  hit_bat_angle_transversal_at_contact:
+    name: "Bat angle at contact (overhead)"
+    short: "Bat angle at contact (overhead)"
+    definition: >-
+      Bat angle seen from above at contact.
+    unit: "deg"
+    direction: context
+    group: sequencing
+    status: curated
+
+  hit_bat_angle_transversal_at_contact_mean:
+    name: "Bat angle at contact (overhead) — session average"
+    short: "Bat angle at contact (overhead) (avg)"
+    definition: >-
+      Bat angle seen from above at contact. Averaged across the
+      swings in the session rather than his best one.
+    unit: "deg"
+    direction: context
+    group: sequencing
+    status: curated
+
+  hit_horizontal_attack_angle_at_contact:
+    name: "Horizontal attack angle"
+    short: "Horizontal attack angle"
+    definition: >-
+      Bat path left or right of straight at contact.
+    unit: "deg"
+    direction: context
+    group: sequencing
+    status: curated
+
+  hit_horizontal_attack_angle_at_contact_mean:
+    name: "Horizontal attack angle — session average"
+    short: "Horizontal attack angle (avg)"
+    definition: >-
+      Bat path left or right of straight at contact. Averaged across
+      the swings in the session rather than his best one.
+    unit: "deg"
+    direction: context
+    group: sequencing
+    status: curated
+
+  hit_vertical_attack_angle_at_contact:
+    name: "Vertical attack angle"
+    short: "Vertical attack angle"
+    definition: >-
+      Bat path up or down through contact.
+    unit: "deg"
+    direction: context
+    group: sequencing
+    status: curated
+
+  hit_vertical_attack_angle_at_contact_mean:
+    name: "Vertical attack angle — session average"
+    short: "Vertical attack angle (avg)"
+    definition: >-
+      Bat path up or down through contact. Averaged across the
+      swings in the session rather than his best one.
+    unit: "deg"
+    direction: context
+    group: sequencing
+    status: curated
+
+  hit_bat_travelled_distance_max:
+    name: "Bat path length"
+    short: "Bat path length"
+    definition: >-
+      How far the bat travels from launch to contact.
+    unit: "m"
+    direction: context
+    group: sequencing
+    status: curated
+
+  hit_bat_travelled_distance_max_mean:
+    name: "Bat path length — session average"
+    short: "Bat path length (avg)"
+    definition: >-
+      How far the bat travels from launch to contact. Averaged
+      across the swings in the session rather than his best one.
+    unit: "m"
+    direction: context
+    group: sequencing
+    status: curated
+
+vocabulary:
+
+  segments:
+    Pelvis: "pelvis"
+    Trunk: "torso"
+    Thorax: "upper torso"
+    Head: "head"
+    Lead_Knee: "front knee"
+    Back_Knee: "back knee"
+    Lead_Leg: "front leg"
+    Back_Leg: "back leg"
+    Pitching_Shoulder: "throwing shoulder"
+    Pitching_Elbow: "throwing elbow"
+    Pitching_Humerus: "throwing upper arm"
+    Pitching_Hand: "throwing hand"
+    Shoulder: "shoulder"
+    Elbow: "elbow"
+    Forearm: "forearm"
+    Trunk_wrt_Pelvis: "torso relative to pelvis"
+
+  quantities:
+    Ang_Vel: {label: "rotation speed", unit: "deg/s"}
+    Ang_Acc: {label: "rotation acceleration", unit: "deg/s2"}
+    Angle: {label: "angle", unit: "deg"}
+    COG: {label: "centre of mass position", unit: "m"}
+    COG_Vel: {label: "centre of mass speed", unit: "m/s"}
+    GRF: {label: "ground force", unit: "N"}
+    GRF_max: {label: "peak ground force", unit: "N"}
+    GRF_min: {label: "minimum ground force", unit: "N"}
+    GRF_mag_max: {label: "peak total ground force", unit: "N"}
+    GRF_mag_impulse: {label: "ground force impulse", unit: "N·s"}
+    Torque: {label: "torque", unit: "Nm", direction: load}
+    Seg_Length: {label: "segment length", unit: "m"}
+    Dist_Force: {label: "distraction force", unit: "N", direction: load}
+
+  events:
+    Setup: "setup"
+    MaxKneeHeight: "peak leg lift"
+    Footstrike: "foot strike"
+    Max_Shoulder_Rot: "max external rotation"
+    PelvisRot_Stop: "pelvis rotation stop"
+    Release: "ball release"
+    Release100msAfter: "100 ms after release"
+    Max_Shoulder_Int_Rot_FollowThru: "max internal rotation (follow-through)"
+    Max_Shoulder_Abd_Force_N: "peak shoulder abduction force"
+
+  # Axis meaning is model- and segment-dependent in Visual3D. Rather than
+  # guess, the composer renders the raw axis letter and the coverage report
+  # lists every (segment, quantity) pair still lacking an explicit mapping.
+  # Fill these in as you confirm them — format: "<Segment>.<Quantity>.<Axis>"
+  axis_labels: {}
+
+  # fm_* force-plate token tables
+  fm_sides:
+    lead: "front leg"
+    drive: "back leg"
+    total: "both legs"
+  fm_measures:
+    peak_vertical: "peak vertical force"
+    peak_braking: "peak braking force"
+    peak_resultant: "peak total force"
+    rfd_vertical: "vertical force rate"
+    rfd_braking: "braking rate"
+    impulse_v: "vertical impulse"
+    impulse_b: "braking impulse"
+    impulse_resultant: "total impulse"
+    fz: "vertical force"
+    fy: "braking force"
+  fm_windows:
+    into_ball: "over the release window"
+    fc_to_br: "from foot strike to release"
+    fc_to_mer: "from foot strike to max external rotation"
+    at_midpoint: "at the midpoint of foot strike to release"
+    at_50pct: "at 50% of foot strike to release"
+  fm_units:
+    bw: "BW"
+    n: "N"
+    bws: "BW·s"
+    ns: "N·s"
+    ms: "ms"
+    s: "s"
+    bw_per_s: "BW/s"
+    n_per_s: "N/s"
+    pct_fc_br: "%"
+    count: "count"

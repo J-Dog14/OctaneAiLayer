@@ -18,3 +18,8 @@ pandas>=2.2.0
 numpy>=1.26.0
 scikit-learn>=1.4.0
 plotly>=5.20.0
+scipy>=1.12.0     # research/ module — stats tests, FDR correction
+
+# research/ v2 — metric dictionary (YAML) + offline test suite
+PyYAML>=6.0
+pytest>=8.0
